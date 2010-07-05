@@ -38,7 +38,7 @@ function autoview_add_instance($autoview) {
     else
     {
      $fname=clean_filename(str_replace(' ', '_', trim($mainrecord->name)));
-     echo $autoview->usedir;
+     //echo $autoview->usedir;
      if ($autoview->usedir=="true")
      {
       global $CFG;
