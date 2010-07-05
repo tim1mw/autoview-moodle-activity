@@ -1,0 +1,363 @@
+body
+{
+ background-color: #ffffff;
+ font-family: sans-serif;
+ color:#000000;
+ margin-bottom:-15px;
+}
+
+html
+{
+ 
+}
+
+h1
+{
+ font-size:small;
+ font-weight:bold;
+ padding:0px;
+ margin:0px;
+}
+
+h2
+{
+ font-size:small;
+ padding:0px;
+ margin:0px;
+}
+
+h3
+{
+ font-size:small;
+ font-weight:normal;
+ padding:1px;
+ margin:1px;
+}
+
+a
+{
+ color:#000000;
+ text-decoration:none;
+}
+
+#subtitles
+{
+ padding:1px;
+}
+
+#controldiv
+{
+ margin-top:4px;
+}
+
+#extrabuttons
+{
+ margin-top:1px;
+}
+
+#slidemenu
+{
+ margin-top:1px;
+}
+
+.small
+{
+ font-size:small;
+ font-weight:normal;
+}
+
+#videoplayer
+{
+ background-color:#ffffff;
+}
+
+/*Layout table*/
+
+table.display
+{
+}
+
+table.display-noslides
+{
+ border:1px solid #dddddd;
+ -moz-border-radius:10px;
+ /*background-color:#f3f2b1;*/
+ background-color:#f9f9f9;
+}
+
+td.messagebox
+{
+ border:1px solid #dddddd;
+ -moz-border-radius:10px;
+ /*background-color:#f3f2b1;*/
+ background-color:#f9f9f9;
+}
+
+td.videocolumn
+{
+ vertical-align:top;
+ border:1px solid #dddddd;
+ -moz-border-radius:10px;
+ /*background-color:#;f3f2b1*/
+ background-color:#f9f9f9;
+}
+
+table.controlbarcontainer
+{
+ width:100%;
+ padding-left:2px;
+ padding-right:2px;
+ padding-bottom:0px;
+ padding-top:0px;
+}
+
+td.controlbarbox
+{
+ border:1px solid #dddddd;
+ -moz-border-radius:10px;
+ /*background-color:#f3f2b1;*/
+ background-color:#f9f9f9;
+}
+
+td.slides_subtitles
+{
+ padding-top:2px;
+ vertical-align:top;
+ text-align:center;
+ background-color:#ffffff;
+}
+
+/*Used by RealPlayer and VLC plugin display*/
+
+td.playerPanel
+{
+ background-color: #e7e7e7;
+ padding:0px;
+ margin:0px;
+}
+
+table.rplayer
+{
+ border: thin ridge #ffffff;
+ padding:0px;
+ margin:0px;
+ background-color: #ffffff;
+}
+
+#vlctime
+{
+ font-weight:normal;
+ font-size:small;
+ color:#000000;
+}
+
+#vlclength
+{
+ font-weight:normal;
+ font-size:small;
+ color:#000000;
+}
+
+.plugintag
+{
+ /*background-color:#000000;*/
+ /**For Non-Standard IE based browsers**/
+ filter:alpha(opacity=0);
+ /**For CSS 3 compliant browsers**/
+ opacity:0.00;
+}
+
+/*Used for HTML 5 video*/
+
+iframe.video
+{
+ border:0px;
+ margin:0px;
+ overflow:hidden;
+ background-color:#f9f9f9;
+}
+
+/*Standard Menu styles*/
+
+a.linkbutton
+{
+ margin:0px;
+ padding-left:5px;
+ padding-right:5px;
+ border:1px solid #222222;
+ font-weight:normal;
+ font-size:small;
+ color:#000000;
+ background-color:#eeeeee;
+ text-decoration:none;
+}
+
+a.linkbutton:hover
+{
+ background-color:#ffffff;
+}
+
+a.linkbuttongrey
+{
+ margin:0px;
+ padding-left:5px;
+ padding-right:5px;
+ border:1px solid #222222;
+ font-size:small;
+ font-weight:normal;
+ color:#999999;
+ background-color:#eeeeee;
+ text-decoration:none;
+}
+
+a.linkbuttongrey:hover
+{
+ background-color:#ffffff;
+}
+
+a.linkbuttonselected
+{
+ margin:0px;
+ padding-left:5px;
+ padding-right:5px;
+ border:1px solid #222222;
+ font-size:small;
+ font-weight:bold;
+ color:#000000;
+ background-color:#f4fff4;
+ text-decoration:none;
+}
+
+a.linkbuttonselected:hover
+{
+ background-color:#ffffff;
+}
+
+ul.chooser
+{
+ margin-left:0px;
+ margin-right:2px;
+ margin-top:6px;
+ margin-bottom:0px;
+ padding:0px;
+ list-style-type:none;
+
+ border-left:1px solid #222222;
+ border-right:1px solid #222222;
+ border-bottom:1px solid #222222;
+ width:85%;
+}
+
+li.chooserunselected
+{
+ color:#000000;
+ padding:2px 4px;
+ text-decoration:none;
+ background-color:#eeeeee;
+ border-top:1px solid #222222;
+ font-size:x-small;
+}
+
+li.chooserunselected:hover
+{
+ background-color:#ffffff;
+}
+
+li.chooserselected
+{
+ padding:2px 4px;
+ text-decoration:none;
+ border-top:1px solid #222222;
+ background-color:#f4fff4;
+ color:#000000;
+ font-weight:bold;
+ font-size:small;
+}
+
+li.chooserselected:hover
+{
+ background-color:#ffffff;
+}
+
+a.valid
+{
+ color:#000000;
+ text-decoration:none;
+}
+
+a.invalid
+{
+ color:#999999;
+ text-decoration:none;
+}
+
+table.menulayout
+{
+ padding:0px;
+ margin:0px;
+}
+
+td.menulayoutcell
+{
+ padding-top:1px;
+ padding-bottom:1px;
+ padding-left:0px;
+ padding-right:0px;
+ margin:0px;
+}
+
+/*Special Menu Styles*/
+
+select.slidelisting
+{
+ margin-top:0px;
+ margin-bottom:0px;
+ margin-left:2px;
+ margin-right:2px;
+ padding:0px;
+ font-size:x-small;
+}
+
+select.langlisting
+{
+ margin:0px;
+ padding:0px;
+ font-size:small;
+}
+
+td.subtitlecontrolcell
+{
+ padding-bottom:4px;
+}
+
+/*Subtitles Styles*/
+
+table.subtitletable
+{
+ margin:0px;
+ border:1px solid #222222;
+ color:#000000;
+ background-color:#ffffff;
+ font-size:medium;
+ -moz-border-radius:10px;
+}
+
+/*All Sildes*/
+
+h4
+{
+ font-size:large;
+ font-weight:bold;
+}
+
+/*Other*/
+
+iframe.hiddenframe
+{
+ margin:0px;
+ padding:0px;
+ border:0px;
+ height:0px;
+ width:0px;
+ display:none;
+}
