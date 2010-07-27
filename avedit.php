@@ -49,7 +49,7 @@
      'alwaysflashstream'=> $alwaysflashstream);
 
     /*****If there is no conversion service, send a blank URL*****/
-    if (count($conversionurl)>0 && has_capability('mod/autoview:canconvertdocument', $context))
+    if (strlen($conversionurl)>0 && has_capability('mod/autoview:canconvertdocument', $context))
      $parameters['conversionURL']=$CFG->wwwroot."/mod/autoview/convert.php";
     else
      $parameters['conversionURL']="";
