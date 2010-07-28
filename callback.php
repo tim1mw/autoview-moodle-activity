@@ -35,6 +35,9 @@
    die();
   }
 
+  //*** Need to set the global user variable, Guest users auth may fail without it***
+  $USER=get_record("user", "id", $data->userid);
+
   //*****Get other info we need*****
   $context = get_context_instance(CONTEXT_MODULE, $data->cmid);
   $cm=get_record("course_modules", "id", $data->cmid);
