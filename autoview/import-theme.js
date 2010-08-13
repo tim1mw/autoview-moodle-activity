@@ -38,6 +38,9 @@ function importTheme()
   var vidf=getRule(document.styleSheets, "iframe.video");
   vidf.backgroundColor=table.backgroundColor;
 
+  var vidb=getRule(document.styleSheets, "div.videobak");
+  vidb.backgroundColor=table.backgroundColor;
+
   getRule(document.styleSheets, "a").color=table.color; 
 
   var ss=getRule(document.styleSheets, "td.slides_subtitles");
