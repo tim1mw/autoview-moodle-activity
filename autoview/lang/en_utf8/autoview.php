@@ -2,6 +2,7 @@
       // autoview.php - created with Moodle 1.2 development (2003111400)
 
 $string['alwaysflashstream']='Always use streaming server for flash videos';
+$string['alwaysflashstream2']='Force the use of the Lecture Capture Live streaming server for all new presentions with flash videos.';
 $string['autoviewtext'] = 'AutoView Name';
 $string['autoviewsummary'] = 'Summary';
 $string['chooseconfig'] = 'Choose config file';
@@ -13,7 +14,9 @@ $string['modulename'] = 'AutoView';
 $string['modulenameplural'] = 'AutoView Presentations';
 $string['xmlsavefailed'] = 'Configuration file save failed';
 $string['configconversionurl'] = 'Document conversion service URL';
+$string['configconversionurl2'] = 'The URL of a document conversion service capable of producing slides in a format suitable for AutoView. Leave this blank if you do not have a suitable document conversion service available';
 $string['configconversionkey'] = 'Document conversion service access key';
+$string['configconversionkey2'] = 'The access key for the document conversion service.';
 $string['conversiondone'] = 'The document has been converted.';
 $string['conversionfailed'] = 'Conversion failed';
 $string['xmlhelp']= 'In most cases you will want to use the default configuration file. This will be created for you automatically in the course home directory '.
@@ -32,10 +35,13 @@ $string['usedir'] = 'Create seperate folder for AutoView files and configuration
 
 $string['configlivecapture']= 'Live capture java applet URL';
 $string['configflashserver']= 'Flash/Red5 communication server URL';
+$string['configflashserver2']= 'The rtmp url used to access the AutoView Lecture Capture Live addon. Leave this blank if you do not have Lecture Capture Live installed on your system.';
 $string['configflashcapture']= 'Flash based live capture URL';
+$string['configflashcapture2']= 'The http url used to access the AutoView Lecture Capture Live addon. Leave this blank if you do not have Lecture Capture Live installed on your system.';
 $string['configflashkey']='Flash server secret key';
 $string['configflashdir']='Subdirectory for captured flash files in course';
 $string['configflashsecurity'] = 'Flash/Red 5 server integration security method';
+$string['configflashsecurity2'] = 'The security method used by the Lecture Capture Live system. Random key is currently the only supported method for Moodle.';
 $string['secretkey'] = 'Secret Key';
 $string['randomkey'] = 'Random Key';
 $string['encryptedkey'] = 'Encrypted Random Key';
