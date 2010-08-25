@@ -1,7 +1,6 @@
 <?php
 
-require_once($CFG->dirroot.'/mod/forum/lib.php');
-require_once("lib.php");
+require_once($CFG->dirroot.'/mod/autoview/lib.php');
 
 $xsl="";
 if (testXSL()==false)
