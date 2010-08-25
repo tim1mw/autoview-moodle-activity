@@ -61,7 +61,7 @@
 </form>
 
 <?php 
-       if (has_capability('mod/autoview:canedit', $context) && !$add)
+       if (!$add)
        {
           echo "<form action=\"".$CFG->wwwroot."/mod/autoview/view.php\" method=\"get\" onsubmit=\"this.target='_top'; return true;\"><div>".
               "<input type=\"submit\" value=\"".get_string("editbutton", "autoview")."\" />".
