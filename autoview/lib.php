@@ -38,8 +38,8 @@ function autoview_add_instance($autoview) {
     else
     {
      $fname=clean_filename(str_replace(' ', '_', trim($mainrecord->name)));
-     //echo $autoview->usedir;
-     if ($autoview->usedir=="true")
+
+     if ($autoview->usedir)
      {
       global $CFG;
       $fileloc=$CFG->dataroot.'/'.$mainrecord->course.'/'.$fname;
