@@ -25,16 +25,20 @@ class mod_autoview_mod_form extends moodleform_mod {
 
         if ($add)
         {
+            $mform->addElement('checkbox', 'usedir', '', get_string("usedir", "autoview"));
+            $mform->setDefault('usedir', true);
+
             $mform->addElement('checkbox', 'createnew', '', get_string("createnew", "autoview"));
             $mform->setDefault('createnew', true);
         }
 
-        //$opts=array('courseid'=>null, 'height'=>500, 'width'=>750,'options'  =>'none'); 
-        //$mform->addElement('choosecoursefile', 'configfile', get_string("chooseconfig", "autoview"), $opts);
-        //$mform->addElement('filepicker', 'configfile', get_string("chooseconfig", "autoview"), $opts);
+        $opts=array('courseid'=>$COURSE->id, 'height'=>500, 'width'=>750, 'options'=>'none'); 
+        $mform->addElement('choosecoursefile', 'configfile', get_string("chooseconfig", "autoview"), $opts);
 
-        $mform->addElement('text', 'configfile', get_string("chooseconfig", "autoview"), 'size="47"');
-        $mform->setType('configfile', PARAM_FILE);
+        //$mform->addElement('filepicker', 'configfile', get_string("chooseconfig", "autoview"), $opts);
+        //$mform->addElement('text', 'configfile', get_string("chooseconfig", "autoview"), 'size="47"');
+        //$mform->setType('configfile', PARAM_FILE);
+
         if ($add)
             $mform->disabledIf('configfile', 'createnew', 'checked');
 
@@ -44,11 +48,13 @@ class mod_autoview_mod_form extends moodleform_mod {
 
 //-------------------------------------------------------------------------------
 // buttons
-        $this->add_action_buttons(true, false, null);
+        $this->add_action_buttons(true, null, null);
 
         if (has_capability('mod/autoview:canedit', $context) && !$add)
         {
-            $mform->addElement('html', "<form action=\"".$CFG->wwwroot."/mod/autoview/view.php\" method=\"get\" onsubmit=\"this.target='_top'; return true;\"><div>".
+            $mform->addElement('html',
+              "<br /><form action=\"".$CFG->wwwroot."/mod/autoview/view.php\" method=\"get\" onsubmit=\"this.target='_top'; return true;\">".
+              "<div style=\"text-align:center\">".
               "<input type=\"submit\" value=\"".get_string("editbutton", "autoview")."\" />".
               "<input type=\"hidden\" name=\"edit\" value=\"true\" />".
               "<input type=\"hidden\" name=\"id\" value=\"".$form->coursemodule."\" />".
