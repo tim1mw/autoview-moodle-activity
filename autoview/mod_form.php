@@ -4,7 +4,7 @@ require_once ($CFG->dirroot.'/course/moodleform_mod.php');
 class mod_autoview_mod_form extends moodleform_mod {
 
     function definition() {
-	global $add;
+	global $add, $CFG;
 
         $mform    =& $this->_form;
 
@@ -52,13 +52,10 @@ class mod_autoview_mod_form extends moodleform_mod {
 
         if (has_capability('mod/autoview:canedit', $context) && !$add)
         {
-            $mform->addElement('html',
-              "<br /><form action=\"".$CFG->wwwroot."/mod/autoview/view.php\" method=\"get\" onsubmit=\"this.target='_top'; return true;\">".
-              "<div style=\"text-align:center\">".
-              "<input type=\"submit\" value=\"".get_string("editbutton", "autoview")."\" />".
-              "<input type=\"hidden\" name=\"edit\" value=\"true\" />".
-              "<input type=\"hidden\" name=\"id\" value=\"".$form->coursemodule."\" />".
-              "</div></form>");
+            $mform->addElement('html', "\n<br />\n".
+             "<div style=\"text-align:center\">\n".
+             "<a href=\"".$CFG->wwwroot."/mod/autoview/view.php?edit=true&id=".$this->_cm->id."\">".get_string("editbutton", "autoview")."</a>\n".
+             "</div>\n");
         }
     }
 
