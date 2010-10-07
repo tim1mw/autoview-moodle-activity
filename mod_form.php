@@ -40,7 +40,10 @@ class mod_autoview_mod_form extends moodleform_mod {
         //$mform->setType('configfile', PARAM_FILE);
 
         if ($add)
+        {
             $mform->disabledIf('configfile', 'createnew', 'checked');
+            $mform->disabledIf('usedir', 'createnew');
+        }
 
         $features = array('groups'=>false, 'groupings'=>false, 'groupmembersonly'=>true,
                           'outcomes'=>false, 'gradecat'=>false, 'idnumber'=>false);
