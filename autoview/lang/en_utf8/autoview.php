@@ -33,7 +33,7 @@ $string['pecl_http_warn'] = 'Warning : The pecl_http PHP extension is not instal
  'document conversion service. The module can be downloaded from <a target="_blank" href="http://pecl.php.net/package/pecl_http/">http://pecl.php.net/package/pecl_http/</a> . If you do not intend to use '.
  'a document conversion service this warning can be ignored.';
 $string['createnew'] = 'Use default AutoView configuration file (reccomended)';
-$string['usedir'] = 'Create seperate folder for AutoView files and configuration';
+$string['usedir'] = 'Create separate folder for AutoView files and configuration';
 
 $string['configlivecapture']= 'Live capture java applet URL';
 $string['configflashserver']= 'Lecture Capture Live rtmp server URL';
