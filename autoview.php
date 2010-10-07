@@ -97,7 +97,11 @@
   {
    $parameters['flashrecord']=$canrecordflash;
    $parameters['flashbroadcast']=$canbroadcastflash;
-   $parameters['flashpath']=dirname($autoview->configfile);
+   $fp=dirname($autoview->configfile);
+   if ($fp==".")
+    $parameters['flashpath']="";
+   else
+    $parameters['flashpath']=$fp;
   }
  }
 
