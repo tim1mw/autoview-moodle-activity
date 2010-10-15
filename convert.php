@@ -42,12 +42,31 @@
 
  $vresource=$CFG->wwwroot.'/mod/autoview/vresource/';
 
+ //Check we got something back
+
+ if (!$convertdata)
+ {
+  $params= array(
+   'vresource' => $vresource,
+   'message' => get_string("file_not_found", "autoview"),
+   'fname' => '',
+   'error' => 'true',
+   'buttontext' => get_string("closetext", "autoview"),
+   'slidecount' => '0',
+   'swf' => '',
+   'pdf' => '',
+   'jpg' => '');
+  echo process_xsl($CFG->dirroot."/mod/autoview/avedit/convert.xml", $CFG->dirroot."/mod/autoview/avedit/convert.xsl", $params);
+ }
+ else
  if ($convertdata->headers["Content-Type"]=="text/plain")
  {
   $params= array(
    'vresource' => $vresource,
    'message' => get_string("conversionfailed", "autoview").'. '.$convertdata->body,
    'fname' => '',
+   'error' => 'true',
+   'buttontext' => get_string("closetext", "autoview"),
    'slidecount' => '0',
    'swf' => '',
    'pdf' => '',
@@ -66,6 +85,8 @@
    'vresource' => $vresource,
    'message' => get_string("conversiondone", "autoview"),
    'fname' => $fname,
+   'error' => 'false',
+   'buttontext' => get_string("addtext", "autoview"),
    'swf' => $swf,
    'pdf' => $pdf,
    'jpg' => $jpg);
