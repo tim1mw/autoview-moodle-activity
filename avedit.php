@@ -35,6 +35,9 @@
     $alwaysflashstream="false";
     if (isset($CFG->autoview_alwaysflashstream) && $CFG->autoview_alwaysflashstream==true)
         $alwaysflashstream="true";
+    $broadcastMaxKbps=256;
+    if (isset($CFG->autoview_max_broadcast_kbps))
+        $broadcastMaxKbps=$CFG->autoview_max_broadcast_kbps;
 
     /*****Constuct base parameters*****/
     $parameters = array(
@@ -46,7 +49,8 @@
      'waiterMessageStr' => get_string('waitermessage', 'autoview'),
      'startEditorStr' => get_string('starteditor', 'autoview'),
      'flashDir' => $flashdir,
-     'alwaysflashstream'=> $alwaysflashstream);
+     'alwaysflashstream'=> $alwaysflashstream,
+     'broadcastMaxKbps' => $broadcastMaxKbps);
 
     /*****If there is no conversion service, send a blank URL*****/
     if (strlen($conversionurl)>0 && has_capability('mod/autoview:canconvertdocument', $context))

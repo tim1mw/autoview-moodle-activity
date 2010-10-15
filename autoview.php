@@ -97,6 +97,8 @@
   {
    $parameters['flashrecord']=$canrecordflash;
    $parameters['flashbroadcast']=$canbroadcastflash;
+   if (isset($CFG->autoview_max_record_kbps))
+    $parameters['recordMaxKbps']=$CFG->autoview_max_record_kbps;
    $fp=dirname($autoview->configfile);
    if ($fp==".")
     $parameters['flashpath']="";
