@@ -82,6 +82,40 @@
     </select>
     </td>
 </tr>
+<tr valign="top">
+    <td align="right"><?php print_string("configmax_broadcast_kbps", "autoview") ?> (autoview_max_broadcast_kbps) :</td>
+    <td>
+    <select name="autoview_max_broadcast_kbps">
+    <?php
+     $spds=array(256, 128, 96, 64, 48, 32, 24, 20, 16, 12, 8);
+     foreach ($spds as $s)
+     {
+         if ($CFG->autoview_max_broadcast_kbps==$s)
+             echo '<option value="'.$s.'" selected="selected">'.$s.'</option>';
+         else
+             echo '<option value="'.$s.'">'.$s.'</option>';
+    }
+    ?>
+    </select>
+    </td>
+</tr>
+<tr valign="top">
+    <td align="right"><?php print_string("configmax_record_kbps", "autoview") ?> (autoview_max_record_kbps) :</td>
+    <td>
+    <select name="autoview_max_record_kbps">
+    <?php
+     $spds=array(512, 256, 128, 96, 64, 48, 32, 24, 20, 16, 12, 8);
+     foreach ($spds as $s)
+     {
+         if ($CFG->autoview_max_record_kbps==$s)
+             echo '<option value="'.$s.'" selected="selected">'.$s.'</option>';
+         else
+             echo '<option value="'.$s.'">'.$s.'</option>';
+    }
+    ?>
+    </select>
+    </td>
+</tr>
 <tr>
     <td colspan="2">
     <hr />

@@ -48,6 +48,10 @@ $string['configflashsecurity2'] = 'The security method used by the Lecture Captu
 $string['secretkey'] = 'Secret Key';
 $string['randomkey'] = 'Random Key';
 $string['encryptedkey'] = 'Encrypted Random Key';
+$string['configmax_broadcast_kbps'] = 'Maximum video bandwidth for live broadcast, in Kbytes/per second';
+$string['configmax_broadcast_kbps2'] = 'Set this if you need to restrict the bandwidth used by video broadcasts.';
+$string['configmax_record_kbps'] = 'Maximum video bandwidth for live recordings, in Kbytes/per second';
+$string['configmax_record_kbps2'] = 'Set this if you need to restrict the bandwidth used by video recordings.';
 
 $string['confignote'] = 'These parameters are primarily used to configure';
 $string['confignote2'] = 'add-on services';
