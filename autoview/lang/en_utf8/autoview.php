@@ -21,6 +21,9 @@ $string['configconversionkey'] = 'Document conversion service access key';
 $string['configconversionkey2'] = 'The access key for the document conversion service.';
 $string['conversiondone'] = 'The document has been converted.';
 $string['conversionfailed'] = 'Conversion failed';
+$string['addtext'] = 'Add document slide source(s)';
+$string['closetext'] ='Close this window';
+$string['file_not_found'] = 'The file selected for conversion does not exist.';
 $string['xmlhelp']= 'In most cases you will want to use the default configuration file. This will be created for you automatically in the course home directory '.
  'using the resource name as a file name. However, if you have copied an AutoView presentation from another'.
  ' location, uncheck the box and select the .avx configuration file for that presentation here. You may also uncheck the box and enter'.
