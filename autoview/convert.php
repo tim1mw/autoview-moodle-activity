@@ -40,14 +40,14 @@
  $convertdata=convertPresentationFile($swf, $pdf, $jpg, $CFG->autoview_conversionkey,
   $CFG->autoview_conversionurl, $CFG->dataroot.'/'.$course->id.'/'.$url);
 
- $vresource=$CFG->wwwroot.'/mod/autoview/vresource/';
+ $aveditdir=$CFG->wwwroot.'/mod/autoview/avedit/';
 
  //Check we got something back
 
  if (!$convertdata)
  {
   $params= array(
-   'vresource' => $vresource,
+   'aveditdir' => $aveditdir,
    'message' => get_string("file_not_found", "autoview"),
    'fname' => '',
    'error' => 'true',
@@ -62,8 +62,9 @@
  if ($convertdata->headers["Content-Type"]=="text/plain")
  {
   $params= array(
-   'vresource' => $vresource,
-   'message' => get_string("conversionfailed", "autoview").'. '.$convertdata->body,
+   'aveditdir' => $aveditdir,
+   'message' => get_string("conversionfailed", "autoview"),
+   'message2' => $convertdata->body,
    'fname' => '',
    'error' => 'true',
    'buttontext' => get_string("closetext", "autoview"),
@@ -82,7 +83,7 @@
   //die(get_string("convertsavefailed", "autoview"));
 
   $params=array(
-   'vresource' => $vresource,
+   'aveditdir' => $aveditdir,
    'message' => get_string("conversiondone", "autoview"),
    'fname' => $fname,
    'error' => 'false',
