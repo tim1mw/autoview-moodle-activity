@@ -82,21 +82,34 @@
   extactConvertorZip($convertdata, $newfile);
   //die(get_string("convertsavefailed", "autoview"));
 
-  $params=array(
-   'aveditdir' => $aveditdir,
-   'message' => get_string("conversiondone", "autoview"),
-   'fname' => $fname,
-   'error' => 'false',
-   'buttontext' => get_string("addtext", "autoview"),
-   'swf' => $swf,
-   'pdf' => $pdf,
-   'jpg' => $jpg);
-
   $xmlFile=$CFG->dataroot.'/'.$course->id.'/'.$fname.'.xml';
   if (!file_exists($xmlFile))
+  {
+   $params=array(
+    'aveditdir' => $aveditdir,
+    'message' => get_string("conversionfailed", "autoview"),
+    'message2' => get_string("conversionfailed_noerror", "autoview"),
+    'fname' => $fname,
+    'error' => 'true',
+    'buttontext' => get_string("closetext", "autoview"),
+    'swf' => $swf,
+    'pdf' => $pdf,
+    'jpg' => $jpg);
+
    echo process_xsl($CFG->dirroot."/mod/autoview/avedit/convert.xml", $CFG->dirroot."/mod/autoview/avedit/convert.xsl", $params);
+  }
   else
   {
+   $params=array(
+    'aveditdir' => $aveditdir,
+    'message' => get_string("conversiondone", "autoview"),
+    'fname' => $fname,
+    'error' => 'false',
+    'buttontext' => get_string("addtext", "autoview"),
+    'swf' => $swf,
+    'pdf' => $pdf,
+    'jpg' => $jpg);
+
    echo process_xsl($xmlFile, $CFG->dirroot."/mod/autoview/avedit/convert.xsl", $params);
    unlink($xmlFile);
   }
