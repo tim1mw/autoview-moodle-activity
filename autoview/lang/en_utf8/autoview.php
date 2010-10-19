@@ -21,6 +21,7 @@ $string['configconversionkey'] = 'Document conversion service access key';
 $string['configconversionkey2'] = 'The access key for the document conversion service.';
 $string['conversiondone'] = 'The document has been converted.';
 $string['conversionfailed'] = 'Conversion failed';
+$string['conversionfailed_noerror'] = 'No error message was returned by the document converter.\nIt may not be running, or has been wrongly configured.';
 $string['addtext'] = 'Add slide source(s) for the converted document to the presentation';
 $string['closetext'] ='Close this window';
 $string['file_not_found'] = 'The file selected for conversion does not exist.';
