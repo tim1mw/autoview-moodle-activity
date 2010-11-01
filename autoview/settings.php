@@ -43,7 +43,7 @@ $settings->add(new admin_setting_configselect('autoview_max_record_kbps', get_st
 $settings->add(new admin_setting_heading('autoview_doc_convert_heading', get_string("converttitle", "autoview"),""));
 
 $pecl="";
-if (testPeclHttp()==false)
+if (testDocConv()==false)
     $pecl='<p class="warning">'.get_string('pecl_http_warn', 'autoview').'</p>';
 
 $settings->add(new admin_setting_configtext('autoview_conversionurl', get_string("configconversionurl", "autoview"),

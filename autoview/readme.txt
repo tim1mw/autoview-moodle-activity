@@ -66,11 +66,16 @@ the module detects XSL support on the basis of the methods present, not the PHP 
 as you have one of the 3 supported methods it should work.
 
 
-2) The pecl_http extension is needed for the link to the on line document converter to work. This
-extension can be obtained from http://pecl.php.net/package/pecl_http/ . If you do not intend 
-to use a document conversion service, you should not need to install this. You may be able to
-install the extension automatically using the 'pecl' programme in the php bin directory. On our
-linux/apache server, the following worked very nicely :
+2) You will require either curl or pecl_http support to link to an on line document converter.
+If you do not intend  to use a document conversion service, you should not need to install this.
+curl is now the prefered method of communicating with a conversion service. Look for the following
+option on the PHP info page to confirm that curl support is installed:
+
+--with-curl
+
+If you prefer the pecl_http extension, this can be obtained from http://pecl.php.net/package/pecl_http/
+You may be able to install the extension automatically using the 'pecl' programme in the php bin directory
+On our linux/apache server, the following worked very nicely :
 
 /path/to/php/bin/pecl install pecl_http
 
@@ -78,9 +83,7 @@ linux/apache server, the following worked very nicely :
 PHP 4
 -----
 
-PHP 4 is no longer supported by AutoView. We do not intend to remove code which supports PHP 4
-in AutoView or deliberately break PHP 4 support, however, we are not testing with PHP 4 so it is
-likely that incompatible code will creep in over time.
+PHP 4 is no longer supported by AutoView, some functions may no longer work on servers with PHP 4.
 
 PHP 4 is considered obsolete by php.org and no longer receives vital security updates, so if you
 are still using PHP 4, you should upgrade as a matter of urgency.

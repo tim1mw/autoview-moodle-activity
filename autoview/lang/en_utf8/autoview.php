@@ -33,9 +33,9 @@ $string['xmlnote'] = 'Note : If you choose a configuration file name here that d
 $string['nojsmessage'] = 'You need javascript enabled to view this presentation.';
 $string['noxsl'] = 'Warning : No suitable XSL parser has been found. Please update your PHP installation with XSL support enabled. Please see the ReadMe file in the autoview module'.
  ' directory for more information on how to do this.';
-$string['pecl_http_warn'] = 'Warning : The pecl_http PHP extension is not installed on your server. You will need this in order to be able to integrate with a '.
- 'document conversion service. The module can be downloaded from <a target="_blank" href="http://pecl.php.net/package/pecl_http/">http://pecl.php.net/package/pecl_http/</a> . If you do not intend to use '.
- 'a document conversion service this warning can be ignored.';
+$string['pecl_http_warn'] = 'Warning : You do not have either the curl or pecl_http PHP extensions is not installed on your server. '.
+ 'You will need one of these extensions to be able to integrate with a '.
+ 'document conversion service. If you do not intend to use a document conversion service this warning can be ignored.';
 $string['createnew'] = 'Use default AutoView configuration file (reccomended)';
 $string['usedir'] = 'Create separate folder for AutoView files and configuration';
 
