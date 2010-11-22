@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="style.css" />
+    <link type="text/css" rel="stylesheet" href="divs-table.css" />
+    <title>AutoView</title>
+    <script type="text/javascript" src="autoview.js"></script>
+    <script type="text/javascript" src="lang/en.js"></script>
+    <script type="text/vbscript" src="plugin-detect.vbs"></script>
+    <style type="text/css">
+     body
+     {
+      padding:0px;
+      margin:0px;
+      margin-top:2px;
+     }
+
+     #slides
+     {
+      padding:0px;
+      margin:0px;
+      text-align:center;
+      vertical-align:middle;
+     }
+    </style>
+  </head>
+  <body>
+   <div id="slides"></div>
+   <script type="text/javascript">
+     var rw=window.opener;
+
+     setBaseRef(rw.baseRef);
+     setVresourcePath(rw.vresourcePath);
+     setPreferedLang('en');
+     setSlideAspect(rw.slideAspect);
+
+     initLang();
+
+     addSlideLang("en", rw.titles[rw.slideLang]);
+     addSlideSource("en", copySlideSource(rw.selectedSlides));
+
+     detectBrowser();
+     detectPlugins();
+     checkLanguage();
+     chooseSlides();
+     sizeChange();
+     currentSlide=rw.currentSlide;
+     setTimeout("selectedSlides.showSlide(rw.currentSlide)", 1800);
+
+     window.onresize=function (evt)
+     {
+      sizeChange();
+     }
+
+     function sizeChange()
+     {
+       calculateFrameSize();
+       frameHeight=frameHeight-6;
+       frameWidth=frameWidth-4;
+
+       if ((frameWidth * slideAspect) < frameHeight)
+       {
+        slideWidth = frameWidth;
+        slideHeight = parseInt(frameWidth * slideAspect);
+        setSlideScale(slideWidth, true);
+       }
+       else
+       {
+        slideHeight = frameHeight;
+        slideWidth = parseInt(frameHeight / slideAspect);
+        setSlideScale(slideHeight, false);
+       }
+
+       setSlideHTML();
+     }
+   </script>
+  </body>
+</html>
