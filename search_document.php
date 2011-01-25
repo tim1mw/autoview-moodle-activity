@@ -32,6 +32,11 @@ require_once("$CFG->dirroot/search/documents/physical_swf.php");
 */
 class AutoViewSearchDocument extends SearchDocument {
     public function __construct(&$autoview, $context_id) {
+
+foreach ($autoview as $key => $value) {
+    echo "Key: $key; Value: $value<br />\n";
+}
+
         // generic information; required
         $doc->docid     = $autoview['id'];
         $doc->documenttype = X_SEARCH_TYPE_AUTOVIEW;
@@ -42,7 +47,7 @@ class AutoViewSearchDocument extends SearchDocument {
         $doc->date      = $autoview['timemodified'];
         $doc->author    = '';
         $doc->contents  = autoview_get_content($autoview);
-        $doc->url       = autoview_make_link($autoview['course']);
+        $doc->url       = autoview_make_link($autoview['id']);
         
         // module specific information; optional
         $data = array();
@@ -125,8 +130,7 @@ function autoview_get_swf_slide_text($doc, $autoview)
 */
 function autoview_make_link($id) {
     global $CFG;
-    
-    return $CFG->wwwroot.'/mod/autoview/view.php?id='.$id;
+    return $CFG->wwwroot.'/mod/autoview/view.php?l='.$id;
 }
 
 /**
@@ -245,10 +249,10 @@ function autoview_check_text_access($path, $itemtype, $this_id, $user, $group_id
 */
 function autoview_link_post_processing($title){
     global $CFG;
-    
+
     if ($CFG->block_search_utf8dir){
-        return mb_convert_encoding("(".shorten_text(clean_text($title), 60)."...) ", 'UTF-8', 'auto');
+        return mb_convert_encoding($title, 'UTF-8', 'auto');
     }
-    return mb_convert_encoding("(".shorten_text(clean_text($title), 60)."...) ", 'auto', 'UTF-8');
+    return mb_convert_encoding($title, 'auto', 'UTF-8');
 }
 ?>

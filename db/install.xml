@@ -41,8 +41,9 @@
   <STATEMENTS>
     <STATEMENT NAME="insert log_display" TYPE="insert" TABLE="log_display" COMMENT="Initial insert of records on table log_display">
       <SENTENCES>
-        <SENTENCE TEXT="(module, action, mtable, field) VALUES ('autoview', 'add', 'quiz', 'name')" />
-        <SENTENCE TEXT="(module, action, mtable, field) VALUES ('autoview', 'update', 'quiz', 'name')" />
+        <SENTENCE TEXT="(module, action, mtable, field) VALUES ('autoview', 'view', 'autoview', 'name')" />
+        <SENTENCE TEXT="(module, action, mtable, field) VALUES ('autoview', 'add', 'autoview', 'name')" />
+        <SENTENCE TEXT="(module, action, mtable, field) VALUES ('autoview', 'update', 'autoview', 'name')" />
       </SENTENCES>
     </STATEMENT>
   </STATEMENTS>
