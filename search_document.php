@@ -33,10 +33,6 @@ require_once("$CFG->dirroot/search/documents/physical_swf.php");
 class AutoViewSearchDocument extends SearchDocument {
     public function __construct(&$autoview, $context_id) {
 
-foreach ($autoview as $key => $value) {
-    echo "Key: $key; Value: $value<br />\n";
-}
-
         // generic information; required
         $doc->docid     = $autoview['id'];
         $doc->documenttype = X_SEARCH_TYPE_AUTOVIEW;
