@@ -75,7 +75,7 @@ $mod_autoview_capabilities = array(
 
     'mod/autoview:viewpresentation' => array(
 
-        'captype' => 'write',
+        'captype' => 'read',
         'contextlevel' => CONTEXT_MODULE,
         'legacy' => array(
             'guest' => CAP_ALLOW,
