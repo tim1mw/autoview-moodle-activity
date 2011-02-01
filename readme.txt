@@ -89,6 +89,18 @@ PHP 4 is considered obsolete by php.org and no longer receives vital security up
 are still using PHP 4, you should upgrade as a matter of urgency.
 
 
+HTML 5 Video Support
+--------------------
+
+Support is now included, but due to HTML 5 being a draft spec which has not yet been fully implemented by browser manufacturers,
+it is disabled by default. Because of this, HTML 5 video in AutoView is not yet considered fully stable and should only be used
+for testing purposes.
+
+To enable HTML 5 videos, go to the Moodle module config page and enter the following into the JavaScript calls box on a new line:
+
+setEnableHTML5(1);
+
+
 Support
 -------
 
