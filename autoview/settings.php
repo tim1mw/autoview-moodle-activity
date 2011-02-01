@@ -9,7 +9,7 @@ if (testXSL()==false)
 }
 
 $settings->add(new admin_setting_heading('autoview_main_heading', "",
-                   get_string("confignote", "autoview").
+                   '<p>'.get_string("confignote", "autoview").
                    ' <a href="http://autoview.autotrain.org/" title="'.get_string("confignote4", "autoview").'">'.
                    get_string("confignote2", "autoview").'</a> '.
                    get_string("confignote3", "autoview").'</p>'.$xsl));
@@ -19,8 +19,8 @@ $settings->add(new admin_setting_heading('autoview_lecture_capture_heading', get
                    ""));
 
 $settings->add(new admin_setting_configtext('autoview_flashcapture', get_string("configflashcapture", "autoview"),
-                   '<p>'.get_string("configflashcapture2", "autoview").
-                   ' <a target="_blank" href="http://autoview.autotrain.org">'.get_string("autoview_website", "autoview").'</a>.</p>', "", PARAM_URL));
+                   "<p>".get_string("configflashcapture2", "autoview").
+                   " <a onclick=\"this.target='_blank'\" href=\"http://autoview.autotrain.org\">".get_string("autoview_website", "autoview")."</a>.</p>", "", PARAM_URL));
 
 $settings->add(new admin_setting_configtext('autoview_flashserver', get_string("configflashserver", "autoview"),
                    get_string("configflashserver2", "autoview"), "", PARAM_TEXT));
@@ -47,8 +47,8 @@ if (testDocConv()==false)
     $pecl='<p class="warning">'.get_string('pecl_http_warn', 'autoview').'</p>';
 
 $settings->add(new admin_setting_configtext('autoview_conversionurl', get_string("configconversionurl", "autoview"),
-                   '<p>'.get_string("configconversionurl2", "autoview").
-                   ' <a target="_blank" href="http://autoview.autotrain.org">'.get_string("autoview_website", "autoview").'</a>.</p>'.
+                   "<p>".get_string("configconversionurl2", "autoview").
+                   " <a onclick=\"this.target='_blank'\" href=\"http://autoview.autotrain.org\">".get_string("autoview_website", "autoview")."</a>.</p>".
                    $pecl, "", PARAM_URL));
 
 $settings->add(new admin_setting_configtext('autoview_conversionkey', get_string("configconversionkey", "autoview"),

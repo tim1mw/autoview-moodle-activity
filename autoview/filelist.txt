@@ -13,7 +13,6 @@
 ./subtitles.php
 ./config.html
 ./icon.gif
-./templates
 ./templates/autoview.xsl
 ./templates/search-subtitles.xsl
 ./templates/flashauth.xsl
@@ -47,7 +46,6 @@
 ./Timers.class.php
 ./settings.php
 ./version.php
-./avphplib
 ./avphplib/refmovie.inc.php
 ./avphplib/avlib.php
 ./avphplib/test.php
@@ -61,6 +59,7 @@
 ./convert.php
 ./vresource/FlowPlayer.swf
 ./vresource/transcript.css
+./vresource/lang
 ./vresource/lang/it.js
 ./vresource/lang/fr.js
 ./vresource/lang/es.js
@@ -75,7 +74,6 @@
 ./vresource/jogg-0.0.7.jar
 ./vresource/real.html
 ./vresource/autoview.js
-./vresource/LivePlayer.swf
 ./vresource/test.swf
 ./vresource/help/help-styles.css
 ./vresource/help/en/video-options2.jpg
@@ -97,6 +95,7 @@
 ./vresource/help/en/thumb-controls.jpg
 ./vresource/help/en/javaaudio.jpg
 ./vresource/help/en/thumb.jpg
+./vresource/help/pt
 ./vresource/help/pt/video-options2.jpg
 ./vresource/help/pt/slide-options1.jpg
 ./vresource/help/pt/position.jpg
@@ -119,7 +118,6 @@
 ./vresource/divs-table.css
 ./vresource/style-thumbnails.css
 ./vresource/OVP.xap
-./vresource/images/transparent.gif
 ./vresource/allslides.html
 ./vresource/jorbis-0.0.15.jar
 ./vresource/plugin-detect.vbs
@@ -130,15 +128,12 @@
 ./vresource/flowplayer
 ./vresource/flowplayer/flowplayer.controls.swf
 ./vresource/flowplayer/flowplayer.rtmp.swf
-./vresource/flowplayer/flowplayer-3.1.5.swf
 ./vresource/flowplayer/flowplayer.min.js
 ./vresource/flowplayer/flowplayer.swf
-./vresource/flowplayer/flowplayer.controls-3.1.5.swf
-./vresource/flowplayer/flowplayer-3.1.4.min.js
-./vresource/flowplayer/flowplayer.rtmp-3.1.3.swf
 ./vresource/divs-layout.css
 ./recieveXML.php
 ./callback.php
 ./search_document.php
+./pix
 ./pix/icon.gif
 ./backuplib.php
