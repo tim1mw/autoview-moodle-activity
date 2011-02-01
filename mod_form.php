@@ -4,7 +4,7 @@ require_once ($CFG->dirroot.'/course/moodleform_mod.php');
 class mod_autoview_mod_form extends moodleform_mod {
 
     function definition() {
-	global $add, $CFG;
+	global $add, $CFG, $COURSE;
 
         $mform    =& $this->_form;
 
@@ -52,8 +52,8 @@ class mod_autoview_mod_form extends moodleform_mod {
 //-------------------------------------------------------------------------------
 // buttons
         $this->add_action_buttons(true, null, null);
-
-        if (has_capability('mod/autoview:canedit', $context) && !$add)
+global $CONTEXT;
+        if (has_capability('mod/autoview:canedit', $CONTEXT) && !$add)
         {
             $mform->addElement('html', "\n<br />\n".
              "<div style=\"text-align:center\">\n".
