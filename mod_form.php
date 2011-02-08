@@ -52,13 +52,15 @@ class mod_autoview_mod_form extends moodleform_mod {
 //-------------------------------------------------------------------------------
 // buttons
         $this->add_action_buttons(true, null, null);
-global $CONTEXT;
-        if (has_capability('mod/autoview:canedit', $CONTEXT) && !$add)
+
+        global $CONTEXT;
+
+        if (!$add)
         {
             $mform->addElement('html', "\n<br />\n".
-             "<div style=\"text-align:center\">\n".
+             "<div style=\"text-align:center;font-weight:bold;\">\n".
              "<a href=\"".$CFG->wwwroot."/mod/autoview/view.php?edit=true&id=".$this->_cm->id."\">".get_string("editbutton", "autoview")."</a>\n".
-             "</div>\n");
+             "</div><br />\n");
         }
     }
 
