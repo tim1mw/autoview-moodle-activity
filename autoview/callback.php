@@ -46,7 +46,7 @@
   //*****Check the time, the key shouldn't be more than 1 minute old*****
   $diff=time()-$data->time;
 
-  if ($diff<60)
+  if ($diff<120)
   {
    if (has_capability('mod/autoview:canrecordflash', $context, $data->userid) && $clientType=="avlivecapture" )
    {
@@ -85,7 +85,7 @@
   else
   {
    delete_records('autoview_keys', 'id', $data->id);
-   echo "fail timeout".$t['sec']." ".$diff;
+   echo "fail timeout ".$diff;
    die();
   }
  }
