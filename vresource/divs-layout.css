@@ -1,0 +1,73 @@
+div#message
+{
+ padding:1px;
+ margin:1px;
+ float:left;
+ border:1px solid #222222;
+}
+
+div#slidemenu
+{
+ padding:1px;
+ margin:1px;
+ float:right;
+ border:1px solid #222222;
+}
+
+div#videoplayer
+{
+ margin:0px;
+ float:left;
+}
+
+div#positioncontrol
+{
+ margin-top:8px;
+ margin-left:0px;
+ margin-right:0px;
+ margin-bottom:8px;
+ float:left;
+}
+
+div#videocontrols
+{
+ margin-top:8px;
+ margin-left:0px;
+ margin-right:0px;
+ margin-bottom:8px;
+ float:left;
+}
+
+div#subtitlecontrols
+{
+ margin-top:8px;
+ margin-left:0px;
+ margin-right:0px;
+ margin-bottom:8px;
+ float:left;
+}
+
+div#language
+{
+ margin-top:8px;
+ margin-left:0px;
+ margin-right:0px;
+ margin-bottom:0px;
+ float:left;
+}
+
+div#slides
+{
+
+}
+
+div#slidecontrols
+{
+ float:left;
+}
+
+div#subtitles
+{
+
+ margin:2px;
+}
