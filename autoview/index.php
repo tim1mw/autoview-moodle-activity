@@ -20,6 +20,8 @@
         error("Course ID is incorrect");
     }
 
+    require_course_login($course);
+
     $strautoview = get_string('modulename', 'autoview');
     $strautoviews = get_string('modulenameplural', 'autoview');
     $strweek = get_string('week');
@@ -35,7 +37,7 @@
         $navigation = "$strautoviews";
     } else {
         $navlinks = array();
-        $navlinks[] = array('name' => $strautoviews, 'link' => "index.php?id={$course->id}", 'type' => 'activity');    
+        $navlinks[] = array('name' => $strautoviews, 'link' => "index.php?id={$course->id}", 'type' => 'activity');
         $navigation = build_navigation($navlinks);
     }
 
