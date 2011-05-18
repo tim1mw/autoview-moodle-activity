@@ -74,6 +74,7 @@
   'exitURL' => $exitURL,
   'title' => $autoview->name,
   'preferedLang' => $preferedLang,
+  'bodystyle' => '',
   'nojsMessage' => get_string('nojsmessage', 'autoview')."\n\n".$autoview->name."\n".$titles);
 
  /***If this person can edit, set the generic editor parameters***/
