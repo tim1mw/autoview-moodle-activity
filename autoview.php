@@ -75,6 +75,7 @@
   'title' => $autoview->name,
   'preferedLang' => $preferedLang,
   'bodystyle' => '',
+  'themeimport' => $CFG->wwwroot.'/mod/autoview/import-theme.js',
   'nojsMessage' => get_string('nojsmessage', 'autoview')."\n\n".$autoview->name."\n".$titles);
 
  /***If this person can edit, set the generic editor parameters***/
