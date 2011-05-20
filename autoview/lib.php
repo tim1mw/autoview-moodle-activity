@@ -152,6 +152,12 @@ function autoview_pres_is_empty($autoview)
    global $CFG;
    $configfile=$CFG->dataroot.'/'.$autoview->course.'/'.$autoview->configfile;
    $template=$CFG->dirroot.'/mod/autoview/avedit/blank.avx';
+   if (!file_exists($configfile))
+   {
+    copy($template, $configfile);
+    return true;
+   }
+
    if (filesize($configfile)==filesize($template))
     return true;
 
