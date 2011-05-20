@@ -62,7 +62,11 @@
  if ($autoview->noframe && $editval==false)
   $exitURL=$CFG->wwwroot."/course/view.php?id=".$course->id;
 
- $preferedLang=substr(current_language(), 0, strpos(current_language(), "_"));
+ $pflp=strpos(current_language(), "_");
+ if ($pflp>0)
+  $preferedLang=substr(current_language(), 0, strpos(current_language(), "_"));
+ else
+  $preferedLang=current_language();
  $avxfile=$CFG->dataroot.'/'.$course->id.'/'.$autoview->configfile;
  $titles=autoview_convert_js_escapes(process_xsl($avxfile, $CFG->dirroot.'/mod/autoview/templates/pre-titles.xsl', array()));
 
