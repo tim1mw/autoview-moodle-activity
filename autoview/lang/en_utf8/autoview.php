@@ -75,7 +75,7 @@ $string['javacapturetitle'] = 'Java applet based live capture system';
 
 $string['convertnotallowed']='You are not authorised to access the document conversion service';
 
-$string['waitermessage'] = "Please wait : If the editor functions do not appear here when the frame on the right has finished loading, click the button below.";
+$string['waitermessage'] = "Please wait : If the editor functions do not appear here when the presentation on the right has finished loading, click the button below.";
 $string['starteditor'] = 'Start Editor';
 
 $string['not_allowed']='You do not have permission to view this presentation.';
