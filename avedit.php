@@ -25,6 +25,8 @@
      die;
     }
 
+    add_to_log($course->id, "autoview", "edit", "view.php?id=$cm->id", $autoview->name, $cm->id);
+
     /*****Read config params*****/
     $flashdir="";
     if (isset($CFG->autoview_flashdir))
