@@ -14,6 +14,13 @@ $settings->add(new admin_setting_heading('autoview_main_heading', "",
                    get_string("confignote2", "autoview").'</a> '.
                    get_string("confignote3", "autoview").'</p>'.$xsl));
 
+/***This is not being used at the moment***
+$settings->add(new admin_setting_heading('autoview_storage_heading', get_string("storagetitle", "autoview"),""));
+
+$storage=array(AUTOVIEW_STORAGE_INTERNAL=>get_string('internal_storage', 'autoview'), AUTOVIEW_STORAGE_EXTERNAL=>get_string('external_storage', 'autoview'));
+$settings->add(new admin_setting_configselect('autoview_storage_type', get_string('config_storage_type', 'autoview'),
+                   get_string('config_storage_type2', 'autoview'), AUTOVIEW_STORAGE_INTERNAL, $storage));
+*******************************************/
 
 $settings->add(new admin_setting_heading('autoview_lecture_capture_heading', get_string("flashcapturetitle", "autoview"),
                    ""));

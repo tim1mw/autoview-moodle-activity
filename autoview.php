@@ -56,7 +56,10 @@
   die();
  }
 
- $htmlbase=$CFG->wwwroot.'/file.php/'.$course->id.'/';
+ if ($CFG->slasharguments)
+  $htmlbase=$CFG->wwwroot.'/file.php/'.$course->id.'/';
+ else
+  $htmlbase=$CFG->wwwroot.'/file.php?file=/'.$course->id.'/';
 
  $exitURL="";
  if ($autoview->noframe && $editval==false)

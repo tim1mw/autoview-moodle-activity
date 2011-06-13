@@ -6,6 +6,8 @@
 /// Library of functions and constants for module AutoView
 
 define("AUTOVIEW_MAX_NAME_LENGTH", 50);
+define("AUTOVIEW_STORAGE_INTERNAL", 0);
+define("AUTOVIEW_STORAGE_EXTERNAL", 1);
 require_once("avphplib/avlib.php");
 
 
@@ -14,6 +16,8 @@ function autoview_add_instance($autoview) {
 /// (defined by the form in mod.html) this function 
 /// will create a new instance and return the id number 
 /// of the new instance.
+
+    global $CFG;
 
     $mainrecord->name = strip_tags($autoview->content);
     if (strlen($mainrecord->name) > AUTOVIEW_MAX_NAME_LENGTH)
@@ -29,7 +33,8 @@ function autoview_add_instance($autoview) {
     if ($autoview->noframe=="1")
      $mainrecord->noframe=1;
     else
-     $mainrecord->noframe=0; 
+     $mainrecord->noframe=0;
+    $mainrecord->storage=$CFG->autoview_storage_type;
 
     autoview_check_course_dir($mainrecord->course);
 

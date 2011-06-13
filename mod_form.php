@@ -45,6 +45,7 @@ class mod_autoview_mod_form extends moodleform_mod {
             $mform->disabledIf('usedir', 'createnew');
         }
 
+
         $features = array('groups'=>false, 'groupings'=>false, 'groupmembersonly'=>true,
                           'outcomes'=>false, 'gradecat'=>false, 'idnumber'=>false);
         $this->standard_coursemodule_elements($features);
