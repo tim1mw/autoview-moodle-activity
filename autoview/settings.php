@@ -39,6 +39,10 @@ $settings->add(new admin_setting_configselect('autoview_flashsecurity', get_stri
 $settings->add(new admin_setting_configselect('autoview_flashsecurity', get_string('configflashsecurity', 'autoview'),
                    get_string('configflashsecurity2', 'autoview'), "randomkey", $options));
 
+$always_stream=array(0=>get_string("no"), 1=>get_string("yes"));
+$settings->add(new admin_setting_configselect('autoview_alwaysflashstream', get_string('alwaysflashstream', 'autoview'),
+                   '', 0, $always_stream));
+
 $spds=array(256, 128, 96, 64, 48, 32, 24, 20, 16, 12, 8);
 $settings->add(new admin_setting_configselect('autoview_max_broadcast_kbps', get_string('configmax_broadcast_kbps', 'autoview'),
                    get_string('configmax_broadcast_kbps2', 'autoview'), 256, $spds));
