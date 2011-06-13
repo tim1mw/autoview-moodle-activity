@@ -57,6 +57,15 @@ function xmldb_autoview_upgrade($oldversion=0)
          return false;
  }
 
+ if ($oldversion < 2011052501)
+ {
+     $table = new XMLDBTable('autoview');
+     $field = new XMLDBField('storage');
+     $field->setAttributes(XMLDB_TYPE_INTEGER, '1', true, true, false, false, null, "0", 'summary');
+     if (!add_field($table, $field))
+         return false;
+ }
+
     return true;
 }
 

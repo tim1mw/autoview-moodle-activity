@@ -56,6 +56,17 @@ $string['configmax_broadcast_kbps'] = 'Maximum video bandwidth for live broadcas
 $string['configmax_broadcast_kbps2'] = 'Set this if you need to restrict the bandwidth used by video broadcasts.';
 $string['configmax_record_kbps'] = 'Maximum video bandwidth for live recordings, in Kbytes/per second';
 $string['configmax_record_kbps2'] = 'Set this if you need to restrict the bandwidth used by video recordings.';
+$string['config_storage_type'] = 'AutoView File Storage Location';
+$string['config_storage_type2'] = "This setting determines the default storage method for files used by the AutoView module. Changing this setting".
+ " will not move any existing files, it only affects new presentations. Ideally this setting should not be changed after the initial module setup".
+ " is completed.<br /><br />If you choose".
+ " <b>Internal - Course Files</b>, then all files (including live video recordings) will be held in the normal Moodle Course files for Moodle 1.x users.".
+ " Moodle 2.x users will need to install the Course File Area repository and Repository File Manager to use this option.<br /><br />Choosing".
+ " <b>External - Lecture Capture Live</b> will cause all the files to be stored in the Lecture Capture live backend. You will need Lecture Capture Live 1.1".
+ " or better to use this option. Please ensure that the host type is configured as moodle-external in the Lecture Capture Live host.".
+ " configuration  file for this Moodle server.";
+$string['internal_storage'] = 'Internal - Course Files';
+$string['external_storage'] = 'External - Lecture Capture Live';
 
 $string['confignote'] = 'These parameters are primarily used to configure';
 $string['confignote2'] = 'add-on services';
@@ -69,6 +80,7 @@ $string['autoview:canbroadcastflash']='Can broadcast videos using AutoView Lectu
 $string['autoview:canconvertdocument']='Can use online document conversion service';
 $string['autoview:viewpresentation']='Can view AutoView presentations';
 
+$string['storagetitle'] = 'File Storage Area';
 $string['converttitle'] = 'Document conversion web service';
 $string['flashcapturetitle'] = 'AutoView Lecture Capture Live system';
 $string['javacapturetitle'] = 'Java applet based live capture system';
