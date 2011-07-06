@@ -34,7 +34,7 @@ function autoview_add_instance($autoview) {
      $mainrecord->noframe=1;
     else
      $mainrecord->noframe=0;
-    $mainrecord->storage=$CFG->autoview_storage_type;
+    //$mainrecord->storage=$CFG->autoview_storage_type;
 
     autoview_check_course_dir($mainrecord->course);
 
