@@ -56,10 +56,7 @@
   die();
  }
 
- if ($CFG->slasharguments)
-  $htmlbase=$CFG->wwwroot.'/file.php/'.$course->id.'/';
- else
-  $htmlbase=$CFG->wwwroot.'/file.php?file=/'.$course->id.'/';
+ $avs=autoview_get_file_storage($autoview->storage);
 
  $exitURL="";
  if ($autoview->noframe && $editval==false)
@@ -70,12 +67,13 @@
   $preferedLang=substr(current_language(), 0, strpos(current_language(), "_"));
  else
   $preferedLang=current_language();
- $avxfile=$CFG->dataroot.'/'.$course->id.'/'.$autoview->configfile;
+
+ $avxfile=$avs->get_file_path($autoview->configfile, $course->id);
  $titles=autoview_convert_js_escapes(process_xsl($avxfile, $CFG->dirroot.'/mod/autoview/templates/pre-titles.xsl', array()));
 
  $parameters = array(
   'vresource' => $CFG->wwwroot.'/mod/autoview/vresource/',
-  'htmlbase' => $htmlbase,
+  'htmlbase' => $avs->get_htmlbase($course->id),
   'qtrefurl' => $CFG->wwwroot.'/mod/autoview/qtref.php?l='.$l.'&qturl=',
   'xmlsubtitle' => $CFG->wwwroot.'/mod/autoview/subtitles.php?l='.$l.'&subfile=',
   'exitURL' => $exitURL,

@@ -44,7 +44,10 @@
     $context = get_context_instance(CONTEXT_MODULE, $cm->id);
 
     if (has_capability('mod/autoview:canedit', $context) && $editval==false)
-        $editval=autoview_pres_is_empty($autoview);
+    {
+        $avs=autoview_get_file_storage($autoview->storage);
+        $editval=$avs->pres_is_empty($autoview->configfile, $autoview->course);
+    }
 
     if (empty($frameset))
     {
