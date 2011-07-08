@@ -67,6 +67,14 @@ $string['config_storage_type2'] = "This setting determines the default storage m
  " configuration  file for this Moodle server.";
 $string['internal_storage'] = 'Internal - Course Files';
 $string['external_storage'] = 'External - Lecture Capture Live';
+$string['configexternalfilekey'] = 'Access key for external file storage';
+$string['configexternalfilekey2'] = 'This is the secret access key which is used for direct communication between '.
+ 'Moodle and the External file storage area in the Lecture Capture Live addon. If you are using Internal File storage, this parameter should be '.
+ 'left blank.';
+$string['configexternalfileloc'] = 'External file storage area path';
+$string['configexternalfileloc2'] = 'If the file system location of the external storage area is readable from the Moodle server, enter the file '.
+ 'path here. This allows the AutoView Moodle module to directly read stored presentation configuration files for enhanced performance. '.
+ 'If you are using Internal File storage, this parameter should be left blank.';
 
 $string['confignote'] = 'These parameters are primarily used to configure';
 $string['confignote2'] = 'add-on services';

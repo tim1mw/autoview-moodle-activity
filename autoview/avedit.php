@@ -27,6 +27,8 @@
 
     add_to_log($course->id, "autoview", "edit", "view.php?id=$cm->id", $autoview->name, $cm->id);
 
+    $avs=autoview_get_file_storage($autoview->storage);
+
     /*****Read config params*****/
     $flashdir="";
     if (isset($CFG->autoview_flashdir))
@@ -44,10 +46,10 @@
     /*****Constuct base parameters*****/
     $parameters = array(
      'vresource' => $CFG->wwwroot."/mod/autoview/vresource/", 
-     'xmlSendURL' => $CFG->wwwroot."/mod/autoview/recieveXML.php", 
+     'xmlSendURL' => $avs->get_xmlsend_url(), 
      'xmlID' => $autoview->id,
      'xmlFile' => $autoview->configfile,
-     'fileBrowser' => $CFG->wwwroot."/files/index.php?id=".$course->id."&amp;choose=form.url",
+     'fileBrowser' => $avs->get_filebrowser_url($course->id),
      'waiterMessageStr' => get_string('waitermessage', 'autoview'),
      'startEditorStr' => get_string('starteditor', 'autoview'),
      'flashDir' => $flashdir,

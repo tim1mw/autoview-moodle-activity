@@ -34,10 +34,11 @@ function autoview_add_instance($autoview) {
      $mainrecord->noframe=1;
     else
      $mainrecord->noframe=0;
-    //$mainrecord->storage=$CFG->autoview_storage_type;
+    $mainrecord->storage=$CFG->autoview_storage_type;
 
-    autoview_check_course_dir($mainrecord->course);
-
+    $avs=autoview_get_file_storage($CFG->autoview_storage_type);
+    $avs->check_course_dir($mainrecord->course);
+    
     if (isset($autoview->configfile) && strlen($autoview->configfile)>0)
      $mainrecord->configfile=$autoview->configfile;
     else
@@ -55,8 +56,9 @@ function autoview_add_instance($autoview) {
       $mainrecord->configfile=$fname.'.avx';
     }
     $instance_id=insert_record("autoview", $mainrecord);
-    autoview_check_course_dir($mainrecord->course);
-    autoview_check_configfile($mainrecord->configfile, $mainrecord->course);
+
+    $avs->check_configfile($mainrecord->configfile, $mainrecord->course);
+
     return $instance_id;
 }
 
@@ -83,8 +85,12 @@ function autoview_update_instance($autoview) {
      $mainrecord->noframe=0;    
 
     $ret=update_record("autoview", $mainrecord);
-    autoview_check_course_dir($mainrecord->course);
-    autoview_check_configfile($mainrecord->configfile, $mainrecord->course);
+
+    $avrec = get_record("autoview", "id", $mainrecord->id);
+    $avs=autoview_get_file_storage($avrec->storage);
+    $avs->check_course_dir($mainrecord->course);
+    $avs->check_configfile($mainrecord->configfile, $mainrecord->course);
+
     return $ret;
 }
 
@@ -133,41 +139,31 @@ function autoview_cron()
  return true;
 }
 
+/***File storage handlers***/
+
+function autoview_get_file_storage($type)
+{
+ if ($type==AUTOVIEW_STORAGE_INTERNAL)
+ {
+  include_once("storage/internal.php");
+  return new av_internal_file_storage();
+ }
+
+ /*
+ if ($type==AUTOVIEW_STORAGE_EXTERNAL)
+ {
+  include_once("storage/external.php");
+  return new av_external_file_storage();
+ }
+ */
+
+ include_once("storage/generic.php");
+ return new av_generic_file_storage();
+}
+
 /***End of Moodle specific functions***/
 
-function autoview_check_course_dir($courseid)
-{
-    global $CFG;
-    $fileloc=$CFG->dataroot.'/'.$courseid;
-    // Check the directory exists and create if necessary
-    if (!file_exists($fileloc))
-        mkdir($fileloc, $CFG->directorypermissions);
-}
 
-function autoview_check_configfile($file, $courseid) {
-    global $CFG;
-    $fileloc=$CFG->dataroot.'/'.$courseid.'/'.$file;
-    if (!file_exists($fileloc))
-        copy($CFG->dirroot.'/mod/autoview/avedit/blank.avx', $fileloc);
-}
-
-//If the config file is the same size as the blank template, it is assumed that this is an unedited blank presentation
-function autoview_pres_is_empty($autoview)
-{
-   global $CFG;
-   $configfile=$CFG->dataroot.'/'.$autoview->course.'/'.$autoview->configfile;
-   $template=$CFG->dirroot.'/mod/autoview/avedit/blank.avx';
-   if (!file_exists($configfile))
-   {
-    copy($template, $configfile);
-    return true;
-   }
-
-   if (filesize($configfile)==filesize($template))
-    return true;
-
-   return false;
-}
 
 /***Prepares the authorisation for AV Live callbacks***/
 

@@ -23,5 +23,7 @@
 
  require_login($course->id);
 
- echo process_xsl($CFG->dataroot.'/'.$course->id.'/'.$subfile, $CFG->dirroot.'/mod/autoview/templates/subtitles.xsl',array());
+ $avs=autoview_get_file_storage($autoview->storage);
+
+ echo process_xsl($avs->get_file_path($subfile, $course->id), $CFG->dirroot.'/mod/autoview/templates/subtitles.xsl',array());
 ?>
