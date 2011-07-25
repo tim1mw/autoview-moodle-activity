@@ -49,7 +49,7 @@ class av_generic_file_storage
  * @param $courseid The course ID
  **/
 
- function get_htmlbase($file, $courseid)
+ function get_htmlbase($courseid)
  {
   return "";
  }

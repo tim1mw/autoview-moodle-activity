@@ -60,7 +60,7 @@ class av_external_file_storage
  private function admin_func($params)
  {
   global $CFG;
-  $handle = fopen($CFG->autoview_flashcapture."/adminaction.jsp?secret=".$CFG->autoview_external_filekey."&".$params, "rb");
+  $handle = fopen($CFG->autoview_flashcapture."/adminaction.jsp?&host=".$CFG->wwwroot."&secret=".$CFG->autoview_external_filekey."&".$params, "rb");
   $contents = '';
   while (!feof($handle))
    $contents .= fread($handle, 8192);
@@ -73,10 +73,10 @@ class av_external_file_storage
  * @param $courseid The course ID
  **/
 
- function get_htmlbase($file, $courseid)
+ function get_htmlbase($courseid)
  {
   global $CFG;
-  return $CFG->autoview_flashcapture."/restricted/";
+  return $CFG->autoview_flashcapture."/restricted/".base64_encode($CFG->wwwroot)."/".$courseid;
  }
 
  /**
@@ -87,7 +87,7 @@ class av_external_file_storage
  function get_filebrowser_url($courseid)
  {
   global $CFG;
-  return $CFG->autoview_flashcapture."/filebrowser.jsp?id=".$courseid."&amp;choose=form.url";
+  return $CFG->autoview_flashcapture."/filebrowser.jsp?host=".$CFG->wwwroot."&id=".$courseid."&amp;choose=form.url";
  }
 
  /**
