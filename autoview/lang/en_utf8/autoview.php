@@ -61,20 +61,20 @@ $string['config_storage_type2'] = "This setting determines the default storage m
  " will not move any existing files, it only affects new presentations. Ideally this setting should not be changed after the initial module setup".
  " is completed.<br /><br />If you choose".
  " <b>Internal - Course Files</b>, then all files (including live video recordings) will be held in the normal Moodle Course files for Moodle 1.x users.".
- " Moodle 2.x users will need to install the Course File Area repository and Repository File Manager to use this option.<br /><br />Choosing".
+ " Moodle 2.x users will need to install the Course File Area repository and Repository File Manager to use this option.<!--<br /><br />Choosing".
  " <b>External - Lecture Capture Live</b> will cause all the files to be stored in the Lecture Capture live backend. You will need Lecture Capture Live 1.1".
- " or better to use this option. Please ensure that the host type is configured as moodle-external in the Lecture Capture Live host.".
- " configuration  file for this Moodle server.";
+ " or better to use this option. Please ensure that the host type is configured as moodle-external in the Lecture Capture Live host".
+ " configuration file for this Moodle server.-->";
 $string['internal_storage'] = 'Internal - Course Files';
 $string['external_storage'] = 'External - Lecture Capture Live';
 $string['configexternalfilekey'] = 'Access key for external file storage';
-$string['configexternalfilekey2'] = 'This is the secret access key which is used for direct communication between '.
+$string['configexternalfilekey2'] = 'This option is for future use, please leave blank. <!-- This is the secret access key which is used for direct communication between '.
  'Moodle and the External file storage area in the Lecture Capture Live addon. If you are using Internal File storage, this parameter should be '.
- 'left blank.';
+ 'left blank.-->';
 $string['configexternalfileloc'] = 'External file storage area path';
-$string['configexternalfileloc2'] = 'If the file system location of the external storage area is readable from the Moodle server, enter the file '.
+$string['configexternalfileloc2'] = 'This option is for future use, please leave blank. <!--If the file system location of the external storage area is readable from the Moodle server, enter the file '.
  'path here. This allows the AutoView Moodle module to directly read stored presentation configuration files for enhanced performance. '.
- 'If you are using Internal File storage, this parameter should be left blank.';
+ 'If you are using Internal File storage, this parameter should be left blank.-->';
 
 $string['confignote'] = 'These parameters are primarily used to configure';
 $string['confignote2'] = 'add-on services';
