@@ -1,6 +1,7 @@
 <?PHP // $Id: autoview.php,v 1.2 2003/11/18 07:28:46 moodler Exp $ 
       // autoview.php - created with Moodle 1.2 development (2003111400)
 
+$string['pluginname'] = 'AutoView';
 $string['alwaysflashstream']='Always use Lecture Capture Live streaming server for flash videos';
 $string['alwaysflashstream2']='Force the use of the Lecture Capture Live streaming server for all new presentions with flash videos.';
 $string['autoviewtext'] = 'AutoView Name';
