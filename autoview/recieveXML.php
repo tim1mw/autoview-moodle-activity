@@ -14,7 +14,6 @@
     require_once("lib.php");
     require_once("$CFG->libdir/rsslib.php");
 
-    $xmldata=base64_decode(required_param('xmldata', PARAM_RAW));
     $l = required_param('xmlid',PARAM_INT);
 
     if (! $autoview = get_record("autoview", "id", $l))
@@ -31,21 +30,36 @@
 
     if (has_capability('mod/autoview:canedit', $context))
     {
-     $file="";
+     $xmldata=optional_param('xmldata', false, PARAM_RAW);
+     if ($xmldata!=false)
+      $xmldata=base64_decode($xmldata);
+
+     $subdata=optional_param('subdata', false, PARAM_RAW);
+     if ($subdata!=false)
+      $subdata=base64_decode($subdata);
+
      $subtitlefile=optional_param('subtitlefile','', PARAM_PATH);
 
-     if (strlen($subtitlefile)>0)
+     if (strlen($subtitlefile)>0 && $subdata!=false)
+     {echo $subdata;
       $file=$CFG->dataroot.'/'.$course->id.'/'.$subtitlefile;
-     else
+      $fh = fopen($file, 'w') or die(get_string("xmlsavefailed", "autoview"));
+      fwrite($fh, $subdata);
+      fclose($fh);
+     }
+     
+     if ($xmldata!=false)
+     {echo $xmldata;
       $file=$CFG->dataroot.'/'.$course->id.'/'.$autoview->configfile;
+      $fh = fopen($file, 'w') or die(get_string("xmlsavefailed", "autoview"));
+      fwrite($fh, $xmldata);
+      fclose($fh);
+     }
 
-     $fh = fopen($file, 'w') or die(get_string("xmlsavefailed", "autoview"));
-     fwrite($fh, $xmldata);
-     fclose($fh);
-     echo "OK\n";
+     echo get_string("pres_saved", "autoview");
     }
     else
-     echo get_string("no_edit_permission", "mod_autoview");
+     echo get_string("no_edit_permission", "autoview");
 ?>
  </p>
 </body>
