@@ -101,6 +101,7 @@ $string['starteditor'] = 'Start Editor';
 
 $string['not_allowed']='You do not have permission to view this presentation.';
 $string['no_edit_permission']= 'You do not have permission to do this.';
+$string['pres_saved'] ='Presentation Saved';
 
 $string['advanced_config']='Advanced Configuration';
 $string['js_extras'] = 'JavaScript Calls';
