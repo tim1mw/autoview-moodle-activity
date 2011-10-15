@@ -48,7 +48,7 @@
         <SENTENCE TEXT="(module, action, mtable, field) VALUES ('autoview', 'view all', 'autoview', 'name')" />
         <SENTENCE TEXT="(module, action, mtable, field) VALUES ('autoview', 'edit', 'autoview', 'name')" />
         <SENTENCE TEXT="(module, action, mtable, field) VALUES ('autoview', 'flash play', 'autoview', 'name')" />
-        <SENTENCE TEXT="(module, action, mtable, field) VALUES ('autoview', 'flash play & rec', 'autoview', 'name')" />
+        <SENTENCE TEXT="(module, action, mtable, field) VALUES ('autoview', 'flash play and rec', 'autoview', 'name')" />
       </SENTENCES>
     </STATEMENT>
   </STATEMENTS>
