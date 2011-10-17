@@ -51,13 +51,13 @@ $always_stream=array(0=>get_string("no"), 1=>get_string("yes"));
 $settings->add(new admin_setting_configselect('autoview_alwaysflashstream', get_string('alwaysflashstream', 'autoview'),
                    '', 0, $always_stream));
 
-$spds=array(256, 128, 96, 64, 48, 32, 24, 20, 16, 12, 8);
+$spds=array("768"=>768, "512"=>512, "256"=>256, "128"=>128, "96"=>96, "64"=>64, "48"=>48, "32"=>32, "24"=>24,
+    "20"=>20, "16"=>16, "12"=>12);
 $settings->add(new admin_setting_configselect('autoview_max_broadcast_kbps', get_string('configmax_broadcast_kbps', 'autoview'),
-                   get_string('configmax_broadcast_kbps2', 'autoview'), 256, $spds));
+                   get_string('configmax_broadcast_kbps2', 'autoview'), 768, $spds));
 
-$spds=array(512, 256, 128, 96, 64, 48, 32, 24, 20, 16, 12, 8);
 $settings->add(new admin_setting_configselect('autoview_max_record_kbps', get_string('configmax_record_kbps', 'autoview'),
-                   get_string('configmax_record_kbps2', 'autoview'), 512, $spds));
+                   get_string('configmax_record_kbps2', 'autoview'), 768, $spds));
 
 $settings->add(new admin_setting_heading('autoview_doc_convert_heading', get_string("converttitle", "autoview"),""));
 
