@@ -1,0 +1,473 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"/>
+  <link type="text/css" rel="stylesheet" href="../help-styles.css"/>
+  <title>AutoView 3 Help</title>
+</head>
+<body>
+
+<h1 align="center">AutoView 3 Help File</h1>
+
+<p>Welcome to the <b>AutoView</b> help file. AutoView is developed by <a href="http://www.autotrain.org">AutoTrain e-Learning</a>
+as a system for putting video, slides and subtitles together to form an on-line presentation.
+The entire AutoView system is written in Javascript, so it is essential that you have this enabled in your browser.</p>
+
+<p>AutoView presentations can be delivered in a variety of formats. If the presentation you are trying to view has multiple
+video formats available, then AutoView
+will attempt to automatically detect the plugins available on your computer and select
+the most appropriate for your system. You will find more information on manually selecting
+video and slide formats in the sections below, but hopefully in most circumstances this
+will not be necessary.</p>
+
+<p>Select the topic you require help on from the list below :-</p>
+
+<ul>
+ <li><a href="#browser">Browser Support</a></li>
+ <li><a href="#javascript">JavaScript Problems</a></li>
+ <li><a href="#language">Language Options</a></li>
+ <li><a href="#slides">Slides</a></li>
+ <li><a href="#subtitles">Subtitles</a></li>
+ <li><a href="#video">Videos</a></li>
+</ul>
+
+<p>You can find additional technical notes and help on known problems in the support database on
+<a href="http://autoview.autotrain.org/supportdb">http://autoview.autotrain.org/supportdb</a>.</p>
+
+<hr />
+<a name="browser" href="#"></a>
+<h2>Browser Support</h2>
+
+<p>AutoView is written to be cross-browser and cross-platform compatible as far as is possible given the limits of current technology.
+However, due to the complex interactions between many software components which AutoView requires, there may be cases where the software
+will fail to work as expected.</p>
+
+<p>AutoView is supported on a range of web browsers and operating systems (Including Internet Explorer, Mozilla Firefox and Opera). A full
+status list of all known browser issues and browser support is maintained at
+<a href="http://autoview.autotrain.org/browsernotes">http://autoview.autotrain.org/browsernotes</a>.</p>
+
+<hr />
+<a name="javascript" href="#"></a>
+<h2>JavaScript Problems</h2>
+
+<p>The presentations make considerable use of Javascript. Consequently, if you 
+wish to view a presentation, you must be using a Javascript capable browser, 
+and you must have Javascript enabled.</p>
+
+<p>Beyond this, there are certain things that we needed to do, in order to 
+achieve some of the effects that we wanted, which can be explicitly 
+barred by your browser, depending on your security settings. For example, in 
+Internet Explorer the Quicktime Player plug-in is an Active-X control, and in 
+order to change the position of the video in response to a click on the 
+slide menu, it has to receive a message from the script. It is possible, 
+within the security settings of IE either to disable all Active-X controls, 
+or to disable the scripting of those controls, even if they are marked safe 
+for scripting.</p>
+
+<p>If AutoView attempts to do something that is prevented by your 
+security settings, you will receive a Script Error warning. If you receive 
+such a warning, it might be worthwhile to review your security settings to 
+see if this could be the cause.</p>
+
+<p>We don't like to force users to change their browser configurations, 
+particularly when it concerns their choice of security settings. 
+If you wish to view the presentation, but suspect that you are receiving 
+error messages because of your security settings, try switching off
+<a href="#slidesync">slide synchronisation</a>. This will mean that you lose 
+the ability to control the video from the slide menu or the buttons above 
+the slides, however, it should prevent any errors from being generated.</p>
+
+<hr />
+<a name="language" href="#"></a>
+<h2>Language Options</h2>
+
+<p>The AutoView interface and presentations can be presented in a variety of different languages, you
+can choose your language using the language drop down box shown to the left below.</p>
+
+<table align="center" class="border" summary="Language options"><tr>
+ <td valign="top"><img src="lang-small.jpg" width="215" height="25" alt="Language options (minimised)" /></td>
+ <td valign="top">&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;</td>
+ <td valign="top"><img src="lang-large.jpg" width="182" height="77" alt="Language options (full)" /></td>
+</tr></table>
+
+<p>This box contains the full range of languages available for all of the elements of the presentation you are viewing.
+However, not all elements of the presentation may be available in all of the languages listed in this box, so changing this
+option may not change the language for all parts of the presentation. If you want to see which elements of the presentation
+have a choice of languages available, then click the + button in to show the full set of language options (show above on the right).
+Elements which are not listed here do not have any alternative languages available. If the language options are missing altogether,
+then all elements of the presentation are only available in one language.</p>
+
+<hr />
+<a name="slides" href="#"></a>
+<h2>Slides</h2>
+
+<h3>Slide Thumbnails</h3>
+
+<img src="thumb.jpg" width="93" height="108" alt="Thumbnail sample" align="right" />
+<p>Some AutoView presentations may be provided with a scrollable/clickable list of slide thumbnails. If these thumbnails are
+available, then you can switch them on/off using the thumbnails buttons shown below.</p>
+
+<p align="center"><img src="thumb-controls.jpg" alt="Slide controls" width="161" height="28" class="border" /></p>
+
+<h3>Slide Formats</h3>
+
+<p>AutoView slides can be provided in a number of formats according
+to the requirements of your content provider. Presentations can also be provided without slides, so this section
+may not be relevant to all presentations.</p>
+
+<p>The slide formats available for the presentation you are viewing are listed in the slide options section,
+which can be expanded by clicking the + button. The expanded display will show all available slide formats, with the current format
+highlighted. Simply click on the format you want to change the slides.
+If an option is greyed out this means that AutoView has detected that you do not have the right software installed to use
+this format. You may still choose this format by clicking on it if you wish.</p>
+
+<table align="center" class="border" summary="Slide options"><tr>
+ <td valign="top"><img src="slide-options1.jpg" width="130" height="22" alt="Slide options (minimised)" /></td>
+ <td valign="top">&nbsp;&nbsp;&nbsp;>>>&nbsp;&nbsp;&nbsp;</td>
+ <td valign="top"><img src="slide-options2.jpg" width="246" height="75" alt="Slide options (full)" /></td>
+</tr></table>
+
+<p><b>Note :</b> If the slide options section is missing, then this means that there are no alternate slide formats available.</p>
+
+<p>The slide options menu also includes a 'Slide Size' control which allows you to change the relative size of the video and the slides.</p>
+
+<a name="slidesync" href="#"></a>
+<h3>Slide Controls and Synchronisation</h3>
+
+<p align="center"><img src="slide-controls.jpg" alt="Slide controls" width="463" height="23" class="border" /></p>
+
+<p>You can browser the slides by choosing the slide you want to see from the drop down box (shown above), which is normally
+positioned on the top right of the browser window. You can also move backwards and forwards through the slides using the '<'
+and '>' buttons.</p>
+
+<p>Normally, changing slides will cause the position of the video to be moved to match the current slide. You can switch
+this behaviour on and off by clicking the 'Sync On'/'Sync Off' button. Switching slide synchronisation off will also stop
+the slides from being changed while the video is playing.</p>
+
+<p>You can view a summary of all the slides (if available) which is suitable for printing by clicking the 'All Slides' button.</p>
+
+<hr />
+<a name="subtitles" href="#"></a>
+<h2>Subtitles</h2>
+
+<p>Some presentations may be provided with subtitles which can be switched on and off using the controls shown below :-</p>
+
+<p align="center"><img src="subtitles.jpg" width="185" height="51" alt="Subtitle controls" class="border" /></p>
+
+<p>You can manually move backwards and forwards through the subtitles using the '<' and '>' buttons which will be shown
+alongside the subtitles. Additionally if subtitles are available then you can view and print a transcript of the
+presentation by clicking the 'Transcript' button.</p>
+
+<hr />
+<a name="video" href="#"></a>
+<h2>Videos</h2>
+
+<h3>Video Formats</h3>
+
+<p>AutoView videos can be provided in a number of formats and speeds according
+to the requirements of your content providor.</p>
+
+<p>The formats available for the presentation you are viewing are listed in the video options section, which can be expanded by clicking the + button. The expanded
+display will show all available video formats, with the current format highlighted.
+Simply click on the format you want to change the video.
+If an option is greyed out (eg Windows Media in the example below) this means that
+AutoView has detected that you do not have the right software installed to use
+this format. You may still choose this format by clicking on it if you wish.</p>
+
+<table align="center" class="border" summary="Video options"><tr>
+ <td valign="top"><img src="video-options1.jpg" width="121" height="21" alt="Video options collapsed"/></td>
+ <td valign="top">&nbsp;&nbsp;&nbsp;>>>&nbsp;&nbsp;&nbsp;</td>
+ <td valign="top"><img src="video-options2.jpg" width="231" height="139" alt="Video options expanded" /></td>
+</tr></table>
+
+<p>In some cases, if the presentation providor does not support multi-rate video streaming, you may see additional information
+on the connection speed each video is suitable for. eg RealPlayer (Modem) for 56k Modem users, RealPlayer (Broadband) for 256k broadband connections and better.</p>
+
+<p><b>Note :</b> If the video options section is missing, then this means that there are no alternate video formats available.</p>
+
+<p>You can also record you current position in the video so that you can return to video later by clicking the "Save" button
+and then restoring your position using the "Load" button (this button will be greyed out if you have no saved position).</p>
+
+<p align="center"><img src="position.jpg" width="185" height="22" alt="Save/Load position buttons" class="border" /></p>
+
+<p>The complete range of available formats is as follows (click on the link to view
+information on each format) : </p>
+
+<ul>
+ <li><a href="#flashvideo">Flash Video</a></li>
+ <li><a href="#quicktime">Quicktime</a></li>
+ <li><a href="#windowsmedia">Windows Media Player</a></li>
+ <li><a href="#silverlight">Silverlight</a></li>
+ <li><a href="#realplayer">Real Player</a></li>
+ <li><a href="#videolan">VideoLAN</a></li>
+ <li><a href="#javaaudio">Java Audio Player</a></li>
+</ul>
+
+<p><b>Note :</b> It is not necessary to have all of these plugins installed to use AutoView,
+as long as you have one plug-in which matches up with the formats available from your
+content provider, AutoView will function correctly.</p>
+
+<h3>Video Streaming Problems</h3>
+
+<ul>
+ <li>If you have difficulty playing the video files, or you find that the video quality is poor, you may need to change the
+  bandwidth settings for your video player plug-in. Please consult the video plug-in help below or video plug-in help files for
+  more information on these problems.</li>
+ <li>Some organisations will deliberately block the video streaming or video file downloads required by AutoView. 
+  If you find that when pressing the play button, the video player plug-in hangs
+  indefinitely trying to download the video, you may have this problem. Switching to an alternative video format (if available)
+  may solve the problem. Alternatively, you will need to contact your ISP or IT staff to ask them to enable video streaming/downloads.</li>
+ <li>You have a firewall or security product/setting on your computer which is 
+  blocking access to the videos. You need to check your softwares documentation to see how you find out which
+  applications/services are blocked and how to unblock them.</li>
+ <li>Your video player plug-in needs an update. We reccomend at least Quicktime 6, Real Player 8, Windows Media Player 7 or VideoLAN 0.85
+  for AutoView presentations. Additionaly, some older versions of video plug-ins may need a codec update to view
+  the videos, this will normally trigger automatically the first time you view the video, but if you refuse the
+  update, or it is blocked by your security settings, the video will not play. Upgrading your video plug-in to the
+  latest version may fix this problem.</li>
+</ul>
+
+<br />
+
+<a name="flashvideo" href="#"></a>
+<table summary="Flashvideo layout"><tr>
+ <td><h3>Flash&nbsp;Video</h3></td>
+ <td></td>
+</tr><tr>
+ <td valign="top">
+  <img src="flashvideo.jpg" width="209" height="174" alt="Flash video plug-in" class="largemargin" />
+ </td>
+ <td valign="top">
+  <p>Flash video is part of the Adobe Flash plugin and is supported in most web browser and OS combinations. The latest version of the
+  flash plugin can be downloaded from <a href="http://www.adobe.com">http://www.adobe.com</a></p>
+  <p>From left to right, the controls are :</p>
+  <ul>
+   <li>Play/Pause</li>
+   <li>Position</li>
+   <li>Time</li>
+   <li>Volume</li>
+   <li>Full screen mode toggle</li>
+  </ul>
+  <p>AutoView uses <a href="http://www.flowplayer.org">FlowPlayer</a> to control the playback of Flash videos. You can find out more about 
+  <a href="http://www.flowplayer.org">FlowPlayer here</a>.</p>
+ </td>
+</tr></table>
+
+<a name="quicktime" href="#"></a>
+
+<table summary="Quicktime layout"><tr>
+ <td><h3>Quicktime</h3></td>
+ <td></td>
+</tr><tr>
+ <td valign="top">
+  <img src="quicktime.jpg" width="229" height="190" alt="Quicktime plugin" class="largemargin" />
+ </td>
+ <td valign="top">
+  <p>Quicktime is supplied by Apple and can be downloaded (with iTunes) for Apple Mac and Windows from 
+  <a href="http://www.apple.com/quicktime/download/">http://www.apple.com/quicktime/download/</a>.</p>
+
+  <p>Linux users wishing to access Quicktime video streams could try the
+  <a href="http://www.codeweavers.com">Crossover software from Codeweavers</a> which works reasonably
+  well with AutoView. Alternatively, The VideoLAN plugin can play most Qui</p>
+
+  <p>From left to right, the controls are :</p>
+
+  <ul>
+   <li>Volume Control</li>
+   <li>Play/Pause Button.</li>
+   <li>Video position control, drag this control from left to right to change the video position.</li>
+   <li>Previous Chapter (not used in autoview)</li>
+   <li>Next Chapter (not used in autoview)</li>
+   <li>Show Quicktime menu</li>
+  </ul>
+
+  <h4>Bandwidth Settings</h4>
+
+  <p>To change the bandwidth setting in Quicktime 7, please follow the following steps :</p>
+  <ol>
+   <li>Click the right hand button on the control bar to show the Quicktime menu.</li>
+   <li>Select <b>Connection Speed</b></li>
+   <li>Choose the speed which best matches your internet connection from the Streaming Speed box. It is normally recommended to
+    choose <b>Automatic</b> for the best results.</li>
+   <li>Click <b>OK</b> to save the settings.</li>
+  </ol>
+
+ </td>
+</tr></table>
+
+<a name="windowsmedia" href="#"></a>
+<table summary="Windows Media layout"><tr>
+ <td><h3>Windows&nbsp;Media&nbsp;Player</h3></td>
+ <td></td>
+</tr><tr>
+ <td valign="top">
+  <img src="windowsmedia.jpg" width="225" height="240" alt="Windows Media plugin" class="largemargin" />
+ </td>
+ <td valign="top">
+  <p>Windows Media Player is supplied by Microsoft as part of the Windows operating system. User of Windows XP
+  should already have a suitable version of Windows Media Player. Users of older versions of Windows will need
+  to have upgraded to at least version 7 of Windows Media Player to use AutoView presentations. You can download
+  upgrades for Windows Media Player from <a href="http://www.microsoft.com/windowsmedia/">http://www.microsoft.com/windowsmedia/</a>.</p>
+
+  <p>From left to right, the top row of controls are :</p>
+
+  <ul>
+   <li>Rewind</li>
+   <li>Video position control, drag this control from left to right to change the video position.</li>
+   <li>Fast Forward</li>
+  </ul>
+
+  <p>From left to right the bottom row of controls are :</p>
+
+  <ul>
+   <li>Play/Pause Button.</li>
+   <li>Stop Button. Resets the video to the start.</li>
+   <li>Previous Chapter (not used in autoview)</li>
+   <li>Next Chapter (not used in autoview)</li>
+   <li>Mute button.</li>
+   <li>Volume Control</li>
+  </ul>
+
+  <h4>Bandwidth Settings</h4>
+
+  <p>To change the bandwidth setting in Windows Media Player 9, please follow the following steps :</p>
+  <ol>
+   <li>Right click the video window and select <b>Options</b> from the menu.</li>
+   <li>Select the <b>Performance</b> tab if it isn't already shown.</li>
+   <li>In the Connection Speed section, it is recommended to select <b>Detect Connection Speed</b>, alternatively, select
+    <b>Choose Connection Speed</b> and the select an appropriate speed for your internet connection from the drop
+    down box.</li>
+   <li>Click <b>OK</b> to save the settings.</li>
+  </ol>
+ </td>
+</tr></table>
+
+<a name="silverlight" href="#"></a>
+<table summary="Silverlight layout"><tr>
+ <td><h3>Silverlight</h3></td>
+ <td></td>
+</tr><tr>
+ <td valign="top">
+  <img src="silverlight.jpg" width="209" height="172" alt="Silverlight video plug-in" class="largemargin" />
+ </td>
+ <td valign="top">
+  <p>The Microsoft Silverlight plugin and is supported in most web browsers, you will need at least version 3.0 to access AutoView presentations.
+  The latest version of the Silverlight plugin can be downloaded from <a href="http://www.microsoft.com/silverlight/">http://www.microsoft.com/silverlight/</a>.
+  Linux users should use the Moonlight plugin, available from <a href="http://www.go-mono.com/moonlight/">http://www.go-mono.com/moonlight/</a>.</p>
+  <p>From left to right, the controls are :</p>
+  <ul>
+   <li>Play/Pause</li>
+   <li>Position</li>
+   <li>Time</li>
+   <li>Volume</li>
+   <li>Full screen mode toggle</li>
+   <li>Options</li>
+  </ul>
+  <p>AutoView uses <a href="http://www.flowplayer.org">FlowPlayer</a> to control the playback of Flash videos. You can find out more about 
+  <a href="http://www.flowplayer.org">FlowPlayer here</a>.</p>
+ </td>
+</tr></table>
+
+<a name="realplayer" href="#"></a>
+<table summary="Realplayer layout"><tr>
+ <td><h3>Real&nbsp;Player</h3></td>
+ <td></td>
+</tr><tr>
+ <td valign="top">
+  <img src="realplayer.jpg" width="234" height="242" alt="Real Player plug-in" class="largemargin" />
+ </td>
+ <td valign="top">
+  <p>Real player is supplied by Real Networks and can be downloaded for Windows, Apple Mac and Linux/Unix from
+  <a href="http://www.realnetworks.com/info/freeplayer/">
+  http://www.realnetworks.com/info/freeplayer/</a></p>
+
+  <p>From left to right, the controls are :</p>
+
+  <ul>
+   <li>Play/Pause Button.</li>
+   <li>Stop Button. Resets the video to the start.</li>
+   <li>Skip Backwards.</li>
+   <li>Video position control, drag this control from left to right to change the video position.</li>
+   <li>Skip Forwards.</li>
+   <li>Volume control.</li>
+   <li>Real Player menu button.</li>
+  </ul>
+
+  <p>The lower box shows loading progress and the current time index when playing.</p>
+
+  <h4>Bandwidth Settings</h4>
+
+  <p>To change the bandwidth setting in Real Player 10, please follow the following steps :</p>
+
+  <ol>
+   <li>Start Real Player in <b>standalone mode</b>(under Windows you should find it in <b>Programs</b>
+    section of your <b>start menu</b>)</li>
+   <li>Select <b>Preferences</b> from the <b>Tools</b> menu on the top menu bar.</li>
+   <li>Click <b>Connection</b> on the list on the left.</li>
+   <li>Click the <b>Test Connection</b> or select an appropriate normal and maximum speed for your internet connection from
+    the drop down boxes.</li> 
+   <li>Click <b>OK</b> to save your new settings</li>
+  </ol>
+ </td>
+</tr></table>
+
+<a name="videolan" href="#"></a>
+<table summary="VideoLAN layout"><tr>
+ <td><h3>VideoLAN&nbsp;Player</h3></td>
+ <td></td>
+</tr><tr>
+ <td valign="top">
+  <img src="videolan.jpg" width="235" height="226" alt="VideoLAN plugin" class="largemargin" />
+ </td>
+ <td valign="top">
+  <p>The VideoLAN player is a free video player which AutoView supports only on the FireFox web browser at present.
+  The VideoLAN VLC media player can be downloaded from <a href="http://www.videolan.org/">http://www.videolan.org/</a>.</p>
+
+  <p>From left to right, the top row of controls are :</p>
+
+  <ul>
+   <li>Play</li>
+   <li>Pause</li>
+   <li>Stop</li>
+  </ul>
+
+  <p>From left to right the bottom row of controls are :</p>
+
+  <ul>
+   <li>Go Back 1 minute</li>
+   <li>Go Back 5 seconds</li>
+   <li>Video Position</li>
+   <li>Go Forwards 5 seconds</li>
+   <li>Go Forwards 1 minute</li>
+  </ul>
+ </td>
+</tr></table>
+
+<a name="javaaudio" href="#"></a>
+
+
+<table summary="Java Audio Layout"><tr>
+ <td><h3>Java&nbsp;Audio&nbsp;Player</h3></td>
+ <td></td>
+</tr><tr>
+ <td valign="top">
+  <img src="javaaudio.jpg" width="133" height="40" alt="Java Audio Player" class="largemargin" />
+ </td>
+ <td valign="top">
+  <p>The Java Audio player can play presentations in an Audio only mode using the Java plugin supplied by Sun Microsystems.
+  You can download the Java Plugin from <a href="http://www.java.com">http://www.java.com</a>.</p>
+
+  <p>From left to right, the controls are :</p>
+
+  <ul>
+   <li>Play/Pause Button.</li>
+   <li>Stop Button. Resets the video to the start.</li>
+  <li>Progress display, shows loading progress and the current time index when playing.</li>
+  </ul>
+
+ </td>
+</tr></table>
+
+</body>
+</html>
