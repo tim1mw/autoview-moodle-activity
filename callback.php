@@ -52,7 +52,7 @@
    {
     //*****This is a one-shot key, so delete from database*****
     delete_records('autoview_keys', 'id', $data->id);
-    add_to_log($cm->course, "autoview", "flash play & rec", "view.php?id=$cm->id", $autoview->name, $cm->id, $data->userid);
+    add_to_log($cm->course, "autoview", "flash play and rec", "view.php?id=$cm->id", $autoview->name, $cm->id, $data->userid);
     echo $data->ip."\nokrec\n";
     die();
    }
@@ -61,7 +61,7 @@
    {
     //*****This is a one-shot key, so delete from database*****
     delete_records('autoview_keys', 'id', $data->id);
-    add_to_log($cm->course, "autoview", "flash play & rec", "view.php?id=$cm->id", $autoview->name, $cm->id, $data->userid);
+    add_to_log($cm->course, "autoview", "flash play and rec", "view.php?id=$cm->id", $autoview->name, $cm->id, $data->userid);
     echo $data->ip."\nokrec\n";
     die();
    }
