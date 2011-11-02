@@ -4,7 +4,7 @@
 *
 * This page provides a callback authemtication service for the LiveCapture/Broadcast system
 *
-* This code is copyright to EuroMotor AutoTrain LLP and is licenced under the GNU GPLv2 Licence
+* This code is copyright to EuroMotor AutoTrain LLP and is licenced under the GNU GPLv3 Licence
 **/
 
  global $CFG;

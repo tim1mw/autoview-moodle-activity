@@ -5,7 +5,7 @@
  * @package    mod
  * @subpackage autoview
  * @copyright  2011 AutoTrain e-Learning, Tim Williams (tmw@autotrain.org)
- * @license    GNU GPL v2 or later
+ * @license    GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();

@@ -6,7 +6,7 @@
     * @package mod-autoview
     * @category mod
     * @author Tim William (EuroMotor - Autotrain) 
-    * @license This code is copyright to EuroMotor AutoTrain LLP and is licenced under the GNU GPL Licence
+    * @license This code is copyright to EuroMotor AutoTrain LLP and is licenced under the GNU GPL v3 Licence
     **/
     require_once("../../config.php");
 

@@ -1,6 +1,6 @@
 <?php
 /**
-* This code is copyright to EuroMotor AutoTrain LLP and is licenced under the GNU GPL Licence
+* This code is copyright to EuroMotor AutoTrain LLP and is licenced under the GNU GPL v3 Licence
 **/
 
 require_once("avphplib/avlib.php");

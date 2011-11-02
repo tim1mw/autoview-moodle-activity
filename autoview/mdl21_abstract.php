@@ -3,7 +3,7 @@
 /**
 * Moodle 2 DB methods compatability object for Moodle 1
 * @author Tim Williams
-* @licence GNU GPLv2 or later
+* @licence GNU GPLv3 or later
 **/
 
 $DB=new mdl21_db_abstract();

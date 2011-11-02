@@ -6,7 +6,7 @@
 * @category contrib
 * @author Valery Fremaux [valery.fremaux@club-internet.fr] > 1.9. Modified for AutoView by Tim Williams (tmw@autotrain.org)
 * @date 2009/2/11
-* @license http://www.gnu.org/copyleft/gpl.html GNU Public License
+* @license http://www.gnu.org/copyleft/gpl.html GNU Public License v3
 *
 * document handling for all resources
 * This file contains the mapping between a resource and it's indexable counterpart,

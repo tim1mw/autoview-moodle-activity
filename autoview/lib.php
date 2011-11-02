@@ -1,6 +1,6 @@
 <?PHP
 /**
-* This code is copyright to EuroMotor AutoTrain LLP and is licenced under the GNU GPLv2 Licence
+* This code is copyright to EuroMotor AutoTrain LLP and is licenced under the GNU GPLv3 Licence
 **/
 
 /// Library of functions and constants for module AutoView
