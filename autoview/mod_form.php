@@ -18,7 +18,7 @@ class mod_autoview_mod_form extends moodleform_mod {
 
         $mform->addElement('htmleditor', 'summary', get_string("autoviewsummary", "autoview"), array('size'=>'64'));
         $mform->setType('summary', PARAM_RAW);
-        $mform->setHelpButton('summary', array('questions', 'richtext'), false, 'editorhelpbutton');
+        //$mform->setHelpButton('summary', array('questions', 'richtext'), false, 'editorhelpbutton');
 
         $mform->addElement('checkbox', 'noframe', '', get_string("hidenav", "autoview"));
         $mform->setDefault('noframe', false);
@@ -32,12 +32,17 @@ class mod_autoview_mod_form extends moodleform_mod {
             $mform->setDefault('createnew', true);
         }
 
-        $opts=array('courseid'=>$COURSE->id, 'height'=>500, 'width'=>750, 'options'=>'none'); 
-        $mform->addElement('choosecoursefile', 'configfile', get_string("chooseconfig", "autoview"), $opts);
 
+        $opts=array('courseid'=>$COURSE->id, 'height'=>500, 'width'=>750, 'options'=>'none'); 
+
+        if ($CFG->version<2010000000)
+            $mform->addElement('choosecoursefile', 'configfile', get_string("chooseconfig", "autoview"), $opts);
+        else
+        {
         //$mform->addElement('filepicker', 'configfile', get_string("chooseconfig", "autoview"), $opts);
-        //$mform->addElement('text', 'configfile', get_string("chooseconfig", "autoview"), 'size="47"');
-        //$mform->setType('configfile', PARAM_FILE);
+         $mform->addElement('text', 'configfile', get_string("chooseconfig", "autoview"), 'size="47"');
+         $mform->setType('configfile', PARAM_PATH);
+        }
 
         if ($add)
         {
@@ -54,13 +59,11 @@ class mod_autoview_mod_form extends moodleform_mod {
 // buttons
         $this->add_action_buttons(true, null, null);
 
-        global $CONTEXT;
-
         if (!$add)
         {
             $mform->addElement('html', "\n<br />\n".
              "<div style=\"text-align:center;font-weight:bold;\">\n".
-             "<a href=\"".$CFG->wwwroot."/mod/autoview/view.php?edit=true&id=".$this->_cm->id."\">".get_string("editbutton", "autoview")."</a>\n".
+             "<a href=\"".$CFG->wwwroot."/mod/autoview/view.php?edit=1&id=".$this->_cm->id."\">".get_string("editbutton", "autoview")."</a>\n".
              "</div><br />\n");
         }
     }

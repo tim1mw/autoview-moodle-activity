@@ -23,10 +23,12 @@
  $pdf=optional_param('pdf', 'false', PARAM_TEXT);
  $jpg=optional_param('jpg', 'false', PARAM_TEXT);
 
- if (! $autoview = get_record("autoview", "id", $l))
+ global $DB;
+
+ if (! $autoview = $DB->get_record("autoview", array("id"=>$l)))
   error("Course module is incorrect");
 
- if (! $course = get_record("course", "id", $autoview->course))
+ if (! $course = $DB->get_record("course", array("id"=>$autoview->course)))
   error("Course is misconfigured");
 
  if (! $cm = get_coursemodule_from_instance("autoview", $autoview->id, $course->id))
@@ -48,8 +50,8 @@
   die(get_string("pecl_http_warn", "autoview"));
  }
 
- $convertfile=convertPresentationFile($swf, $pdf, $jpg, $CFG->autoview_conversionkey,
-  $CFG->autoview_conversionurl, $CFG->dataroot.'/'.$course->id.'/'.$url);
+ $convertfile=convertPresentationFile($swf, $pdf, $jpg, mdl21_getconfigparam("autoview", "conversionkey"),
+  mdl21_getconfigparam("autoview", "conversionurl"), $CFG->dataroot.'/'.$course->id.'/'.$url);
 
  $aveditdir=$CFG->wwwroot.'/mod/autoview/avedit/';
 

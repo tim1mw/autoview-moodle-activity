@@ -16,10 +16,12 @@
 
     $l = required_param('xmlid',PARAM_INT);
 
-    if (! $autoview = get_record("autoview", "id", $l))
+    global $DB;
+
+    if (! $autoview = $DB->get_record("autoview", array("id"=>$l)))
      error("Course module is incorrect");
 
-    if (! $course = get_record("course", "id", $autoview->course))
+    if (! $course = $DB->get_record("course", array("id"=>$autoview->course)))
      error("Course is misconfigured");
 
     if (! $cm = get_coursemodule_from_instance("autoview", $autoview->id, $course->id))

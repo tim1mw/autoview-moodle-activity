@@ -54,10 +54,19 @@ class av_internal_file_storage extends av_generic_file_storage
  function get_htmlbase($courseid)
  {
   global $CFG;
-  if ($CFG->slasharguments)
-   return $CFG->wwwroot.'/file.php/'.$courseid.'/';
+
+  $htmlbase='';
+  if ($CFG->version>=2010000000)
+   $htmlbase=$CFG->wwwroot.'/repository/coursefilearea/file.php';
   else
-   return $CFG->wwwroot.'/file.php?file=/'.$courseid.'/';
+   $htmlbase=$CFG->wwwroot.'/file.php';
+ 
+  if ($CFG->slasharguments)
+   $htmlbase.='/'.$courseid.'/';
+  else
+   $htmlbase.='?file=/'.$courseid.'/';
+
+  return $htmlbase;
  }
 
  /**

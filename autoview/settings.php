@@ -8,11 +8,13 @@ if (testXSL()==false)
  $xsl='<p class="warning">'.get_string('noxsl', 'autoview').'</p>';
 }
 
+$dep=autoview_has_dependencies(true);
+
 $settings->add(new admin_setting_heading('autoview_main_heading', "",
                    '<p>'.get_string("confignote", "autoview").
                    ' <a href="http://autoview.autotrain.org/" title="'.get_string("confignote4", "autoview").'">'.
                    get_string("confignote2", "autoview").'</a> '.
-                   get_string("confignote3", "autoview").'</p>'.$xsl));
+                   get_string("confignote3", "autoview").'</p>'.$xsl.$dep));
 
 
 $settings->add(new admin_setting_heading('autoview_storage_heading', get_string("storagetitle", "autoview"),""));

@@ -2,6 +2,7 @@
       // autoview.php - created with Moodle 1.2 development (2003111400)
 
 $string['pluginname'] = 'AutoView';
+$string['pluginadministration'] = 'AutoView Settings';
 $string['alwaysflashstream']='Always use Lecture Capture Live streaming server for flash videos';
 $string['alwaysflashstream2']='Force the use of the Lecture Capture Live streaming server for all new presentions with flash videos.';
 $string['autoviewtext'] = 'AutoView Name';
@@ -108,4 +109,7 @@ $string['js_extras'] = 'JavaScript Calls';
 $string['js_extras2'] = 'The JavaScript Calls option enables you to insert a platform wide javascript call after the initial config parameters are setup'.
  ' without needing to patch the AutoView code directly. This allows you to change the default behaviour of AutoView on your system. '.
  'Please use with care, underlying API methods may change from time to time.';
+
+$string['no_repofileman'] = 'The Repository File Manager block has not been installed. This is required to use AutoView in Moodle 2.x with internal file storage.';
+$string['no_coursefilearea'] = 'The Course File Area repository has not been installed. This is required to use AutoView in Moodle 2.x with internal file storage.';
 ?>

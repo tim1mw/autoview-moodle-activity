@@ -14,10 +14,12 @@
  $editval = optional_param('edit',false,PARAM_BOOL);
  $flashauthonly = optional_param('flashauthonly', false, PARAM_BOOL);
 
- if (! $autoview = get_record("autoview", "id", $l))
+ global $DB;
+
+ if (! $autoview = $DB->get_record("autoview", array("id"=>$l)))
   error("Course module is incorrect");
 
- if (! $course = get_record("course", "id", $autoview->course))
+ if (! $course = $DB->get_record("course", array("id"=>$autoview->course)))
   error("Course is misconfigured");
 
  if (! $cm = get_coursemodule_from_instance("autoview", $autoview->id, $course->id))
@@ -79,9 +81,13 @@
   'exitURL' => $exitURL,
   'title' => $autoview->name,
   'preferedLang' => $preferedLang,
-  'bodystyle' => '',
-  'themeimport' => $CFG->wwwroot.'/mod/autoview/import-theme.js',
+  'bodystyle' => 'margin-left:0px;margin-right:0px;',
   'nojsMessage' => get_string('nojsmessage', 'autoview')."\n\n".$autoview->name."\n".$titles);
+
+ if ($CFG->version>=2010000000)
+   $parameters['themeimport']=$CFG->wwwroot.'/mod/autoview/import-theme2.js';
+ else
+   $parameters['themeimport']=$CFG->wwwroot.'/mod/autoview/import-theme.js';
 
  /***If this person can edit, set the generic editor parameters***/
  if ($canedit)
@@ -91,12 +97,12 @@
  }
 
  /***This server has flash based live capture*****/
- if (strlen(trim($CFG->autoview_flashserver))>0 && strlen(trim($CFG->autoview_flashcapture))>0)
+ if (strlen(trim(mdl21_getconfigparam("autoview", "flashserver")))>0 && strlen(trim(mdl21_getconfigparam("autoview", "flashcapture")))>0)
  {
   /***Common parameters for anybody using the flash system***/
   $parameters['flashhost']=$CFG->wwwroot;
-  $parameters['flashcapture']=$CFG->autoview_flashcapture;
-  $parameters['flashserver']=$CFG->autoview_flashserver;
+  $parameters['flashcapture']=mdl21_getconfigparam("autoview", "flashcapture");;
+  $parameters['flashserver']=mdl21_getconfigparam("autoview", "flashserver");
   $parameters['user']=$USER->firstname." ".$USER->lastname;
 
   /***Permissions for flash usage***/
@@ -104,8 +110,8 @@
   {
    $parameters['flashrecord']=$canrecordflash;
    $parameters['flashbroadcast']=$canbroadcastflash;
-   if (isset($CFG->autoview_max_record_kbps))
-    $parameters['recordMaxKbps']=$CFG->autoview_max_record_kbps;
+   if (mdl21_configparamisset("autoview", "max_record_kbps"))
+    $parameters['recordMaxKbps']=mdl21_getconfigparam("autoview", "max_record_kbps");
    $fp=dirname($autoview->configfile);
    if ($fp==".")
     $parameters['flashpath']="";
@@ -115,8 +121,8 @@
  }
 
  /***Advanced stuff***/
- if (strlen(trim($CFG->autoview_js_extras))>0)
-  $parameters['jsExtras']=$CFG->autoview_js_extras;
+ if (strlen(trim(mdl21_getconfigparam("autoview", "js_extras")))>0)
+  $parameters['jsExtras']=mdl21_getconfigparam("autoview", "js_extras");
 
  echo process_xsl($avxfile, $CFG->dirroot.'/mod/autoview/templates/autoview.xsl', $parameters);
 ?>

@@ -10,6 +10,12 @@ define("AUTOVIEW_STORAGE_INTERNAL", 0);
 define("AUTOVIEW_STORAGE_EXTERNAL", 1);
 require_once("avphplib/avlib.php");
 
+global $CFG;
+if ($CFG->version>=2010000000)
+ require_once("lib-mdl2.php");
+else
+ require_once("lib-mdl1.php");
+
 
 function autoview_add_instance($autoview) {
 /// Given an object containing all the necessary data, 
@@ -17,7 +23,7 @@ function autoview_add_instance($autoview) {
 /// will create a new instance and return the id number 
 /// of the new instance.
 
-    global $CFG;
+    global $CFG, $DB;
 
     $mainrecord->name = strip_tags($autoview->content);
     if (strlen($mainrecord->name) > AUTOVIEW_MAX_NAME_LENGTH)
@@ -34,7 +40,7 @@ function autoview_add_instance($autoview) {
      $mainrecord->noframe=1;
     else
      $mainrecord->noframe=0;
-    $mainrecord->storage=$CFG->autoview_storage_type;
+    //$mainrecord->storage=mdl21_getconfigparam("autoview", "storage_type");
 
     $avs=autoview_get_file_storage($CFG->autoview_storage_type);
     $avs->check_course_dir($mainrecord->course);
@@ -47,7 +53,6 @@ function autoview_add_instance($autoview) {
 
      if ($autoview->usedir)
      {
-      global $CFG;
       $fileloc=$CFG->dataroot.'/'.$mainrecord->course.'/'.$fname;
       mkdir($fileloc, $CFG->directorypermissions);
       $mainrecord->configfile=$fname.'/config.avx';
@@ -55,7 +60,7 @@ function autoview_add_instance($autoview) {
      else
       $mainrecord->configfile=$fname.'.avx';
     }
-    $instance_id=insert_record("autoview", $mainrecord);
+    $instance_id=$DB->insert_record("autoview", $mainrecord);
 
     $avs->check_configfile($mainrecord->configfile, $mainrecord->course);
 
@@ -67,6 +72,8 @@ function autoview_update_instance($autoview) {
 /// Given an object containing all the necessary data, 
 /// (defined by the form in mod.html) this function 
 /// will update an existing instance with new data.
+
+    global $DB;
 
     $mainrecord->name = strip_tags($autoview->content);
     if (strlen($mainrecord->name) > AUTOVIEW_MAX_NAME_LENGTH) {
@@ -84,9 +91,9 @@ function autoview_update_instance($autoview) {
     else
      $mainrecord->noframe=0;    
 
-    $ret=update_record("autoview", $mainrecord);
+    $ret=$DB->update_record("autoview", $mainrecord);
 
-    $avrec = get_record("autoview", "id", $mainrecord->id);
+    $avrec = $DB->get_record("autoview", array("id"=>$mainrecord->id));
     $avs=autoview_get_file_storage($avrec->storage);
     $avs->check_course_dir($mainrecord->course);
     $avs->check_configfile($mainrecord->configfile, $mainrecord->course);
@@ -99,16 +106,17 @@ function autoview_delete_instance($id) {
 /// this function will permanently delete the instance 
 /// and any data that depends on it.  
 
-    if (! $autoview = get_record("autoview", "id", $id)) {
+    global $DB;
+
+    if (! $autoview = $DB->get_record("autoview", array("id"=>$id))) {
         return false;
     }
 
     $result = true;
 
-    if (!delete_records("autoview", "id", $autoview->id)) {
+    if (!$DB->delete_records("autoview", array("id"=>$autoview->id))) {
         $result = false;
     }
-
     return $result;
 }
 
@@ -132,10 +140,10 @@ function autoview_get_coursemodule_info($coursemodule) {
 
 function autoview_cron()
 {
- global $CFG;
- $t=gettimeofday();
- $sql=" `time` < ".($t['sec']-$CFG->sessiontimeout);
- delete_records_select("autoview_keys", $sql);
+ global $CFG, $DB;
+ $t=time();
+ $sql=" `time` < ".($t-($CFG->sessiontimeout));
+ $DB->delete_records_select("autoview_keys", $sql);
  return true;
 }
 
@@ -169,11 +177,11 @@ function autoview_get_file_storage($type)
 
 function autoview_prepare_auth($course, $USER, $autoview, $cm)
 {
- global $CFG;
+ global $CFG, $DB;
 
  $data="c:".$course->id.";x:".$cm->id;
 
- if ($CFG->autoview_flashsecurity=="randomkey")
+ if (mdl21_getconfigparam("autoview", "flashsecurity")=="randomkey")
  {
   $skey=rand(1000000,9999999)."".rand(1000000,9999999)."".rand(1000000,9999999);
   $data=$data.";k:".$skey;
@@ -183,8 +191,7 @@ function autoview_prepare_auth($course, $USER, $autoview, $cm)
   $record->userid=$USER->id;
   $record->cmid=$cm->id;
   $record->time = time();
-
-  insert_record("autoview_keys", $record);
+  $DB->insert_record("autoview_keys", $record);
  }
 
  return base64_encode($data);

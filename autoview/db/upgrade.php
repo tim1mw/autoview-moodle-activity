@@ -57,16 +57,59 @@ function xmldb_autoview_upgrade($oldversion=0)
          return false;
  }
 
+ /***Stuff above this line shouldn't need to support Moodle 2.x***/
+
  if ($oldversion < 2011052501)
  {
      $table = new XMLDBTable('autoview');
      $field = new XMLDBField('storage');
-     $field->setAttributes(XMLDB_TYPE_INTEGER, '1', true, true, false, false, null, "0", 'summary');
-     if (!add_field($table, $field))
-         return false;
+     global $CFG;
+     if ($CFG->version>=2010000000)
+     {
+         global $DB;
+         $field->set_attributes(XMLDB_TYPE_INTEGER, '1', true, true, false, "0", 'summary');
+         $DB->get_manager()->add_field($table, $field);
+     }
+     else
+     {
+         $field->setAttributes(XMLDB_TYPE_INTEGER, '1', true, true, false, false, null, "0", 'summary');
+         if (!add_field($table, $field))
+             return false;
+     }
  }
 
-    return true;
+ if ($CFG->version<2010000000)
+ {
+  //Need to check the log display entries in Moodle 1.9x
+  autoview_check_log_table_entry("add");
+  autoview_check_log_table_entry("edit");
+  autoview_check_log_table_entry("flash play");
+  autoview_check_log_table_entry("flash play and rec");
+  autoview_check_log_table_entry("update");
+  autoview_check_log_table_entry("view");
+  autoview_check_log_table_entry("view all");
+ }
+
+ return true;
 }
+
+ /**
+ * Check a single log table entry and adds it if it is missing. Only need to work in Moodle 1.9x
+ * @param string $e The table to check
+ **/
+
+ function autoview_check_log_table_entry($e)
+ {
+     $r=get_record("log_display", "action", $e, "module", "autoview");
+     if (!$r)
+     {
+         $r=new stdclass;
+         $r->module="autoview";
+         $r->action=$e;
+         $r->mtable="autoview";
+         $r->field="name";
+         insert_record("log_display", $r);
+     }
+ }
 
 ?>

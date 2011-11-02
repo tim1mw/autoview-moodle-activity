@@ -6,11 +6,13 @@
     require_once("../../config.php");
     require_once("lib.php");
 
+    global $DB;
+
     $l = required_param('l', PARAM_INT);
-    if (! $autoview = get_record("autoview", "id", $l))
+    if (! $autoview = $DB->get_record("autoview", array("id"=>$l)))
      error("Course module is incorrect");
 
-    if (! $course = get_record("course", "id", $autoview->course))
+    if (! $course = $DB->get_record("course", array("id"=>$autoview->course)))
      error("Course is misconfigured");
 
     if (! $cm = get_coursemodule_from_instance('autoview', $autoview->id, $course->id))
@@ -29,19 +31,29 @@
 
     $avs=autoview_get_file_storage($autoview->storage);
 
+    add_to_log($course->id, "autoview", "edit", "view.php?id=$cm->id", $autoview->name, $cm->id);
+
     /*****Read config params*****/
     $flashdir="";
-    if (isset($CFG->autoview_flashdir))
-        $flashdir=$CFG->autoview_flashdir;
+    if (mdl21_configparamisset("autoview", "flashdir"))
+        $flashdir=mdl21_getconfigparam("autoview", "flashdir");
     $conversionurl="";
-    if (isset($CFG->autoview_conversionurl))
-        $conversionurl=$CFG->autoview_conversionurl;
+    if (mdl21_configparamisset("autoview", "conversionurl"))
+        $conversionurl=mdl21_getconfigparam("autoview", "conversionurl");
     $alwaysflashstream="false";
-    if (isset($CFG->autoview_alwaysflashstream) && $CFG->autoview_alwaysflashstream==true)
+    if (mdl21_configparamisset("autoview", "alwaysflashstream") && mdl21_getconfigparam("autoview", "alwaysflashstream"))
         $alwaysflashstream="true";
     $broadcastMaxKbps=256;
-    if (isset($CFG->autoview_max_broadcast_kbps))
-        $broadcastMaxKbps=$CFG->autoview_max_broadcast_kbps;
+    if (mdl21_configparamisset("autoview", "max_broadcast_kbps"))
+        $broadcastMaxKbps=mdl21_getconfigparam("autoview", "max_broadcast_kbps");
+
+    if ($CFG->version>=2010000000)
+    {
+        $filebrowser=$CFG->wwwroot."/blocks/repo_filemanager/index.php?repoid=".autoview_get_coursefilesarea_id($context).
+         "&hiderepolist=1&id=".$course->id."&amp;choose=form.url&amp;shortpath=1";
+    }
+    else
+        $filebrowser=$CFG->wwwroot."/files/index.php?id=".$course->id."&amp;choose=form.url";
 
     /*****Constuct base parameters*****/
     $parameters = array(
@@ -49,7 +61,7 @@
      'xmlSendURL' => $avs->get_xmlsend_url(), 
      'xmlID' => $autoview->id,
      'xmlFile' => $autoview->configfile,
-     'fileBrowser' => $avs->get_filebrowser_url($course->id),
+     'fileBrowser' => $filebrowser,
      'waiterMessageStr' => get_string('waitermessage', 'autoview'),
      'startEditorStr' => get_string('starteditor', 'autoview'),
      'flashDir' => $flashdir,

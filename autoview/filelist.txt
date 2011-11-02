@@ -1,6 +1,8 @@
+./lib1.php
 ./restorelib.php
 ./gpl.txt
 ./lib.php
+./db/log.php
 ./db/access.php
 ./db/install.xml
 ./db/upgrade.php
@@ -11,6 +13,7 @@
 ./filelist.txt
 ./subtitles.php
 ./icon.gif
+./templates
 ./templates/autoview.xsl
 ./templates/search-subtitles.xsl
 ./templates/flashauth.xsl
@@ -19,6 +22,7 @@
 ./templates/search-titles.xsl
 ./readme.txt
 ./autoview.php
+./import-theme2.js
 ./avedit/extension.js
 ./avedit/blank.avx
 ./avedit/convert.xml
@@ -32,7 +36,6 @@
 ./avedit/editor.js
 ./avedit/wait.gif
 ./avedit/avedit.xsl
-./avedit/convert.xsl.new
 ./avedit/base64.js
 ./avedit/convert.xsl
 ./avedit/quicksrc.js
@@ -41,18 +44,24 @@
 ./avedit/subtitlesrc.js
 ./avedit/quickstart.html
 ./avedit/videosrc.js
-./Timers.class.php
 ./settings.php
 ./version.php
 ./avphplib/refmovie.inc.php
 ./avphplib/avlib.php
 ./avphplib/test.php
+./storage/internal.php
+./storage/generic.php
+./storage/external.php
 ./test.php
 ./index.php
 ./mod_form.php
 ./view.php
 ./avedit.php
 ./qtref.php
+./backup/moodle2/restore_autoview_activity_task.class.php
+./backup/moodle2/backup_autoview_activity_task.class.php
+./backup/moodle2/backup_autoview_stepslib.php
+./backup/moodle2/restore_autoview_stepslib.php
 ./import-theme.js
 ./convert.php
 ./vresource/FlowPlayer.swf
@@ -115,6 +124,7 @@
 ./vresource/style-thumbnails.css
 ./vresource/OVP.xap
 ./vresource/images/transparent.gif
+./vresource/images/video-placehold.jpg.old
 ./vresource/images/video-placehold.jpg
 ./vresource/allslides.html
 ./vresource/jorbis-0.0.15.jar
@@ -123,7 +133,6 @@
 ./vresource/utils/testlangs.html
 ./vresource/utils/newlang.html
 ./vresource/audio.jar
-./vresource/flowplayer
 ./vresource/flowplayer/flowplayer.controls.swf
 ./vresource/flowplayer/flowplayer.rtmp.swf
 ./vresource/flowplayer/flowplayer.min.js
@@ -131,6 +140,7 @@
 ./vresource/divs-layout.css
 ./recieveXML.php
 ./callback.php
+./lib2.php
 ./search_document.php
 ./pix/icon.gif
 ./backuplib.php
