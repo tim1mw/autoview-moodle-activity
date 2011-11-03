@@ -78,6 +78,7 @@ function xmldb_autoview_upgrade($oldversion=0)
      }
  }
 
+ global $CFG;
  if ($CFG->version<2010000000)
  {
   //Need to check the log display entries in Moodle 1.9x
