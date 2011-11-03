@@ -16,8 +16,10 @@
         require_login();
     }
 
-    if (! $course = get_record('course', 'id', $id)) {
-        error("Course ID is incorrect");
+    global $DB;
+
+    if (! $course = $DB->get_record('course', array('id'=>$id))) {
+        print_error("Course ID is incorrect");
     }
 
     require_course_login($course);

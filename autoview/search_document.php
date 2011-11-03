@@ -137,7 +137,8 @@ function autoview_iterator() {
     //trick to leave search indexer functionality intact, but allow
     //this document to only use the below function to return info
     //to be searched
-    $autoviews = get_records('autoview');
+    global $DB;
+    $autoviews = $DB->get_records('autoview');
     return $autoviews;
 }
 
@@ -150,13 +151,14 @@ function autoview_iterator() {
 * @return an array of searchable documents
 */
 function autoview_get_content_for_index(&$autoview) {
-    global $CFG;
+    global $CFG, $DB;
 
     // starting with Moodle native resources
     $documents = array();
 
-    $coursemodule = get_field('modules', 'id', 'name', 'autoview');
-    $cm = get_record('course_modules', 'course', $autoview->course, 'module', $coursemodule, 'instance', $autoview->id);
+    $coursemodule = $DB->get_record('modules', array('name'=>'autoview'));
+
+    $cm = $DB->get_record('course_modules', array('course'=>$autoview->course, 'module'=>$coursemodule->id, 'instance'=>$autoview->id));
     $context = get_context_instance(CONTEXT_MODULE, $cm->id);
 
     $documents[] = new AutoViewSearchDocument(get_object_vars($autoview), $context->id);
@@ -172,13 +174,13 @@ function autoview_get_content_for_index(&$autoview) {
 * @return a searchable object or null if failure
 */
 function autoview_single_document($id, $itemtype) {
-    global $CFG;
+    global $CFG, $DB;
     
-    $autoview = get_record('autoview', 'id', $id);
+    $autoview = $DB->get_record('autoview', array('id'=>$id));
 
     if ($autoview){
         $coursemodule = get_field('modules', 'id', 'name', 'autoview');
-        $cm = get_record('course_modules', 'id', $autoview->id);
+        $cm = $DB->get_record('course_modules', array('id'=>$autoview->id));
         $context = get_context_instance(CONTEXT_MODULE, $cm->id);
         return new AutoViewSearchDocument(get_object_vars($autoview), $context->id);
     }
@@ -217,13 +219,13 @@ function autoview_db_names() {
 * @return true if access is allowed, false elsewhere
 */
 function autoview_check_text_access($path, $itemtype, $this_id, $user, $group_id, $context_id){
-    global $CFG;
+    global $CFG, $DB;
     
     // include_once("{$CFG->dirroot}/{$path}/lib.php");
     
-    $r = get_record('autoview', 'id', $this_id);
-    $module_context = get_record('context', 'id', $context_id);
-    $cm = get_record('course_modules', 'id', $module_context->instanceid);
+    $r = $DB->get_record('autoview', array('id'=>$this_id));
+    $module_context = $DB->get_record('context', array('id'=>$context_id));
+    $cm = $DB->get_record('course_modules', array('id'=>$module_context->instanceid));
     $course_context = get_context_instance(CONTEXT_COURSE, $r->course);
 
     //check if englobing course is visible
