@@ -82,20 +82,29 @@ function xmldb_autoview_upgrade($oldversion=0)
  if ($CFG->version<2010000000)
  {
   //Need to check the log display entries in Moodle 1.9x
-  autoview_check_log_table_entry("add");
-  autoview_check_log_table_entry("edit");
-  autoview_check_log_table_entry("flash play");
-  autoview_check_log_table_entry("flash play and rec");
-  autoview_check_log_table_entry("update");
-  autoview_check_log_table_entry("view");
-  autoview_check_log_table_entry("view all");
+  autoview_check_log_table_entries();
  }
 
  return true;
 }
 
  /**
- * Check a single log table entry and adds it if it is missing. Only need to work in Moodle 1.9x
+ * Checks that all the log table entries are correct
+ **/
+
+ function autoview_check_log_table_entries()
+ {
+     autoview_check_log_table_entry("add");
+     autoview_check_log_table_entry("edit");
+     autoview_check_log_table_entry("flash play");
+     autoview_check_log_table_entry("flash play and rec");
+     autoview_check_log_table_entry("update");
+     autoview_check_log_table_entry("view");
+     autoview_check_log_table_entry("view all");
+ }
+
+ /**
+ * Check a single log table entry and adds it if it is missing. Only needs to work in Moodle 1.9x
  * @param string $e The table to check
  **/
 
