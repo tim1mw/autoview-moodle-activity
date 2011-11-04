@@ -44,6 +44,12 @@
     $editval = optional_param('edit',0, PARAM_BOOL);
     $context = get_context_instance(CONTEXT_MODULE, $cm->id);
 
+    if (!has_capability('mod/autoview:viewpresentation', $context))
+    {
+        error(get_string("not_allowed", "autoview"));
+        die;
+    }
+
     if (has_capability('mod/autoview:canedit', $context) && $editval==false)
     {
         $avs=autoview_get_file_storage($autoview->storage);
