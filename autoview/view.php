@@ -71,7 +71,16 @@
            $PAGE->blocks->show_only_fake_blocks();
            $PAGE->set_url($CFG->wwwroot."/mod/autoview/view.php?id=".$cm->id);
 
-           autoview_show_navigation($course, $context, $cm, $editval);
+           if (!$autoview->noframe)
+               autoview_show_navigation($course, $context, $cm, $editval);
+           else
+           {
+           ?>
+            <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+            <html>
+            <head><title><?php echo $autoview->name;?></title>
+           <?php
+           }
 
            if (!autoview_has_dependencies())
            {
@@ -90,6 +99,11 @@
              padding:0px;
             }
            </style>
+
+           <?php
+           if ($autoview->noframe)
+               echo "</head><body>";
+           ?>
 
            <script type="text/javascript">
            //<!--
@@ -145,8 +159,10 @@
              //-->
              </script>
              <?php
- 
-             echo $OUTPUT->footer();
+             if (!$autoview->noframe)
+                 echo $OUTPUT->footer();
+             else
+                 echo "</body></html>";
         }
         else
         {
