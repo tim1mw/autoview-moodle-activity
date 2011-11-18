@@ -12,9 +12,9 @@ require_once("avphplib/avlib.php");
 
 global $CFG;
 if ($CFG->version>=2010000000)
- require_once("lib-mdl2.php");
+ require_once($CFG->dirroot."/mod/autoview/lib-mdl2.php");
 else
- require_once("lib-mdl1.php");
+ require_once($CFG->dirroot."/mod/autoview/lib-mdl1.php");
 
 
 function autoview_add_instance($autoview) {

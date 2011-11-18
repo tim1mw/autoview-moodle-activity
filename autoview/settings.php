@@ -1,5 +1,6 @@
 <?php
 
+global $CFG;
 require_once($CFG->dirroot.'/mod/autoview/lib.php');
 
 $xsl="";
