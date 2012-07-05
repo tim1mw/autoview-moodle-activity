@@ -63,7 +63,7 @@ class mod_autoview_mod_form extends moodleform_mod {
         {
             $mform->addElement('html', "\n<br />\n".
              "<div style=\"text-align:center;font-weight:bold;\">\n".
-             "<a href=\"".$CFG->wwwroot."/mod/autoview/view.php?edit=1&id=".$this->_cm->id."\">".get_string("editbutton", "autoview")."</a>\n".
+             "<a href=\"".$CFG->wwwroot."/mod/autoview/view.php?edit=1&amp;id=".$this->_cm->id."\">".get_string("editbutton", "autoview")."</a>\n".
              "</div><br />\n");
         }
     }
