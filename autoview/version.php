@@ -7,7 +7,7 @@
 
 global $CFG;
 
-$module->version  = 2013101101;  // The current module version (Date: YYYYMMDDXX)
+$module->version  = 2013101102;  // The current module version (Date: YYYYMMDDXX)
 if ($CFG->version>=2010000000)
     $module->requires = 2010112400;
 else

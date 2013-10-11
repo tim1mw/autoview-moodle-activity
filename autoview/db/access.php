@@ -37,6 +37,16 @@ if ($CFG->version >= 2010000000)
 
 $mod_autoview_capabilities = array(
 
+    'mod/autoview:addinstance' => array(
+
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_MODULE,
+        'legacy' => array(
+            'editingteacher' => CAP_ALLOW,
+            $admin => CAP_ALLOW
+        )
+    ),
+
     'mod/autoview:canedit' => array(
 
         'captype' => 'write',
