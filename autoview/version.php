@@ -5,7 +5,9 @@
 ///  This fragment is called by moodle_needs_upgrading() and /admin/index.php
 /////////////////////////////////////////////////////////////////////////////////
 
-$module->version  = 2012100902;  // The current module version (Date: YYYYMMDDXX)
+global $CFG;
+
+$module->version  = 2013101101;  // The current module version (Date: YYYYMMDDXX)
 if ($CFG->version>=2010000000)
     $module->requires = 2010112400;
 else

@@ -186,6 +186,7 @@ function autoview_prepare_auth($course, $USER, $autoview, $cm)
   $skey=rand(1000000,9999999)."".rand(1000000,9999999)."".rand(1000000,9999999);
   $data=$data.";k:".$skey;
 
+  $record=new stdclass;
   $record->accesskey=$skey;
   $record->ip=$_SERVER['REMOTE_ADDR'];
   $record->userid=$USER->id;
