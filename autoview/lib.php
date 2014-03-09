@@ -108,6 +108,13 @@ function autoview_delete_instance($id) {
 
     global $DB;
 
+    /**For some reason the $DB object keeps getting set to null here when deleting
+       in mdl1. This fixes the problem.***/
+    if ($DB==null && $CFG->version<=2010000000)
+    {
+        $DB=new mdl21_db_abstract();
+    }
+
     if (! $autoview = $DB->get_record("autoview", array("id"=>$id))) {
         return false;
     }
