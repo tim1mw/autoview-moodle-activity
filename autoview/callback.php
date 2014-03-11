@@ -21,7 +21,14 @@
  if ($versionCheck)
  {
   $av=$DB->get_record("modules", array("name"=>"autoview"));
-  echo $av->version;
+  if ($av->version)
+   echo $av->version;
+  else
+  {
+   //The version field has been removed in Moodle 2.6, this compensates
+   require_once("version.php");
+   echo $module->version;
+  }
   return;
  }
 
