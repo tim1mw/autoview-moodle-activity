@@ -87,13 +87,26 @@ function xmldb_autoview_upgrade($oldversion=0)
 
  if ($oldversion < 2014090501)
  {
-     global $DB;
-     $rec=$DB->get_record("capabilities", array("name"=>"mod/autoview:viewpresentation"));
-     if ($rec->captype=='write')
+     if ($CFG->version>=2010000000)
      {
-         $rec->captype='read';
-         $DB->update_record("capabilities", $rec);
-     }
+         global $DB;
+         $rec=$DB->get_record("capabilities", array("name"=>"mod/autoview:viewpresentation"));
+         if ($rec->captype=='write')
+         {
+             $rec->captype='read';
+             $DB->update_record("capabilities", $rec);
+         }
+    }
+    else
+    {
+         $rec=get_record("capabilities", "name", "mod/autoview:viewpresentation");
+         if ($rec->captype=='write')
+         {
+             $rec->captype='read';
+             update_record("capabilities", $rec);
+         }
+    }
+
  }
 
  return true;
