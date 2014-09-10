@@ -1,4 +1,5 @@
-./lib1.php
+./lib-mdl1.php
+./lib-mdl2.php
 ./restorelib.php
 ./gpl.txt
 ./lib.php
@@ -97,7 +98,6 @@
 ./vresource/help/en/videolan.jpg
 ./vresource/help/en/quicktime.jpg
 ./vresource/help/en/video-options1.jpg
-./vresource/help/en/silverlight.jpg
 ./vresource/help/en/thumb-controls.jpg
 ./vresource/help/en/javaaudio.jpg
 ./vresource/help/en/thumb.jpg
@@ -124,7 +124,6 @@
 ./vresource/style-thumbnails.css
 ./vresource/OVP.xap
 ./vresource/images/transparent.gif
-./vresource/images/video-placehold.jpg.old
 ./vresource/images/video-placehold.jpg
 ./vresource/allslides.html
 ./vresource/jorbis-0.0.15.jar
@@ -140,7 +139,6 @@
 ./vresource/divs-layout.css
 ./recieveXML.php
 ./callback.php
-./lib2.php
 ./search_document.php
 ./pix/icon.gif
 ./backuplib.php
