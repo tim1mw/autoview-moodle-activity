@@ -245,6 +245,7 @@
             if ($CFG->version>=2010000000)
             {
                 global $OUTPUT, $PAGE;
+                $PAGE->set_button($buttontext);
                 echo $OUTPUT->header();
             }
             else
