@@ -16,7 +16,7 @@
         require_login();
     }
 
-    global $DB;
+    global $DB, $CFG;
 
     if (! $course = $DB->get_record('course', array('id'=>$id))) {
         print_error("Course ID is incorrect");
@@ -32,7 +32,7 @@
     $strsummary = get_string('summary');
     $strlastmodified = get_string('lastmodified');
 
-    if (!function_exists('build_navigation')){
+    if (!function_exists('build_navigation') || $CFG->version>=2015050100.00){
         if ($course->category) {
             require_login($course->id);
         }

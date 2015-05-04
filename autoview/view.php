@@ -212,7 +212,7 @@
 
    function autoview_show_navigation($course, $context, $cm, $editval)
    {
-
+       global $CFG;
        $buttontext="";
        if (has_capability('mod/autoview:canedit', $context))
        {
@@ -234,7 +234,7 @@
        }
 
         if ($course->id == 1){
-            if (! function_exists('build_navigation')){
+            if (! function_exists('build_navigation') || $CFG->version>=2015050100.00){
                 $navigation = "<a href=\"index.php?id=$course->id\" target=\"_top\">". 
                 get_string('modulenameplural', 'autoview')."</a> ->".format_string($autoview->name);
             } else {
@@ -253,7 +253,7 @@
                 $navigation,
                 '', '', true, $buttontext, navmenu($course, $cm, 'parent'));
        } else {
-            if (! function_exists('build_navigation')){
+            if (! function_exists('build_navigation') || $CFG->version>=2015050100.00){
                 $navigation = "<a target=\"{$CFG->framename}\"".
                     " href=\"$CFG->wwwroot/course/view.php?id={$course->id}\">{$course->shortname}</a> -> ".
                     "<a target=\"{$CFG->framename}\" href=\"index.php?id={$course->id}\">".
@@ -262,7 +262,6 @@
                 $navigation = build_navigation('', $cm);
             }
           
-            global $CFG;
             if ($CFG->version>=2010000000)
             {
                 global $OUTPUT, $PAGE;
