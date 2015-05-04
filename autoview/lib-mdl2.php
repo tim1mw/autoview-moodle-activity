@@ -86,7 +86,7 @@ function autoview_get_course_context_instance($id)
     return context_course::instance($id);
 }
 
-function autoview_add_to_log($course, $text, $link='', $info='', $cmid=0, $uid=0)
+function autoview_add_to_log($course, $mod, $text, $link='', $info='', $cmid=0, $uid=0)
 {
  global $CFG;
  if ($CFG->version >= 2014051200)
@@ -95,11 +95,11 @@ function autoview_add_to_log($course, $text, $link='', $info='', $cmid=0, $uid=0
   /** For now use the code from deprecated lib **/
   $manager = get_log_manager();
   if (method_exists($manager, 'legacy_add_to_log')) {
-   $manager->legacy_add_to_log($course, "autoview", $text, $link, $info, $cmid, $uid);
+   $manager->legacy_add_to_log($course, $mod, $text, $link, $info, $cmid, $uid);
   }
  }
  else
-  add_to_log($course, "autoview", $text, $link, $info, $cmid, $uid);
+  add_to_log($course, $mod, $text, $link, $info, $cmid, $uid);
 }
 
 ?>
