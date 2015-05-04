@@ -43,7 +43,7 @@
         $navigation = build_navigation($navlinks);
     }
 
-    add_to_log($course->id, 'autoview', 'view all', "index.php?id={$course->id}", "");
+    autoview_add_to_log($course->id, 'autoview', 'view all', "index.php?id={$course->id}", "");
 
 
     print_header_simple($strautoview, '', $navigation, '', '', true, '', navmenu($course));

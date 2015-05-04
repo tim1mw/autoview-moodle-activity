@@ -26,7 +26,7 @@
   error("Course Module ID was incorrect");
 
  require_course_login($course, true, $cm);
- $context = get_context_instance(CONTEXT_MODULE, $cm->id);
+ $context = autoview_get_context_instance($cm->id);
 
  if (!has_capability('mod/autoview:viewpresentation', $context))
  {

@@ -37,7 +37,7 @@
  require_login($course->id);
 
  /***Check permissions***/
- $context = get_context_instance(CONTEXT_MODULE, $cm->id);
+ $context = autoview_get_context_instance($cm->id);
 
  if (!has_capability('mod/autoview:canconvertdocument', $context))
  {

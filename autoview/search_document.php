@@ -159,7 +159,7 @@ function autoview_get_content_for_index(&$autoview) {
     $coursemodule = $DB->get_record('modules', array('name'=>'autoview'));
 
     $cm = $DB->get_record('course_modules', array('course'=>$autoview->course, 'module'=>$coursemodule->id, 'instance'=>$autoview->id));
-    $context = get_context_instance(CONTEXT_MODULE, $cm->id);
+    $context = autoview_get_context_instance($cm->id);
 
     $documents[] = new AutoViewSearchDocument(get_object_vars($autoview), $context->id);
 
@@ -181,7 +181,7 @@ function autoview_single_document($id, $itemtype) {
     if ($autoview){
         $coursemodule = get_field('modules', 'id', 'name', 'autoview');
         $cm = $DB->get_record('course_modules', array('id'=>$autoview->id));
-        $context = get_context_instance(CONTEXT_MODULE, $cm->id);
+        $context = autoview_get_context_instance($cm->id);
         return new AutoViewSearchDocument(get_object_vars($autoview), $context->id);
     }
     return null;
@@ -226,7 +226,7 @@ function autoview_check_text_access($path, $itemtype, $this_id, $user, $group_id
     $r = $DB->get_record('autoview', array('id'=>$this_id));
     $module_context = $DB->get_record('context', array('id'=>$context_id));
     $cm = $DB->get_record('course_modules', array('id'=>$module_context->instanceid));
-    $course_context = get_context_instance(CONTEXT_COURSE, $r->course);
+    $course_context = autoview_get_course_context_instance($r->course);
 
     //check if englobing course is visible
     if (!has_capability('moodle/course:view', $course_context)){

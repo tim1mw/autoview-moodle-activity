@@ -25,6 +25,7 @@ function autoview_add_instance($autoview) {
 
     global $CFG, $DB;
 
+    $mainrecord = new stdClass;
     $mainrecord->name = strip_tags($autoview->content);
     if (strlen($mainrecord->name) > AUTOVIEW_MAX_NAME_LENGTH)
         $mainrecord->name = substr($mainrecord->name, 0, AUTOVIEW_MAX_NAME_LENGTH)."...";
@@ -36,7 +37,7 @@ function autoview_add_instance($autoview) {
     $mainrecord->course=$autoview->course;
     $mainrecord->content=$autoview->content;
     $mainrecord->summary=$autoview->summary;
-    if ($autoview->noframe=="1")
+    if (property_exists($autoview, 'noframe') && $autoview->noframe=="1")
      $mainrecord->noframe=1;
     else
      $mainrecord->noframe=0;
@@ -54,7 +55,8 @@ function autoview_add_instance($autoview) {
      if ($autoview->usedir)
      {
       $fileloc=$CFG->dataroot.'/'.$mainrecord->course.'/'.$fname;
-      mkdir($fileloc, $CFG->directorypermissions);
+      if (!file_exists($fileloc))
+       mkdir($fileloc, $CFG->directorypermissions);
       $mainrecord->configfile=$fname.'/config.avx';
      }
      else
@@ -75,6 +77,7 @@ function autoview_update_instance($autoview) {
 
     global $DB;
 
+    $mainrecord=new stdClass;
     $mainrecord->name = strip_tags($autoview->content);
     if (strlen($mainrecord->name) > AUTOVIEW_MAX_NAME_LENGTH) {
         $mainrecord->name = substr($mainrecord->name, 0, AUTOVIEW_MAX_NAME_LENGTH)."...";
@@ -86,10 +89,10 @@ function autoview_update_instance($autoview) {
     $mainrecord->content=$autoview->content;
     $mainrecord->summary=$autoview->summary;
     $mainrecord->configfile=$autoview->configfile;
-    if ($autoview->noframe=="1")
+    if (property_exists($autoview, 'noframe') && $autoview->noframe=="1")
      $mainrecord->noframe=1;
     else
-     $mainrecord->noframe=0;    
+     $mainrecord->noframe=0;
 
     $ret=$DB->update_record("autoview", $mainrecord);
 

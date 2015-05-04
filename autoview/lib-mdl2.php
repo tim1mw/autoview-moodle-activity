@@ -63,7 +63,7 @@ function autoview_get_coursefilesarea_id($context)
     require_once('../../repository/lib.php');
 
     $params = array(
-        'context'=>array($context, get_system_context()),
+        'context'=>array($context, context_system::instance()),
         'currentcontext'=>$context,
         'onlyvisible'=>true,
         'type'=>"coursefilearea");
@@ -74,6 +74,32 @@ function autoview_get_coursefilesarea_id($context)
         return current($repolist)->id;
      else
         return -1;
+}
+
+function autoview_get_context_instance($id)
+{
+    return context_module::instance($id);
+}
+
+function autoview_get_course_context_instance($id)
+{
+    return context_course::instance($id);
+}
+
+function autoview_add_to_log($course, $text, $link='', $info='', $cmid=0, $uid=0)
+{
+ global $CFG;
+ if ($CFG->version >= 2014051200)
+ {
+  /** This needs to be re-written to use the events system for Moodle 2.7 and greater**/
+  /** For now use the code from deprecated lib **/
+  $manager = get_log_manager();
+  if (method_exists($manager, 'legacy_add_to_log')) {
+   $manager->legacy_add_to_log($course, "autoview", $text, $link, $info, $cmid, $uid);
+  }
+ }
+ else
+  add_to_log($course, "autoview", $text, $link, $info, $cmid, $uid);
 }
 
 ?>

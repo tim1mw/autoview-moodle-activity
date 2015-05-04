@@ -19,7 +19,7 @@
      error('Course Module ID was incorrect');
 
     require_course_login($course, true, $cm);
-    $context = get_context_instance(CONTEXT_MODULE, $cm->id);
+    $context = autoview_get_context_instance($cm->id);
 
     if (!has_capability('mod/autoview:canedit', $context))
     {
@@ -27,11 +27,11 @@
      die;
     }
 
-    add_to_log($course->id, "autoview", "edit", "view.php?id=$cm->id", $autoview->name, $cm->id);
+    autoview_add_to_log($course->id, "autoview", "edit", "view.php?id=$cm->id", $autoview->name, $cm->id);
 
     $avs=autoview_get_file_storage($autoview->storage);
 
-    add_to_log($course->id, "autoview", "edit", "view.php?id=$cm->id", $autoview->name, $cm->id);
+    autoview_add_to_log($course->id, "autoview", "edit", "view.php?id=$cm->id", $autoview->name, $cm->id);
 
     /*****Read config params*****/
     $flashdir="";

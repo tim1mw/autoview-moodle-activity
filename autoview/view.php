@@ -42,7 +42,7 @@
 
     $frameset = optional_param('frameset',1, PARAM_BOOL);
     $editval = optional_param('edit',0, PARAM_BOOL);
-    $context = get_context_instance(CONTEXT_MODULE, $cm->id);
+    $context = autoview_get_context_instance($cm->id);
 
     if (!has_capability('mod/autoview:viewpresentation', $context))
     {
@@ -59,7 +59,7 @@
     if ($frameset==true)
     {
         $e='';
-        add_to_log($course->id, "autoview", "view", "view.php?id=$cm->id", $autoview->name, $cm->id);
+        autoview_add_to_log($course->id, "autoview", "view", "view.php?id=$cm->id", $autoview->name, $cm->id);
 
 
         if ($CFG->version>=2010000000)
@@ -253,15 +253,7 @@
                 $navigation,
                 '', '', true, $buttontext, navmenu($course, $cm, 'parent'));
        } else {
-            if (! function_exists('build_navigation') || $CFG->version>=2015050100.00){
-                $navigation = "<a target=\"{$CFG->framename}\"".
-                    " href=\"$CFG->wwwroot/course/view.php?id={$course->id}\">{$course->shortname}</a> -> ".
-                    "<a target=\"{$CFG->framename}\" href=\"index.php?id={$course->id}\">".
-                    get_string('modulenameplural', 'autoview')."</a> ->".format_string($autoview->name);
-            } else {
-                $navigation = build_navigation('', $cm);
-            }
-          
+
             if ($CFG->version>=2010000000)
             {
                 global $OUTPUT, $PAGE;
@@ -269,7 +261,22 @@
                 echo $OUTPUT->header();
             }
             else
-            print_header(@$pagetitle, $course->fullname, $navigation, '', '', true, $buttontext, navmenu($course, $cm, 'parent'));
+            {
+                if (! function_exists('build_navigation')){
+                    if (property_exists($CFG, 'framename'))
+                        $target="target=\"{$CFG->framename}\"";
+                    else
+                        $target="";
+
+                    $navigation = "<a".$target.
+                        " href=\"$CFG->wwwroot/course/view.php?id={$course->id}\">{$course->shortname}</a> -> ".
+                        "<a ".$target." href=\"index.php?id={$course->id}\">".
+                    get_string('modulenameplural', 'autoview')."</a> ->".format_string($autoview->name);
+                } else {
+                    $navigation = build_navigation('', $cm);
+                }
+                print_header(@$pagetitle, $course->fullname, $navigation, '', '', true, $buttontext, navmenu($course, $cm, 'parent'));
+            }
        }
    }
 

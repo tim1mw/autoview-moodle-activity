@@ -49,7 +49,7 @@
   $USER=$DB->get_record("user", array("id"=>$data->userid));
 
   //*****Get other info we need*****
-  $context = get_context_instance(CONTEXT_MODULE, $data->cmid);
+  $context = autoview_get_context_instance($data->cmid);
   $cm=$DB->get_record("course_modules", array("id"=>$data->cmid));
   $autoview=$DB->get_record("autoview", array("id"=>$cm->instance));
 
@@ -62,7 +62,7 @@
    {
     //*****This is a one-shot key, so delete from database*****
     $DB->delete_records('autoview_keys', array('id'=>$data->id));
-    add_to_log($cm->course, "autoview", "flash play and rec", "view.php?id=$cm->id", $autoview->name, $cm->id, $data->userid);
+    autoview_add_to_log($cm->course, "autoview", "flash play and rec", "view.php?id=$cm->id", $autoview->name, $cm->id, $data->userid);
     echo $data->ip."\nokrec\n";
     die();
    }
@@ -71,7 +71,7 @@
    {
     //*****This is a one-shot key, so delete from database*****
     $DB->delete_records('autoview_keys', array('id'=>$data->id));
-    add_to_log($cm->course, "autoview", "flash play and rec", "view.php?id=$cm->id", $autoview->name, $cm->id, $data->userid);
+    autoview_add_to_log($cm->course, "autoview", "flash play and rec", "view.php?id=$cm->id", $autoview->name, $cm->id, $data->userid);
     echo $data->ip."\nokrec\n";
     die();
    }
@@ -83,7 +83,7 @@
     if ($clientType!="play")
         $DB->delete_records('autoview_keys', array('id'=>$data->id));
 
-    add_to_log($cm->course, "autoview", "flash play", "view.php?id=$cm->id", $autoview->name, $cm->id, $data->userid);
+    autoview_add_to_log($cm->course, "autoview", "flash play", "view.php?id=$cm->id", $autoview->name, $cm->id, $data->userid);
     echo $data->ip."\nokplay\n";
     die();
    }
