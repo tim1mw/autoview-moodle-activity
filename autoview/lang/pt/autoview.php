@@ -2,57 +2,51 @@
       // start.php - created with Moodle 1.2 development (2003111400)
 
 $string['autoviewtext'] = 'AutoView Nome';
-$string['autoviewsummary'] = 'Índice';
-$string['chooseconfig'] = 'Escolha o arquivo de configuração';
-$string['configfile'] = 'Arquivo de Configuração';
-$string['convertsavefailed'] = 'Não foi possível salvar o documento convertido';
-$string['editbutton'] = 'Trocar para modo de edição';
-$string['editoff'] = 'Sair do modo de edição';
+$string['autoviewsummary'] = 'ï¿½ndice';
+$string['chooseconfig'] = 'Escolha o arquivo de configuraï¿½ï¿½o';
+$string['configfile'] = 'Arquivo de Configuraï¿½ï¿½o';
+$string['convertsavefailed'] = 'Nï¿½o foi possï¿½vel salvar o documento convertido';
+$string['editbutton'] = 'Trocar para modo de ediï¿½ï¿½o';
+$string['editoff'] = 'Sair do modo de ediï¿½ï¿½o';
 $string['modulename'] = 'AutoView';
 $string['modulenameplural'] = 'AutoView Presentations';
-$string['xmlsavefailed'] = 'Falha ao salvar o arquivo de configuração';
-$string['configconversionurl'] = 'URL serviço de conversão de documento';
-$string['configconversionkey'] = 'Chave de acesso ao serviço de configuração do documento';
+$string['xmlsavefailed'] = 'Falha ao salvar o arquivo de configuraï¿½ï¿½o';
+$string['configconversionurl'] = 'URL serviï¿½o de conversï¿½o de documento';
+$string['configconversionkey'] = 'Chave de acesso ao serviï¿½o de configuraï¿½ï¿½o do documento';
 $string['conversiondone'] = 'O documento foi convertido.';
-$string['conversionfailed'] = 'Falha na conversão';
-$string['xmlhelp']= 'Na maioria dos casos, você vai querer usar o arquivo padrão de configuração. Este será criado automaticamente para você, no diretório raiz do curso.'.
- 'using the resource name as a file name. However, if you have copied an AutoView presentation from another'.
- ' location, uncheck the box and select the .avx configuration file for that presentation here. You may also uncheck the box and enter'.
- ' an unused file name here with the .avx file extension if you want to specify the name and location of the AutoView configuration file manually.';
-$string['xmlnote'] = 'Nota: se você escolher um nome para o arquivo de configuração aqui que ele ainda não exista, um arquivo de configuração em branco será criado automaticamente.';
-$string['noxsl'] = 'Aviso : No suitable XSL parser has been found. Please update your PHP with XSL support enabled. Please see the ReadMe file in the autoview module'.
- ' directory for more information on how to do this';
-$string['pecl_http_warn'] = 'Aviso : A extensãp PHP pecl_http não esta instalada no seu servidor. You will need this to use the '.
- 'document conversion service. The module can be downloaded from http://pecl.php.net/package/pecl_http/ . If you do not intend to use '.
- 'a document conversion service this warning can be ignored.';
-$string['createnew'] = 'Usar o arquivo padrão de configuração (recomendado)';
+$string['conversionfailed'] = 'Falha na conversï¿½o';
+$string['xmlhelp']= 'Na maioria dos casos, vocï¿½ vai querer usar o arquivo padrï¿½o de configuraï¿½ï¿½o. Este serï¿½ criado automaticamente para vocï¿½, no diretï¿½rio raiz do curso.';
+$string['xmlnote'] = 'Nota: se vocï¿½ escolher um nome para o arquivo de configuraï¿½ï¿½o aqui que ele ainda nï¿½o exista, um arquivo de configuraï¿½ï¿½o em branco serï¿½ criado automaticamente.';
+$string['noxsl'] = 'Aviso : No suitable XSL parser has been found. Please update your PHP with XSL support enabled. Please see the ReadMe file in the autoview module directory for more information on how to do this';
+$string['pecl_http_warn'] = 'Aviso : A extensï¿½p PHP pecl_http nï¿½o esta instalada no seu servidor. You will need this to use the document conversion service. The module can be downloaded from http://pecl.php.net/package/pecl_http/ . If you do not intend to use a document conversion service this warning can be ignored.';
+$string['createnew'] = 'Usar o arquivo padrï¿½o de configuraï¿½ï¿½o (recomendado)';
 
 $string['configlivecapture']= 'Live capture java applet URL';
 $string['configflashserver']= 'Flash/Red5 communication server URL';
 $string['configflashcapture']= 'Flash based live capture URL';
 $string['configflashkey']='Chave secreta do Flash server';
 $string['configflashdir']='Subdirectory for captured flash files in course';
-$string['configflashsecurity'] = 'Metodo de integração seguro Flash/Red 5 server';
+$string['configflashsecurity'] = 'Metodo de integraï¿½ï¿½o seguro Flash/Red 5 server';
 $string['secretkey'] = 'Chave secreta';
-$string['randomkey'] = 'Chave randônica';
-$string['encryptedkey'] = 'Chave Randônica encriptografada';
+$string['randomkey'] = 'Chave randï¿½nica';
+$string['encryptedkey'] = 'Chave Randï¿½nica encriptografada';
 
-$string['confignote'] = 'Estes parâmetros são usados para configurar';
+$string['confignote'] = 'Estes parï¿½metros sï¿½o usados para configurar';
 $string['confignote2'] = 'add-on services';
-$string['confignote3'] = 'Para AutoView. Deixe-os em branco se você não estiver usando qualquer add-on de serviços, eles não são necessários para utilização normal.';
+$string['confignote3'] = 'Para AutoView. Deixe-os em branco se vocï¿½ nï¿½o estiver usando qualquer add-on de serviï¿½os, eles nï¿½o sï¿½o necessï¿½rios para utilizaï¿½ï¿½o normal.';
 $string['confignote4'] = 'Veja o site do AutoView para maiores detalhes';
-$string['hidenav'] = 'Esconder a barra de navegação do moodle';
+$string['hidenav'] = 'Esconder a barra de navegaï¿½ï¿½o do moodle';
 
-$string['autoview:canedit']='Pode Editar apresentações';
+$string['autoview:canedit']='Pode Editar apresentaï¿½ï¿½es';
 $string['autoview:canrecordflash']='Pode gravar videos usando flash baseados em captura ao vivo';
-$string['autoview:canconvertdocument']='Pode usar serviço online de conversão de documento';
+$string['autoview:canconvertdocument']='Pode usar serviï¿½o online de conversï¿½o de documento';
 
-$string['converttitle'] = 'Web Service de conversão de documento';
+$string['converttitle'] = 'Web Service de conversï¿½o de documento';
 $string['flashcapturetitle'] = 'Flash based live capture system';
 $string['javacapturetitle'] = 'Java applet basead live capture system';
 
-$string['convertnotallowed']='Você não esta autorizado a acessar o serviço de conversão de documentos';
+$string['convertnotallowed']='Vocï¿½ nï¿½o esta autorizado a acessar o serviï¿½o de conversï¿½o de documentos';
 
-$string['waitermessage'] = 'Por favor, aguarde: Se as funções do editor não aparecerem aqui quando o quadro a direita terminar de carregar, clique no botão a seguir';
+$string['waitermessage'] = 'Por favor, aguarde: Se as funï¿½ï¿½es do editor nï¿½o aparecerem aqui quando o quadro a direita terminar de carregar, clique no botï¿½o a seguir';
 $string['starteditor'] = 'Iniciar editor';
 ?>
