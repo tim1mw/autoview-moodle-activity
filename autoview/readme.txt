@@ -56,22 +56,10 @@ On our linux/apache server, the following worked very nicely :
 
 /path/to/php/bin/pecl install pecl_http
 
-3) Moodle 2.x users will also need the Course File Area Repository plugin and the Repository file manager block.
-Please go to http://www.autotrain.org/misc/source/moodle2/ to download these modules if you did not get them
-from the AutoView download area. The Course File Area Repository will need to be activated on the Moodle repository
-configuration page before AutoView will function correctly.
-
-
-HTML 5 Video Support
---------------------
-
-Support is included, but due to HTML 5 being a draft spec which has not yet been fully implemented by browser manufacturers,
-it is disabled by default. Because of this, HTML 5 video in AutoView is not yet considered fully stable and should only be used
-for testing purposes.
-
-To enable HTML 5 videos, go to the Moodle module config page and enter the following into the JavaScript calls box on a new line:
-
-setEnableHTML5(1);
+3) You will also need the Course File Area Repository plugin and the Repository file manager block.
+Please go to http://autoview.autotrain.org to download these modules if you did not get them
+from the AutoView download area. The Course File Area Repository will need to be activated on the Moodle
+repository configuration page before AutoView will function correctly.
 
 
 Support
