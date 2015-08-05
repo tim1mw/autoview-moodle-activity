@@ -30,12 +30,10 @@
 //
 // For the core capabilities, the variable is $moodle_capabilities.
 
-global $CFG;
-$admin='admin';
-if ($CFG->version >= 2010000000)
- $admin='manager';
 
-$mod_autoview_capabilities = array(
+defined('MOODLE_INTERNAL') || die;
+
+$capabilities = array(
 
     'mod/autoview:addinstance' => array(
 
@@ -43,7 +41,7 @@ $mod_autoview_capabilities = array(
         'contextlevel' => CONTEXT_MODULE,
         'legacy' => array(
             'editingteacher' => CAP_ALLOW,
-            $admin => CAP_ALLOW
+            'manager' => CAP_ALLOW
         )
     ),
 
@@ -53,7 +51,7 @@ $mod_autoview_capabilities = array(
         'contextlevel' => CONTEXT_MODULE,
         'legacy' => array(
             'editingteacher' => CAP_ALLOW,
-            $admin => CAP_ALLOW
+            'manager' => CAP_ALLOW
         )
     ),
 
@@ -63,7 +61,7 @@ $mod_autoview_capabilities = array(
         'contextlevel' => CONTEXT_MODULE,
         'legacy' => array(
             'editingteacher' => CAP_ALLOW,
-            $admin => CAP_ALLOW
+            'manager' => CAP_ALLOW
         )
     ),
 
@@ -73,7 +71,7 @@ $mod_autoview_capabilities = array(
         'contextlevel' => CONTEXT_MODULE,
         'legacy' => array(
             'editingteacher' => CAP_ALLOW,
-            $admin => CAP_ALLOW
+            'manager' => CAP_ALLOW
         )
     ),
 
@@ -83,7 +81,7 @@ $mod_autoview_capabilities = array(
         'contextlevel' => CONTEXT_MODULE,
         'legacy' => array(
             'editingteacher' => CAP_ALLOW,
-            $admin => CAP_ALLOW
+            'manager' => CAP_ALLOW
         )
     ),
 
@@ -96,15 +94,9 @@ $mod_autoview_capabilities = array(
             'student' => CAP_ALLOW,
             'teacher' => CAP_ALLOW,
             'editingteacher' => CAP_ALLOW,
-            $admin => CAP_ALLOW
+            'manager' => CAP_ALLOW
         )
     )
 );
-
-if ($CFG->version >= 2010000000)
-{
- $capabilities=$mod_autoview_capabilities;
- unset($mod_autoview_capabilities);
-}
 
 ?>

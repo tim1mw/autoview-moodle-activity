@@ -8,6 +8,8 @@
 
     global $DB;
 
+    $av_config=get_config("autoview");
+
     $l = required_param('l', PARAM_INT);
     if (! $autoview = $DB->get_record("autoview", array("id"=>$l)))
      error("Course module is incorrect");
@@ -35,25 +37,20 @@
 
     /*****Read config params*****/
     $flashdir="";
-    if (mdl21_configparamisset("autoview", "flashdir"))
-        $flashdir=mdl21_getconfigparam("autoview", "flashdir");
+    if (isset($av_config->flashdir))
+        $flashdir=$av_config->flashdir;
     $conversionurl="";
-    if (mdl21_configparamisset("autoview", "conversionurl"))
-        $conversionurl=mdl21_getconfigparam("autoview", "conversionurl");
+    if (isset($av_config->conversionurl))
+        $conversionurl=$av_config->conversionurl;
     $alwaysflashstream="false";
-    if (mdl21_configparamisset("autoview", "alwaysflashstream") && mdl21_getconfigparam("autoview", "alwaysflashstream"))
+    if (isset($av_config->alwaysflashstream) && $av_config->alwaysflashstream)
         $alwaysflashstream="true";
     $broadcastMaxKbps=256;
-    if (mdl21_configparamisset("autoview", "max_broadcast_kbps"))
-        $broadcastMaxKbps=mdl21_getconfigparam("autoview", "max_broadcast_kbps");
+    if (isset($av_config->max_broadcast_kbps))
+        $broadcastMaxKbps=$av_config->max_broadcast_kbps;
 
-    if ($CFG->version>=2010000000)
-    {
-        $filebrowser=$CFG->wwwroot."/blocks/repo_filemanager/index.php?repoid=".autoview_get_coursefilesarea_id($context).
-         "&hiderepolist=1&id=".$course->id."&amp;choose=form.url&amp;shortpath=1";
-    }
-    else
-        $filebrowser=$CFG->wwwroot."/files/index.php?id=".$course->id."&amp;choose=form.url";
+    $filebrowser=$CFG->wwwroot."/blocks/repo_filemanager/index.php?repoid=".autoview_get_coursefilesarea_id($context).
+     "&hiderepolist=1&id=".$course->id."&amp;choose=form.url&amp;shortpath=1";
 
     /*****Constuct base parameters*****/
     $parameters = array(

@@ -16,6 +16,8 @@
 
  global $DB;
 
+ $av_config = get_config("autoview");
+
  if (! $autoview = $DB->get_record("autoview", array("id"=>$l)))
   error("Course module is incorrect");
 
@@ -84,10 +86,7 @@
   'bodystyle' => 'margin-left:0px;margin-right:0px;',
   'nojsMessage' => get_string('nojsmessage', 'autoview')."\n\n".$autoview->name."\n".$titles);
 
- if ($CFG->version>=2010000000)
-   $parameters['themeimport']=$CFG->wwwroot.'/mod/autoview/import-theme2.js';
- else
-   $parameters['themeimport']=$CFG->wwwroot.'/mod/autoview/import-theme.js';
+ $parameters['themeimport']=$CFG->wwwroot.'/mod/autoview/import-theme2.js';
 
  /***If this person can edit, set the generic editor parameters***/
  if ($canedit)
@@ -97,12 +96,12 @@
  }
 
  /***This server has flash based live capture*****/
- if (strlen(trim(mdl21_getconfigparam("autoview", "flashserver")))>0 && strlen(trim(mdl21_getconfigparam("autoview", "flashcapture")))>0)
+ if (strlen(trim($av_config->flashserver))>0 && strlen(trim($av_config->flashcapture))>0)
  {
   /***Common parameters for anybody using the flash system***/
   $parameters['flashhost']=$CFG->wwwroot;
-  $parameters['flashcapture']=mdl21_getconfigparam("autoview", "flashcapture");;
-  $parameters['flashserver']=mdl21_getconfigparam("autoview", "flashserver");
+  $parameters['flashcapture']=$av_config->flashcapture;
+  $parameters['flashserver']=$av_config->flashserver;
   $parameters['user']=$USER->firstname." ".$USER->lastname;
 
   /***Permissions for flash usage***/
@@ -110,8 +109,8 @@
   {
    $parameters['flashrecord']=$canrecordflash;
    $parameters['flashbroadcast']=$canbroadcastflash;
-   if (mdl21_configparamisset("autoview", "max_record_kbps"))
-    $parameters['recordMaxKbps']=mdl21_getconfigparam("autoview", "max_record_kbps");
+   if (isset($av_config->max_record_kbps))
+    $parameters['recordMaxKbps']=$av_config->max_record_kbps;
    $fp=dirname($autoview->configfile);
    if ($fp==".")
     $parameters['flashpath']="";
@@ -121,8 +120,8 @@
  }
 
  /***Advanced stuff***/
- if (strlen(trim(mdl21_getconfigparam("autoview", "js_extras")))>0)
-  $parameters['jsExtras']=mdl21_getconfigparam("autoview", "js_extras");
+ if (strlen(trim($av_config->js_extras))>0)
+  $parameters['jsExtras']=$av_config->js_extras;
 
  echo process_xsl($avxfile, $CFG->dirroot.'/mod/autoview/templates/autoview.xsl', $parameters);
 ?>

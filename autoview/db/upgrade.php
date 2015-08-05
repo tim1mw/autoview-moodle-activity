@@ -63,87 +63,58 @@ function xmldb_autoview_upgrade($oldversion=0)
  {
      $table = new XMLDBTable('autoview');
      $field = new XMLDBField('storage');
-     global $CFG;
-     if ($CFG->version>=2010000000)
-     {
-         global $DB;
-         $field->set_attributes(XMLDB_TYPE_INTEGER, '1', true, true, false, "0", 'summary');
-         $DB->get_manager()->add_field($table, $field);
-     }
-     else
-     {
-         $field->setAttributes(XMLDB_TYPE_INTEGER, '1', true, true, false, false, null, "0", 'summary');
-         if (!add_field($table, $field))
-             return false;
-     }
- }
-
- global $CFG;
- if ($CFG->version<2010000000)
- {
-  //Need to check the log display entries in Moodle 1.9x
-  autoview_check_log_table_entries();
+     global $CFG, $DB;
+     $field->set_attributes(XMLDB_TYPE_INTEGER, '1', true, true, false, "0", 'summary');
+     $DB->get_manager()->add_field($table, $field);
  }
 
  if ($oldversion < 2014090501)
  {
-     if ($CFG->version>=2010000000)
+     global $DB;
+     $rec=$DB->get_record("capabilities", array("name"=>"mod/autoview:viewpresentation"));
+     if ($rec->captype=='write')
      {
-         global $DB;
-         $rec=$DB->get_record("capabilities", array("name"=>"mod/autoview:viewpresentation"));
-         if ($rec->captype=='write')
-         {
-             $rec->captype='read';
-             $DB->update_record("capabilities", $rec);
-         }
-    }
-    else
-    {
-         $rec=get_record("capabilities", "name", "mod/autoview:viewpresentation");
-         if ($rec->captype=='write')
-         {
-             $rec->captype='read';
-             update_record("capabilities", $rec);
-         }
-    }
+         $rec->captype='read';
+         $DB->update_record("capabilities", $rec);
+     }
 
+ }
+
+ /** Everything below this point is Moodle 2.6+ only **/
+
+ if ($oldversion < 2015080502)
+ {
+     /** Move the plugin settings to mdl_config_plugins **/
+     /** Insert into plugins config **/
+     set_config("storage_type", $CFG->autoview_storage_type, "autoview");
+     set_config("external_filekey", $CFG->autoview_external_filekey, "autoview");
+     set_config("external_fileloc", $CFG->autoview_external_fileloc, "autoview");
+     set_config("flashcapture", $CFG->autoview_flashcapture, "autoview");
+     set_config("flashserver", $CFG->autoview_flashserver, "autoview");
+     set_config("flashsecurity", $CFG->autoview_flashsecurity, "autoview");
+     set_config("alwaysflashstream", $CFG->autoview_alwaysflashstream, "autoview");
+     set_config("max_broadcast_kbps", $CFG->autoview_max_broadcast_kbps, "autoview");
+     set_config("max_record_kbps", $CFG->autoview_max_record_kbps, "autoview");
+     set_config("conversionurl", $CFG->autoview_conversionurl, "autoview");
+     set_config("conversionkey", $CFG->autoview_conversionkey, "autoview");
+     set_config("js_extras", $CFG->autoview_js_extras, "autoview");
+
+     /** Remove the old values **/
+     unset_config("autoview_storage_type");
+     unset_config("autoview_external_filekey");
+     unset_config("autoview_external_fileloc");
+     unset_config("autoview_flashcapture");
+     unset_config("autoview_flashserver");
+     unset_config("autoview_flashsecurity");
+     unset_config("autoview_alwaysflashstream");
+     unset_config("autoview_max_broadcast_kbps");
+     unset_config("autoview_max_record_kbps");
+     unset_config("autoview_conversionurl");
+     unset_config("autoview_conversionkey");
+     unset_config("autoview_js_extras");
  }
 
  return true;
 }
-
- /**
- * Checks that all the log table entries are correct
- **/
-
- function autoview_check_log_table_entries()
- {
-     autoview_check_log_table_entry("add");
-     autoview_check_log_table_entry("edit");
-     autoview_check_log_table_entry("flash play");
-     autoview_check_log_table_entry("flash play and rec");
-     autoview_check_log_table_entry("update");
-     autoview_check_log_table_entry("view");
-     autoview_check_log_table_entry("view all");
- }
-
- /**
- * Check a single log table entry and adds it if it is missing. Only needs to work in Moodle 1.9x
- * @param string $e The table to check
- **/
-
- function autoview_check_log_table_entry($e)
- {
-     $r=get_record("log_display", "action", $e, "module", "autoview");
-     if (!$r)
-     {
-         $r=new stdclass;
-         $r->module="autoview";
-         $r->action=$e;
-         $r->mtable="autoview";
-         $r->field="name";
-         insert_record("log_display", $r);
-     }
- }
 
 ?>

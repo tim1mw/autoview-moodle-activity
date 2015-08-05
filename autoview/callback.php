@@ -17,26 +17,19 @@
 
  global $DB;
 
+ $av_config=get_config("autoview");
+
  $versionCheck=optional_param('version', false, PARAM_BOOL);
  if ($versionCheck)
  {
-  $av=$DB->get_record("modules", array("name"=>"autoview"));
-  if ($av->version)
-   echo $av->version;
-  else
-  {
-   echo get_config('mod_autoview', 'version');
-   //The version field has been removed in Moodle 2.6, this compensates
-   //require_once("version.php");
-   //echo $module->version;
-  }
+  echo get_config('mod_autoview', 'version');
   return;
  }
 
  $clientType=optional_param('type', 'play', PARAM_RAW);
  $s = required_param('data',PARAM_RAW);
 
- if (mdl21_getconfigparam("autoview", "flashsecurity")=="randomkey")
+ if ($av_config->flashsecurity=="randomkey")
  {
   $data=$DB->get_record("autoview_keys", array("accesskey"=>$s));
   if (empty($data))

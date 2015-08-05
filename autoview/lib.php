@@ -11,11 +11,6 @@ define("AUTOVIEW_STORAGE_EXTERNAL", 1);
 require_once("avphplib/avlib.php");
 
 global $CFG;
-if ($CFG->version>=2010000000)
- require_once($CFG->dirroot."/mod/autoview/lib-mdl2.php");
-else
- require_once($CFG->dirroot."/mod/autoview/lib-mdl1.php");
-
 
 function autoview_add_instance($autoview) {
 /// Given an object containing all the necessary data, 
@@ -43,7 +38,8 @@ function autoview_add_instance($autoview) {
      $mainrecord->noframe=0;
     //$mainrecord->storage=mdl21_getconfigparam("autoview", "storage_type");
 
-    $avs=autoview_get_file_storage($CFG->autoview_storage_type);
+    $av_config=get_config("autoview");
+    $avs=autoview_get_file_storage($av_config->storage_type);
     $avs->check_course_dir($mainrecord->course);
     
     if (isset($autoview->configfile) && strlen($autoview->configfile)>0)
@@ -110,13 +106,6 @@ function autoview_delete_instance($id) {
 /// and any data that depends on it.  
 
     global $DB;
-
-    /**For some reason the $DB object keeps getting set to null here when deleting
-       in mdl1. This fixes the problem.***/
-    if ($DB==null && $CFG->version<=2010000000)
-    {
-        $DB=new mdl21_db_abstract();
-    }
 
     if (! $autoview = $DB->get_record("autoview", array("id"=>$id))) {
         return false;
@@ -190,8 +179,9 @@ function autoview_prepare_auth($course, $USER, $autoview, $cm)
  global $CFG, $DB;
 
  $data="c:".$course->id.";x:".$cm->id;
+ $av_config=get_config("autoview");
 
- if (mdl21_getconfigparam("autoview", "flashsecurity")=="randomkey")
+ if ($av_config->flashsecurity=="randomkey")
  {
   $skey=rand(1000000,9999999)."".rand(1000000,9999999)."".rand(1000000,9999999);
   $data=$data.";k:".$skey;
@@ -206,6 +196,105 @@ function autoview_prepare_auth($course, $USER, $autoview, $cm)
  }
 
  return base64_encode($data);
+}
+
+function autoview_has_dependencies($rm=false)
+{
+ global $DB;
+ $ok=true;
+ $m="";
+
+ $br=$DB->get_record("block", array("name"=>"repo_filemanager"));
+ if (!$br)
+ {
+  $m.="<div class=\"errorbox\" style=\"color:#ff0000\"><p style=\"warning\">".get_string("no_repofileman", "autoview")."</p></div>\n";
+  $ok=false;
+ }
+
+ $rr=$DB->get_record("repository", array("type"=>"coursefilearea"));
+ if (!$rr)
+ {
+  $m.="<div class=\"errorbox\" style=\"color:#ff0000\"><p style=\"warning\">".get_string("no_coursefilearea", "autoview")."</p></div>\n";
+  $ok=false;
+ }
+ 
+ if ($rm)
+  return $m;
+
+ echo $m;
+ return $ok;
+}
+
+/**
+ * @uses FEATURE_GROUPS
+ * @uses FEATURE_GROUPINGS
+ * @uses FEATURE_GROUPMEMBERSONLY
+ * @uses FEATURE_MOD_INTRO
+ * @uses FEATURE_COMPLETION_TRACKS_VIEWS
+ * @uses FEATURE_GRADE_HAS_GRADE
+ * @uses FEATURE_GRADE_OUTCOMES
+ * @param string $feature FEATURE_xx constant for requested feature
+ * @return mixed True if module supports feature, false if not, null if doesn't know
+ */
+function autoview_supports($feature)
+{
+    switch($feature)
+    {
+        case FEATURE_GROUPS:                  return false;
+        case FEATURE_GROUPINGS:               return false;
+        case FEATURE_GROUPMEMBERSONLY:        return false;
+        case FEATURE_MOD_INTRO:               return false;
+        case FEATURE_COMPLETION_TRACKS_VIEWS: return false;
+        case FEATURE_GRADE_HAS_GRADE:         return false;
+        case FEATURE_GRADE_OUTCOMES:          return false;
+        case FEATURE_BACKUP_MOODLE2:          return true;
+        default: return null;
+    }
+}
+
+function autoview_get_coursefilesarea_id($context)
+{
+    global $CFG;
+    require_once('../../repository/lib.php');
+
+    $params = array(
+        'context'=>array($context, context_system::instance()),
+        'currentcontext'=>$context,
+        'onlyvisible'=>true,
+        'type'=>"coursefilearea");
+
+     $repolist = repository::get_instances($params);
+
+     if (current($repolist))
+        return current($repolist)->id;
+     else
+        return -1;
+}
+
+function autoview_get_context_instance($id)
+{
+    return context_module::instance($id);
+}
+
+function autoview_get_course_context_instance($id)
+{
+    return context_course::instance($id);
+}
+
+function autoview_add_to_log($course, $mod, $text, $link='', $info='', $cmid=0, $uid=0)
+{
+ global $CFG;
+ if ($CFG->version >= 2014051200)
+ {
+  /** This needs to be re-written to use the events system for Moodle 2.7 and greater**/
+  /** For now use the code from deprecated lib **/
+  $manager = get_log_manager();
+  if (method_exists($manager, 'legacy_add_to_log')) {
+   $manager->legacy_add_to_log($course, $mod, $text, $link, $info, $cmid, $uid);
+  }
+ }
+ else
+  add_to_log($course, $mod, $text, $link, $info, $cmid, $uid);
 }
 
 ?>

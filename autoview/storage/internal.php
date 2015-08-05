@@ -55,11 +55,7 @@ class av_internal_file_storage extends av_generic_file_storage
  {
   global $CFG;
 
-  $htmlbase='';
-  if ($CFG->version>=2010000000)
-   $htmlbase=$CFG->wwwroot.'/repository/coursefilearea/file.php';
-  else
-   $htmlbase=$CFG->wwwroot.'/file.php';
+  $htmlbase=$CFG->wwwroot.'/repository/coursefilearea/file.php';
  
   if ($CFG->slasharguments)
    $htmlbase.='/'.$courseid.'/';

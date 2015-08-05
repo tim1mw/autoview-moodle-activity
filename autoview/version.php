@@ -7,11 +7,8 @@
 
 global $CFG;
 
-$module->version  = 2015050401;  // The current module version (Date: YYYYMMDDXX)
-if ($CFG->version>=2010000000)
-    $module->requires = 2013111800;
-else
-    $module->requires = 2007101570;  // Requires this Moodle version
+$module->version  = 2015080502;  // The current module version (Date: YYYYMMDDXX)
+$module->requires = 2013111800;
 $module->cron     = 300;           // Period for cron to check this module (secs)
 
 $module->release = $module->version;

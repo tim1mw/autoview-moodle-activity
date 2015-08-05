@@ -43,6 +43,7 @@
     $frameset = optional_param('frameset',1, PARAM_BOOL);
     $editval = optional_param('edit',0, PARAM_BOOL);
     $context = autoview_get_context_instance($cm->id);
+    $r_config = get_config("resource");
 
     if (!has_capability('mod/autoview:viewpresentation', $context))
     {
@@ -61,142 +62,105 @@
         $e='';
         autoview_add_to_log($course->id, "autoview", "view", "view.php?id=$cm->id", $autoview->name, $cm->id);
 
+        global $PAGE, $OUTPUT;
+        $PAGE->set_title($autoview->name);
+        $PAGE->set_heading($autoview->name);
+        $PAGE->set_pagelayout('base');
+        $PAGE->blocks->show_only_fake_blocks();
+        $PAGE->set_url($CFG->wwwroot."/mod/autoview/view.php?id=".$cm->id);
 
-        if ($CFG->version>=2010000000)
+        if (!$autoview->noframe)
+            autoview_show_navigation($course, $context, $cm, $editval);
+        else
         {
-           global $PAGE, $OUTPUT;
-           $PAGE->set_title($autoview->name);
-           $PAGE->set_heading($autoview->name);
-           $PAGE->set_pagelayout('base');
-           $PAGE->blocks->show_only_fake_blocks();
-           $PAGE->set_url($CFG->wwwroot."/mod/autoview/view.php?id=".$cm->id);
+        ?>
+         <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+         <html>
+         <head><title><?php echo $autoview->name;?></title>
+         <?php
+        }
 
-           if (!$autoview->noframe)
-               autoview_show_navigation($course, $context, $cm, $editval);
-           else
-           {
-           ?>
-            <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-            <html>
-            <head><title><?php echo $autoview->name;?></title>
-           <?php
-           }
-
-           if (!autoview_has_dependencies())
-           {
+        if (!autoview_has_dependencies())
+        {
             echo $OUTPUT->footer();
             exit();
-           }
+        }
  
-           $avurl="autoview.php?l=".$autoview->id."&amp;edit=".$editval;
-           $avediturl="avedit.php?l=".$autoview->id;
+        $avurl="autoview.php?l=".$autoview->id."&amp;edit=".$editval;
+        $avediturl="avedit.php?l=".$autoview->id;
  
-           //Make sure the iframe gets all the available space
-           ?>
-           <style type="text/css">
+        //Make sure the iframe gets all the available space
+        ?>
+        <style type="text/css">
             #page-content #region-main
             {
              padding:0px;
             }
-           </style>
+        </style>
 
-           <?php
-           if ($autoview->noframe)
-               echo "</head><body>";
-           ?>
+        <?php
+        if ($autoview->noframe)
+            echo "</head><body>";
+        ?>
 
-           <script type="text/javascript">
-           //<!--
-             var frameHeight=600;
-             var frameWidth="100%";
-             var userAgent=navigator.userAgent.toLowerCase();
-             if (userAgent.indexOf("android")>-1 ||
-                 userAgent.indexOf("iphone")>-1  ||
-                 userAgent.indexOf("ipod")>-1    ||
-                 userAgent.indexOf("symbianos")>-1)
-             {
-              frameHeight=screen.height*1.1;
-              frameWidth=screen.width+"px";
-             }
-             else
-             {
-              if( typeof( window.innerWidth ) == 'number' )
-              {
-               //Non-IE
-               frameHeight = window.outerHeight;
-              }
-              else if( document.documentElement && document.documentElement.clientHeight)
-              {
-               //IE 6+ in 'standards compliant mode'
-               frameHeight = document.documentElement.clientHeight;
-              }
- 
-              frameHeight=frameHeight-<?php echo mdl21_getconfigparam("resource", "framesize")*1.58; ?>;
-             }
- 
-           <?php if ($editval==true && has_capability('mod/autoview:canedit', $context)) { ?>
- 
-            document.writeln("<table style=\"width:"+frameWidth+";\"><tr><td style=\"width:250px;\">"+
-                      "<iframe src=\"<?php echo $avediturl;?>\" name=\"editframe\" "+
-                      "style=\"width:250px;height:"+frameHeight+"px;border:1px solid #aaaaaa;\"></iframe>\n"+
-                      "</td><td>");            
- 
-             <?php
+        <script type="text/javascript">
+        //<!--
+            var frameHeight=600;
+            var frameWidth="100%";
+            var userAgent=navigator.userAgent.toLowerCase();
+            if (userAgent.indexOf("android")>-1 ||
+                userAgent.indexOf("iphone")>-1  ||
+                userAgent.indexOf("ipod")>-1    ||
+                userAgent.indexOf("symbianos")>-1)
+            {
+             frameHeight=screen.height*1.1;
+             frameWidth=screen.width+"px";
             }
-             ?>
- 
-             var ir="<iframe src=\"<?php echo $avurl; ?>\" name=\"videoframe\""+
-                " style=\"width:"+frameWidth+";height:"+frameHeight+"px;padding:0px;margin:0px;border:0px;\" ></iframe>\n";
- 
-             document.writeln(ir);
- 
-             <?php if ($editval==true && has_capability('mod/autoview:canedit', $context)) { ?>
- 
-             document.writeln("</td></tr></table>");
- 
-             <?php } ?>
- 
-             //-->
-             </script>
-             <?php
-             if (!$autoview->noframe)
-                 echo $OUTPUT->footer();
-             else
-                 echo "</body></html>";
-        }
-        else
-        {
-            $encoding = current_charset();
-            @header('Content-Type: text/html; charset='.$encoding);
-            echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Frameset//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd\">\n".
-                 "<html dir=\"ltr\">\n".
-                 "<head>\n".
-                 "<meta http-equiv=\"content-type\" content=\"text/html; charset=".$encoding."\" />\n".
-                 "<title>{$course->shortname}: ".strip_tags(format_string($autoview->name,true))."</title></head>\n";
-
-            if ($autoview->noframe && $editval==false)
-                echo "<frameset rows=\"0,*\" border=\"0\">\n";
             else
             {
-                $fs=mdl21_getconfigparam("resource", "framesize");
-                echo "<frameset rows=\"".$fs.",*\">\n";
+             if( typeof( window.innerWidth ) == 'number' )
+             {
+              //Non-IE
+              frameHeight = window.outerHeight;
+             }
+             else if( document.documentElement && document.documentElement.clientHeight)
+             {
+              //IE 6+ in 'standards compliant mode'
+              frameHeight = document.documentElement.clientHeight;
+             }
+ 
+             frameHeight=frameHeight-<?php echo $r_config->framesize*1.58; ?>;
             }
-            echo "<frame src=\"view.php?id={$cm->id}&amp;frameset=0&amp;edit=".$editval."\" name=\"headerframe\" />\n";
-
-            if ($editval==true && has_capability('mod/autoview:canedit', $context))
-               echo "<frameset cols=\"250,*\">\n".
-                    "<frame src=\"avedit.php?l=".$autoview->id."\" name=\"editframe\" />\n";
-
-            //****Use this line to process XSLT in the backend*****
-            echo "<frame src=\"autoview.php?l=".$autoview->id."&amp;edit=".$editval."\" name=\"videoframe\" />\n";
-            //****Use this line to fire the XML file straight at the web browser*****
-            //echo "<frame src=\"".$CFG->wwwroot."/file.php/".$course->id."/".$autoview->configfile."\" name=\"videoframe\" />\n";
-
-            if ($editval==true)
-                echo "</frameset>";
-            echo "</frameset>\n".
-                 "</html>";
+ 
+            <?php if ($editval==true && has_capability('mod/autoview:canedit', $context)) { ?>
+ 
+            document.writeln("<table style=\"width:"+frameWidth+";\"><tr><td style=\"width:250px;\">"+
+                "<iframe src=\"<?php echo $avediturl;?>\" name=\"editframe\" "+
+                "style=\"width:250px;height:"+frameHeight+"px;border:1px solid #aaaaaa;\"></iframe>\n"+
+                "</td><td>");            
+ 
+            <?php
         }
+        ?>
+ 
+        var ir="<iframe src=\"<?php echo $avurl; ?>\" name=\"videoframe\""+
+            " style=\"width:"+frameWidth+";height:"+frameHeight+"px;padding:0px;margin:0px;border:0px;\" ></iframe>\n";
+ 
+        document.writeln(ir);
+ 
+        <?php if ($editval==true && has_capability('mod/autoview:canedit', $context)) { ?>
+ 
+        document.writeln("</td></tr></table>");
+ 
+        <?php } ?>
+ 
+        //-->
+        </script>
+        <?php
+        if (!$autoview->noframe)
+            echo $OUTPUT->footer();
+        else
+            echo "</body></html>";
     }
     else
     {
@@ -241,42 +205,13 @@
                 $navigation = build_navigation('', $cm);
             }
           
-            global $CFG;
-            if ($CFG->version>=2010000000)
-            {
-                global $OUTPUT, $PAGE;
-                $PAGE->set_button($buttontext);
-                echo $OUTPUT->header();
-            }
-            else
-            print_header(format_string($autoview->name), $course->fullname,
-                $navigation,
-                '', '', true, $buttontext, navmenu($course, $cm, 'parent'));
+            global $CFG, $OUTPUT, $PAGE;
+            $PAGE->set_button($buttontext);
+            echo $OUTPUT->header();
        } else {
-
-            if ($CFG->version>=2010000000)
-            {
-                global $OUTPUT, $PAGE;
-                $PAGE->set_button($buttontext);
-                echo $OUTPUT->header();
-            }
-            else
-            {
-                if (! function_exists('build_navigation')){
-                    if (property_exists($CFG, 'framename'))
-                        $target="target=\"{$CFG->framename}\"";
-                    else
-                        $target="";
-
-                    $navigation = "<a".$target.
-                        " href=\"$CFG->wwwroot/course/view.php?id={$course->id}\">{$course->shortname}</a> -> ".
-                        "<a ".$target." href=\"index.php?id={$course->id}\">".
-                    get_string('modulenameplural', 'autoview')."</a> ->".format_string($autoview->name);
-                } else {
-                    $navigation = build_navigation('', $cm);
-                }
-                print_header(@$pagetitle, $course->fullname, $navigation, '', '', true, $buttontext, navmenu($course, $cm, 'parent'));
-            }
+            global $OUTPUT, $PAGE;
+            $PAGE->set_button($buttontext);
+            echo $OUTPUT->header();
        }
    }
 

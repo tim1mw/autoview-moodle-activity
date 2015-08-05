@@ -4,7 +4,7 @@ require_once ($CFG->dirroot.'/course/moodleform_mod.php');
 class mod_autoview_mod_form extends moodleform_mod {
 
     function definition() {
-	global $add, $CFG, $COURSE;
+	      global $add, $CFG, $COURSE;
 
         $mform    =& $this->_form;
 
@@ -35,14 +35,8 @@ class mod_autoview_mod_form extends moodleform_mod {
 
         $opts=array('courseid'=>$COURSE->id, 'height'=>500, 'width'=>750, 'options'=>'none'); 
 
-        if ($CFG->version<2010000000)
-            $mform->addElement('choosecoursefile', 'configfile', get_string("chooseconfig", "autoview"), $opts);
-        else
-        {
-        //$mform->addElement('filepicker', 'configfile', get_string("chooseconfig", "autoview"), $opts);
-         $mform->addElement('text', 'configfile', get_string("chooseconfig", "autoview"), 'size="47"');
-         $mform->setType('configfile', PARAM_PATH);
-        }
+        $mform->addElement('text', 'configfile', get_string("chooseconfig", "autoview"), 'size="47"');
+        $mform->setType('configfile', PARAM_PATH);
 
         if ($add)
         {
