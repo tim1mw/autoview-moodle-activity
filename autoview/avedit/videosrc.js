@@ -122,7 +122,7 @@ function detectType()
 function getTypeFromExtension()
 {
  var url=document.form.url.value.toLowerCase();
- if (url.indexOf(".mov")>-1 || url.indexOf(".mp4")>-1)
+ if (url.indexOf(".mov")>-1)
   return opener.parent.videoframe.VIDEO_QUICKTIME;
  else
  if (url.indexOf(".rm")>-1 || url.indexOf(".ram")>-1 ||
@@ -133,7 +133,7 @@ function getTypeFromExtension()
      url.indexOf(".avi")>-1 || url.indexOf(".wma")>-1)
   return opener.parent.videoframe.VIDEO_WINDOWSMEDIA;
  else
- if (url.indexOf(".ogg")>-1 || url.indexOf(".ogv")>-1 || url.indexOf(".ogm")>-1)
+ if (url.indexOf(".ogg")>-1 || url.indexOf(".ogv")>-1 || url.indexOf(".ogm")>-1 || url.indexOf(".mp4")>-1)
   return opener.parent.videoframe.VIDEO_HTML5;
  else
  if (url.indexOf(".oga")>-1)
