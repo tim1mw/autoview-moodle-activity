@@ -21,11 +21,8 @@ on your Moodle server, or click the notifications link in the 'Site Admin' menu.
 This module also requires the following extras which may not be part of the default PHP
 installation on your system :
 
-1) XSL support. The default source downloads for PHP 4 and PHP 5 both have XSLT support
-bundled with them, but the libraries are different and may not be enabled by default. The 
-AutoView module should support XSLT under both PHP 4 and 5 and you should consult the PHP 
-documentation for more information on enabling this. The module will NOT work without the XSLT 
-functions.
+1) XSL support. The default source downloads for PHP 5 both has XSLT support bundled, but the
+libraries may not be enabled by default. The module will NOT work without the XSLT functions.
 
 For PHP 5 look for the following option on the PHP info page :
 
