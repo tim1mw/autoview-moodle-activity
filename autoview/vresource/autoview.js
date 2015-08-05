@@ -119,7 +119,7 @@ var flashInteract=false;
 var mozpluggerBreaksReal=false, hasMozPlugger=false;
 var hideVideo=false;
 var blockReal=false;
-var enableHTML5=false;
+var enableHTML5=true;
 var useFlowPlayer=3;
 var popupSlideWindow;
 var fixPos=false;
