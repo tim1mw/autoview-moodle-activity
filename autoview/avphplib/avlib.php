@@ -47,37 +47,12 @@ function process_xsl($datafile, $stylesheetfile, $parameters)
   return $xsltproc->transformToXML($doc);
  }
  else
- if (function_exists('xslt_create'))
- {
-  /****PHP 4 Sablot Style XSL processor****/
-  $xsltproc = xslt_create();
-
-  $html=xslt_process($xsltproc, $datafile, $stylesheetfile, NULL, NULL, $parameters);
- 
-  if (empty($html))
-  {
-   die('XSLT processing error: '. xslt_error($xsltproc));
-  }
-  xslt_free($xsltproc);
-  return $html;
- }
- else
- if (function_exists('domxml_xslt_stylesheet_file'))
- {
-  /****PHP 4 DOM Style XSL processor****/
-  $datadoc=domxml_open_file($datafile);
-  $stylesheet = domxml_xslt_stylesheet_file($stylesheetfile);
-  $htmldoc=$stylesheet->process($datadoc, $parameters);
-  return $htmldoc->html_dump_mem();
- }
- else
   return '<p>'.get_string('noxsl', 'autoview').'</p>';
 }
 
 function testXSL()
 {
- if (method_exists('XSLTProcessor', 'setParameter') || function_exists('domxml_xslt_stylesheet_file(') ||
-     function_exists('xslt_create'))
+ if (method_exists('XSLTProcessor', 'setParameter'))
   return true;
 
  return false;

@@ -39,39 +39,10 @@
   else
    echo "\tDOMDocument->load() not found\n";
  }
-
- if (function_exists('xslt_create'))
- {
-  $found=true;
-  echo "\nPHP4 Sablot XSLT Found\n".
-   "\txslt_create() OK\n";
-
-  if (function_exists('xslt_process'))
-   echo "\txslt_process() OK\n";
-  else
-   echo "\txslt_process() not found\n";
-
-  if (function_exists('xslt_free'))
-   echo "\txslt_free() OK\n";
-  else
-   echo "\txslt_free() not found\n";
- }
-
- if (function_exists('domxml_xslt_stylesheet_file'))
- {
-  $found=true;
-  echo "\nPHP4 libxslt methods found\n".
-   "\tdomxml_xslt_stylesheet_file OK\n";
-
-  if (function_exists('domxml_open_file'))
-   echo "\tdomxml_open_file OK\n";
-  else
-   echo "\tdomxml_open_file not found\n";
- }
  ?></pre>
  <?php
  if ($found==false)
-  echo "<p style=\"color:#ff0000;\">Warning : No XSLT Processors have been found</p>";
+  echo "<p style=\"color:#ff0000;\">Warning : XSLT Processor has not been found</p>";
  else
   echo "<p>You have a suitable XSL converter</p>";
  ?>
