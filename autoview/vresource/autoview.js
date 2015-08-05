@@ -54,7 +54,7 @@ var tabletDevice=false;
 
 /*****Some Standard Variables*****/
 
-var VERSION="3.23";
+var VERSION="3.3";
 
 var VIDEOLEFT=false;
 var VIDEORIGHT=true;
@@ -63,7 +63,7 @@ var videoPosition=VIDEOLEFT;
 var pauseAfterSlide=false;
 
 var message="<h1 style=\"text-align:center\"><a href=\"http://www.autotrain.org/services/autoview.shtml\" target=\"_blank\">"+
- "AutoView "+VERSION+"</a></h1>";
+ "AutoView</a></h1>";
 var vresourcePath="../vresource/";
 
 var videoWidth=0.22;
@@ -4861,6 +4861,12 @@ function HTML5Video(url, speed)
   this.subtype="OGA";
   this.mimetype="audio/ogg";
  }
+ else
+ if (u.indexOf(".mpd")>-1)
+ {
+  this.subtype="DASH";
+  this.mimetype="application/dash+xml";
+ }
 
  this.getHTML=getHTML;
  function getHTML()
@@ -4886,17 +4892,33 @@ function HTML5Video(url, speed)
   var x="<!DOCTYPE html>"+
    "<html>"+
    "<head>"+
-   "<title>HTML 5 video/audio</title>"+
-   "</head>"+
-   "<body style='margin:0px;padding:0px;'>"+
+   "<title>HTML 5 video/audio</title>";
+
+   if (this.subtype=="DASH")
+       x=x+"<script  type='text/javascript' src='"+vresourcePath+"dash.all.js'></script>";
+
+   x=x+"</head>"+
+   "<body style='margin:0px;padding:0px;'";
+
+   x=x+">"+
    "<"+tagType+" style='background-color:#000000;background-image:url("+vresourcePath+"images/video-placehold.jpg);"+
    " background-repeat:no-repeat;background-size:100%;margin-left:auto;margin-right:auto;margin-top:0px;"+
-   " width:"+avWidth+"px;height:"+avHeight+"px;'"+
-   " preload='preload' controls='controls' id='html5player' width='"+avWidth+"' height='"+avHeight+"' >"+
+   " width:"+avWidth+"px;height:"+avHeight+"px;'";
+
+   if (this.subtype=="DASH")
+       x=x+" class='dashjs-player' preload='none'";
+   else
+       x=x+" preload='preload'";
+
+   x=x+" controls='controls' id='html5player' width='"+avWidth+"' height='"+avHeight+"' >"+
    "<source src='"+urlToUse+"' type='"+this.mimetype+"' />"+
    "<p style='color:#ffffff;text-align:center;'>"+getString("nohtml5")+"</p>"+
-   "</"+tagType+">"+
-   "</body>"+
+   "</"+tagType+">";
+
+   if (this.subtype=="DASH")
+    x=x+"<script type='text/javascript'>Dash.createAll();</script>";
+
+   x=x+"</body>"+
    "</html>";
 
   return x;
@@ -4976,6 +4998,12 @@ function HTML5Video(url, speed)
 
   if (typeof(v.canPlayType)!="function")
    return false;
+
+  if (this.subtype=="DASH")
+  {
+   window.MediaSource = window.MediaSource || window.WebKitMediaSource;
+   return window.MediaSource;
+  }
 
   if (v.canPlayType(this.mimetype+";"))
    return true;

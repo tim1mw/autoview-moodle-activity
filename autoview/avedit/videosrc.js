@@ -133,7 +133,7 @@ function getTypeFromExtension()
      url.indexOf(".avi")>-1 || url.indexOf(".wma")>-1)
   return opener.parent.videoframe.VIDEO_WINDOWSMEDIA;
  else
- if (url.indexOf(".ogg")>-1 || url.indexOf(".ogv")>-1 || url.indexOf(".ogm")>-1 || url.indexOf(".mp4")>-1)
+ if (url.indexOf(".ogg")>-1 || url.indexOf(".ogv")>-1 || url.indexOf(".ogm")>-1 || url.indexOf(".mp4")>-1 || url.indexOf(".mpd")>-1)
   return opener.parent.videoframe.VIDEO_HTML5;
  else
  if (url.indexOf(".oga")>-1)
