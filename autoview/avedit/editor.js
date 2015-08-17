@@ -854,8 +854,10 @@ function getVideoSelection(type,extra)
  data=data+formOption(type, parent.videoframe.VIDEO_WINDOWSMEDIA, getString("windowsmedia"));
  data=data+formOption(type, parent.videoframe.VIDEO_VLC, getString("vlcvideo"));
  if (parent.videoframe.enableHTML5)
+ {
   data=data+formOption(type, parent.videoframe.VIDEO_HTML5, getString("html5video"));
-
+  data=data+formOption(type, parent.videoframe.VIDEO_MEDIASOURCECAPTURE, getString("livecapturemediasource"));
+ }
  data=data+"    </select>\n";
  return data;
 }

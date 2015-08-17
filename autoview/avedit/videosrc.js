@@ -22,14 +22,16 @@ function updateDisplay()
      selection==opener.parent.videoframe.VIDEO_FLASH ||
      selection==opener.parent.videoframe.VIDEO_SILVERLIGHT ||
      selection==opener.parent.videoframe.VIDEO_FLASHBROADCAST ||
-     selection==opener.parent.videoframe.VIDEO_HTML5 )
+     selection==opener.parent.videoframe.VIDEO_HTML5 ||
+     selection==opener.parent.videoframe.VIDEO_MEDIASOURCECAPTURE)
   setEventDisplay("none");
  else
   setEventDisplay("inline");
 
  if (selection==opener.parent.videoframe.VIDEO_JAVALIVE ||
      selection==opener.parent.videoframe.VIDEO_FLASHLIVE ||
-     selection==opener.parent.videoframe.VIDEO_NONE)
+     selection==opener.parent.videoframe.VIDEO_NONE ||
+     selection==opener.parent.videoframe.VIDEO_MEDIASOURCECAPTURE)
  {
   setURLDisplay("none");
   setBandwidthDisplay("none");
@@ -86,7 +88,8 @@ function checkType()
  if (detectedType==document.form.type.value)
   return true;
 
- if (document.form.type.value==opener.parent.videoframe.VIDEO_JAVALIVE  || document.form.type.value==opener.parent.videoframe.VIDEO_FLASHLIVE)
+ if (document.form.type.value==opener.parent.videoframe.VIDEO_JAVALIVE || document.form.type.value==opener.parent.videoframe.VIDEO_FLASHLIVE ||
+  document.form.type.value==opener.parent.videoframe.VIDEO_MEDIASOURCECAPTURE)
   return true;
 
  //VLC won't be detected, but can play most things except Real

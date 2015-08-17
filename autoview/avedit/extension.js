@@ -457,6 +457,8 @@ function getAVSource(type, url, speed, monitor)
   return new FlashVideoBroadcast(url);
  if (type==VIDEO_HTML5)
   return new HTML5Video(url,speed);
+ if (type==VIDEO_MEDIASOURCECAPTURE)
+  return new MediaSourceCapture(url);
 
  return new NoVideo();
 }
@@ -988,6 +990,9 @@ function getVideoType(type)
  if (type==VIDEO_HTML5)
   return "HTML5Video";
 
+ if (type==VIDEO_MEDIASOURCECAPTURE)
+  return "MediaSourceCapture";
+
  return "NoVideo";
 }
 
@@ -1018,6 +1023,7 @@ function jsEscape(prep)
 
 var VIDEO_JAVALIVE=30;
 var VIDEO_FLASHLIVE=31;
+var VIDEO_MEDIASOURCECAPTURE=32;
 
 function JavaLiveCapture()
 {
@@ -1172,6 +1178,87 @@ function FlashLiveCapture()
  function getPlayer()
  {
   return document.getElementById('liveCaptureFlash');
+ }
+
+ this.setPosition=setPosition;
+ function setPosition(pos)
+ {
+ }
+
+ this.getPosition=getPosition;
+ function getPosition()
+ {
+  if (typeof(getPlayer())!="undefined")
+   return getPlayer().getVideoTime()*1000;
+  else
+   return -1;
+ }
+
+ this.stopPlayer=stopPlayer;
+ function stopPlayer()
+ {
+
+ }
+
+ this.startPlayer=startPlayer;
+ function startPlayer()
+ {
+
+ }
+
+ this.label=label;
+ function label()
+ {
+  return getString("livecapturemediasource");
+ }
+
+ this.controllable=controllable;
+ function controllable()
+ {
+  return false;
+ }
+
+ this.isValid=isValid;
+ function isValid()
+ {
+  return hasFlash;
+ }
+
+ this.useTimeMonitor=useTimeMonitor;
+ function useTimeMonitor()
+ {
+  return false;
+ }
+
+ this.disableMessage=disableMessage;
+ function disableMessage()
+ {
+  return getString("pluginnotfound");
+ }
+}
+
+/** MediaSource Capture **/
+
+function MediaSourceCapture()
+{
+ this.speed=SPEED_NONE;
+ this.type=VIDEO_MEDIASOURCECAPTURE;
+ this.url="";
+
+ this.getHTML=getHTML;
+ this.getHTML=getHTML;
+
+ function getHTML()
+ {
+  var x="<iframe class=\"video\" style=\"width:"+avWidth+"px;height:"+(avHeight+10)+"px;margin-bottom:-4px;padding:0px;\" name=\"mediasourcecapture\"  src=\""+flashCapture+"/capture.jsp\" />";
+  return x;
+ }
+
+
+ this.getPlayer=getPlayer;
+ function getPlayer()
+ {
+  return html5vid.document.getElementById("mediacaptureplayer");
  }
 
  this.setPosition=setPosition;

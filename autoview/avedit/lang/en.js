@@ -4,6 +4,7 @@ data=new Array();
 
 data["livecapture"]="Live Capture (Java)";
 data["livecaptureflash"]="Live Capture (Flash)";
+data["livecapturemediasource"]="Live Capture (HTML 5)";
 
 /*****Used by the editor*****/
 
