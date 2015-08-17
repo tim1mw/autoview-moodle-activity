@@ -52,7 +52,7 @@
   die(get_string("pecl_http_warn", "autoview"));
  }
 
- $convertfile=convertPresentationFile($swf, $pdf, $jpg, $av_config->conversionkey),
+ $convertfile=convertPresentationFile($swf, $pdf, $jpg, $av_config->conversionkey,
   $av_config->conversionurl, $CFG->dataroot.'/'.$course->id.'/'.$url);
 
  $aveditdir=$CFG->wwwroot.'/mod/autoview/avedit/';
