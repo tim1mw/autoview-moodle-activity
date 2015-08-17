@@ -1248,9 +1248,47 @@ function MediaSourceCapture()
  this.getHTML=getHTML;
  this.getHTML=getHTML;
 
+ this.currentPosition=0;
+
+
+
+ this.receiveMessage=receiveMessage;
+ function receiveMessage(event)
+ {
+  //alert(event.data);
+  // Need to do some validation here;
+  this.currentPosition=parseInt(event.data);
+ }
+
  function getHTML()
  {
+
+  window.addEventListener("message", this.receiveMessage, false);
+
   var x="<iframe class=\"video\" style=\"width:"+avWidth+"px;height:"+(avHeight+10)+"px;margin-bottom:-4px;padding:0px;\" name=\"mediasourcecapture\"  src=\""+flashCapture+"/capture.jsp?host="+flashHost+"&path="+flashPath+"&auth="+getFlashAuth()+"&\" />";
+
+  //var x="<iframe class=\"video\" style=\"width:"+avWidth+"px;height:"+(avHeight+10)+"px;margin-bottom:-4px;padding:0px;\" name=\"mediasourcecapture\"  />";
+  //setTimeout("mediasourcecapture.document.writeln(\""+this.getIFrameHTML()+"\");", 800);
+  return x;
+ }
+
+ this.getIFrameHTML=getIFrameHTML;
+ function getIFrameHTML()
+ {
+  var x="<!DOCTYPE html>"+
+   "<html>"+
+   "<head>"+
+   "<title>HTML 5 video/audio capture</title>"+
+   "</head>"+
+   "<body style='margin:0px;padding:0px;'>"+
+   "<video id='avrecord' autoplay></video><br />"+
+   "<div id='status'></div>"+
+   "<a href='javascript:startRecord();'>Record</a>&nbsp;"+
+   "<a href='javascript:stopRecord();'>Stop</a>"+
+   "<script type='text/javascript' src='"+flashCapture+"/capture.js'></script>"+
+   "</body>"+
+   "</html>";
+
   return x;
  }
 
@@ -1258,7 +1296,7 @@ function MediaSourceCapture()
  this.getPlayer=getPlayer;
  function getPlayer()
  {
-  return mediasourcecapture.document.getElementById("avrecord");
+  return null;
  }
 
  this.setPosition=setPosition;
@@ -1269,10 +1307,9 @@ function MediaSourceCapture()
  this.getPosition=getPosition;
  function getPosition()
  {
-  if (typeof(getPlayer())!="undefined")
-   return getPlayer().getVideoTime()*1000;
-  else
-   return -1;
+  //var data=mediasourcecapture.postMessage("getPosition", "*");
+  //alert(data);
+  return currentPosition;
  }
 
  this.stopPlayer=stopPlayer;
