@@ -1250,7 +1250,7 @@ function MediaSourceCapture()
 
  function getHTML()
  {
-  var x="<iframe class=\"video\" style=\"width:"+avWidth+"px;height:"+(avHeight+10)+"px;margin-bottom:-4px;padding:0px;\" name=\"mediasourcecapture\"  src=\""+flashCapture+"/capture.jsp\" />";
+  var x="<iframe class=\"video\" style=\"width:"+avWidth+"px;height:"+(avHeight+10)+"px;margin-bottom:-4px;padding:0px;\" name=\"mediasourcecapture\"  src=\""+flashCapture+"/capture.jsp?host="+flashHost+"&path="+flashPath+"&auth="+getFlashAuth()+"&\" />";
   return x;
  }
 
@@ -1258,7 +1258,7 @@ function MediaSourceCapture()
  this.getPlayer=getPlayer;
  function getPlayer()
  {
-  return html5vid.document.getElementById("mediacaptureplayer");
+  return mediasourcecapture.document.getElementById("avrecord");
  }
 
  this.setPosition=setPosition;
