@@ -1,5 +1,18 @@
-<?PHP // $Id: autoview.php,v 1.2 2003/11/18 07:28:46 moodler Exp $ 
-      // autoview.php - created with Moodle 1.2 development (2003111400)
+<?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 $string['pluginname'] = 'AutoView';
 $string['pluginadministration'] = 'AutoView Settings';
@@ -38,8 +51,7 @@ $string['configlivecapture']= 'Live capture java applet URL';
 $string['configflashserver']= 'Lecture Capture Live rtmp server URL';
 $string['configflashserver2']= 'The rtmp url used to access the AutoView Lecture Capture Live addon. Leave this blank if you do not have Lecture Capture Live installed on your system.';
 $string['configflashcapture']= 'Lecture Capture Live http server URL';
-$string['configflashcapture2']= 'The http url used to access the AutoView Lecture Capture Live addon. '.
- 'Leave this blank if you do not have Lecture Capture Live installed on your system. You can find out more about Lecture Capture Live on the';
+$string['configflashcapture2']= 'The http url used to access the AutoView Lecture Capture Live addon. Leave this blank if you do not have Lecture Capture Live installed on your system. You can find out more about Lecture Capture Live on the';
 $string['configflashkey']='Flash server secret key';
 $string['configflashdir']='Subdirectory for captured flash files in course';
 $string['configflashsecurity'] = 'Lecture Capture Live server integration security method';
@@ -89,8 +101,7 @@ $string['pres_saved'] ='Presentation Saved';
 
 $string['advanced_config']='Advanced Configuration';
 $string['js_extras'] = 'JavaScript Calls';
-$string['js_extras2'] = 'The JavaScript Calls option enables you to insert a platform wide javascript call after the initial config parameters are setup'.
- ' without needing to patch the AutoView code directly. This allows you to change the default behaviour of AutoView on your system. Please use with care, underlying API methods may change from time to time.';
+$string['js_extras2'] = 'The JavaScript Calls option enables you to insert a platform wide javascript call after the initial config parameters are setup without needing to patch the AutoView code directly. This allows you to change the default behaviour of AutoView on your system. Please use with care, underlying API methods may change from time to time.';
 
 $string['no_repofileman'] = 'The Repository File Manager block has not been installed. This is required to use AutoView in Moodle 2.x with internal file storage.';
 $string['no_coursefilearea'] = 'The Course File Area repository has not been installed. This is required to use AutoView in Moodle 2.x with internal file storage.';

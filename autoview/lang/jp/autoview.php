@@ -1,5 +1,4 @@
-<?PHP // $Id: autoview.php,v 1.2 2003/11/18 07:28:46 moodler Exp $ 
-      // autoview.php - created with Moodle 1.2 development (2003111400)
+<?php
 
 $string['pluginname'] = 'AutoView';
 $string['pluginadministration'] = 'AutoView 設定';
