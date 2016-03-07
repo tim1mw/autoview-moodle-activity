@@ -9,6 +9,7 @@
     * @license This code is copyright to EuroMotor AutoTrain LLP and is licenced under the GNU GPL v3 Licence
     **/
     require_once("../../config.php");
+    require_once("lib.php");
 
     $id = required_param( 'id', PARAM_INT ); // course
 
@@ -31,78 +32,57 @@
     $strname = get_string('name');
     $strsummary = get_string('summary');
     $strlastmodified = get_string('lastmodified');
-
-    if (!function_exists('build_navigation') || $CFG->version>=2015050100.00){
-        if ($course->category) {
-            require_login($course->id);
-        }
-        $navigation = "$strautoviews";
-    } else {
-        $navlinks = array();
-        $navlinks[] = array('name' => $strautoviews, 'link' => "index.php?id={$course->id}", 'type' => 'activity');
-        $navigation = build_navigation($navlinks);
-    }
+    $strsectionname  = get_string('sectionname', 'format_'.$course->format);
 
     autoview_add_to_log($course->id, 'autoview', 'view all', "index.php?id={$course->id}", "");
 
+    global $PAGE, $OUTPUT;
+    $PAGE->set_title($strautoview);
+    $PAGE->set_heading($strautoview);
+    $PAGE->set_pagelayout('base');
+    $PAGE->blocks->show_only_fake_blocks();
+    $PAGE->set_url($CFG->wwwroot."/mod/autoview/index.php?id=".$id);
 
-    print_header_simple($strautoview, '', $navigation, '', '', true, '', navmenu($course));
+    echo $OUTPUT->header();
 
     if (! $autoviews = get_all_instances_in_course("autoview", $course)) {
         notice("There are no autoview", "../../course/view.php?id=$course->id");
         exit;
     }
 
-    if ($course->format == "weeks") {
-        $table->head  = array ($strweek, $strname, $strsummary);
-        $table->align = array ("center", "left", "left");
-    } else if ($course->format == "topics") {
-        $table->head  = array ($strtopic, $strname, $strsummary);
-        $table->align = array ("center", "left", "left");
+    $usesections = course_format_uses_sections($course->format);
+
+    $table = new html_table();
+    $table->attributes['class'] = 'generaltable mod_index';
+
+    if ($usesections) {
+        $table->head  = array ($strsectionname, $strname);
+        $table->align = array ("center", "left");
     } else {
-        $table->head  = array ($strlastmodified, $strname, $strsummary);
-        $table->align = array ("left", "left", "left");
+        $table->head  = array ($strname);
     }
 
-    $currentsection = "";
-    $options->para = false;
     foreach ($autoviews as $autoview) {
-        if ($course->format == "weeks" or $course->format == "topics") {
-            $printsection = "";
-            if ($autoview->section !== $currentsection) {
-                if ($autoview->section) {
-                    $printsection = $autoview->section;
-                }
-                if ($currentsection !== "") {
-                    $table->data[] = 'hr';
-                }
-                $currentsection = $autoview->section;
-            }
-        } else {
-            $printsection = '<span class="smallinfo">'.userdate($autoview->timemodified)."</span>";
-        }
-        if (!empty($autoview->extra)) {
-            $extra = urldecode($autoview->extra);
-        } else {
-            $extra = "";
-        }
-        if (!$autoview->visible) {      // Show dimmed if the mod is hidden
-            $table->data[] = array ($printsection, 
-                    "<a class=\"dimmed\" $extra href=\"view.php?id=$autoview->coursemodule\">".format_string($autoview->name,true)."</a>",
-                    format_text($autoview->summary, FORMAT_MOODLE, $options) );
-
-        } else {                        //Show normal if the mod is visible
-            $table->data[] = array ($printsection, 
-                    "<a $extra href=\"view.php?id=$autoview->coursemodule\">".format_string($autoview->name,true)."</a>",
-                    format_text($autoview->summary, FORMAT_MOODLE, $options) );
-        }
+    if (!$autoview->visible) {
+        //Show dimmed if the mod is hidden
+        $link = "<a class=\"dimmed\" href=\"view.php?id=$autoview->coursemodule\">$autoview->name</a>";
+    } else {
+        //Show normal if the mod is visible
+        $link = "<a href=\"view.php?id=$autoview->coursemodule\">$autoview->name</a>";
     }
+
+    if ($usesections) {
+        $table->data[] = array (get_section_name($course, $autoview->section), $link);
+    } else {
+        $table->data[] = array ($link);
+    }
+}
 
     echo "<br />";
 
-    print_table($table);
+    echo html_writer::table($table);
 
-    print_footer($course);
+    echo $OUTPUT->footer();
  
 ?>
 
