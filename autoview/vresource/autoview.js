@@ -1998,7 +1998,7 @@ function loadAVPosition()
  var positionCookie=getCookie("autoview3_position"+saveCookieID);
  // Cope with cookies set before the ID was introduced
  if (positionCookie==null)
-  positionCookie=getCookie("autoview3_position"+saveCookieID);
+  positionCookie=getCookie("autoview3_position");
 
  if (positionCookie!=null)
   selectedAVSource.setPosition(parseInt(positionCookie));
