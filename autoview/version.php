@@ -5,7 +5,7 @@
 ///  This fragment is called by moodle_needs_upgrading() and /admin/index.php
 /////////////////////////////////////////////////////////////////////////////////
 
-$plugin->version  = 2016030701;  // The current module version (Date: YYYYMMDDXX)
+$plugin->version  = 2016042501;  // The current module version (Date: YYYYMMDDXX)
 $plugin->requires = 2013111800;
 $plugin->cron     = 300;           // Period for cron to check this module (secs)
 

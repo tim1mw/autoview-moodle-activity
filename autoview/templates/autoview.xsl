@@ -30,6 +30,7 @@
 <xsl:param name="recordMaxKbps"/>
 <xsl:param name="bodyStyle"/>
 <xsl:param name="themeimport"/>
+<xsl:param name="saveCookieID"/>
 
 <xsl:template match="/">
 <html>
@@ -76,6 +77,9 @@
   </xsl:if>
   <xsl:if test="string-length($recordMaxKbps) &gt; 0">
   setRecordMaxKbps(<xsl:value-of select="$recordMaxKbps" />);
+  </xsl:if>
+  <xsl:if test="string-length($saveCookieID) &gt; 0">
+  setSaveCookieID("<xsl:value-of select="$saveCookieID" />");
   </xsl:if>
   setPreferedLang('<xsl:value-of select="$preferedLang"/>');
   initLang();

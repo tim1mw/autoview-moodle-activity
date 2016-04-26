@@ -84,7 +84,8 @@
   'title' => $autoview->name,
   'preferedLang' => $preferedLang,
   'bodystyle' => 'margin-left:0px;margin-right:0px;',
-  'nojsMessage' => get_string('nojsmessage', 'autoview')."\n\n".$autoview->name."\n".$titles);
+  'nojsMessage' => get_string('nojsmessage', 'autoview')."\n\n".$autoview->name."\n".$titles,
+  'saveCookieID' => $autoview->id);
 
  $parameters['themeimport']=$CFG->wwwroot.'/mod/autoview/import-theme2.js';
 

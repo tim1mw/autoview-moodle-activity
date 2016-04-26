@@ -85,6 +85,7 @@ var qtRefURL="";
 var xmlSubtitle="";
 var baseRef="";
 var baseRefSet=false;
+var saveCookieID="";
 
 var flashServer="", flashHost="", flashCapture="", flashAuthUrl=document.URL;;
 var preferedLang="en";
@@ -516,6 +517,11 @@ function setFlowPlayerVersion(fpv)
 function setEnableHTML5(h)
 {
  enableHTML5=h;
+}
+
+function setSaveCookieID(scid)
+{
+ saveCookieID=scid;
 }
 
 /*****Initial language set up*****/
@@ -1983,13 +1989,17 @@ function saveAVPosition()
  var pos=selectedAVSource.getPosition();
  if (selectedAVSource.type==VIDEO_WINDOWSMEDIA && browser==MSIE)
   pos=currentVideoTime;
- setCookie("autoview3_position", pos, null);
+ setCookie("autoview3_position"+saveCookieID, pos, null);
  setPositionControl();
 }
 
 function loadAVPosition()
 {
- var positionCookie=getCookie("autoview3_position");
+ var positionCookie=getCookie("autoview3_position"+saveCookieID);
+ // Cope with cookies set before the ID was introduced
+ if (positionCookie==null)
+  positionCookie=getCookie("autoview3_position"+saveCookieID);
+
  if (positionCookie!=null)
   selectedAVSource.setPosition(parseInt(positionCookie));
 }
