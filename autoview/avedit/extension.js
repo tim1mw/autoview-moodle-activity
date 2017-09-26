@@ -1209,7 +1209,7 @@ function FlashLiveCapture()
  this.label=label;
  function label()
  {
-  return getString("livecapturemediasource");
+  return getString("livecaptureflash");
  }
 
  this.controllable=controllable;
@@ -1327,7 +1327,7 @@ function MediaSourceCapture()
  this.label=label;
  function label()
  {
-  return getString("livecaptureflash");
+  return getString("livecapturemediasource");
  }
 
  this.controllable=controllable;
