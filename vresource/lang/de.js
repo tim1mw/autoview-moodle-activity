@@ -101,7 +101,6 @@ data["mozplugger"]="MozPlugger Plugin kollidiert mit dem RealPlayer Plugin.";
 data["oldwindowsmedia"]="M\u00f6glicherweise verwenden Sie eine \u00e4ltere Version des Windows Media Players. Stellen Sie sicher, dass Sie die Version 7.1 oder h\u00f6her verwenden. Gehen Sie f\u00fcr eine Aktualisierung zu http://www.microsoft.com/windows/windowsmedia/.";
 data["windowsmediaieonly"]="Warnung: Der Windows Media Player arbeitet nur korrekt mit dem Internet Explorer.";
 data["vlc_notsupported"]="Warnung: Der VideoLAN\u002dPlayer wird nicht von Ihrem Web\u002dBrowser unterst\u00fctzt.";
-data["qtrefmissing"]="Die URL liefert ein Video als Quicktime\u002dStream, aber auf diesem Server ist kein Quicktime\u002dReferenz\u002dGenerator installiert, was eine korrekte Darstellung vermutlich verhindert. ";
 data["helpurl"]="en";
 data["noprint"]="Es wurden keine druckbaren Folien gefunden.";
 data["print"]="Drucken";

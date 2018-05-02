@@ -12,7 +12,6 @@
 <xsl:param name="htmlbase"/>
 <xsl:param name="vresource"/>
 <xsl:param name="extension"/>
-<xsl:param name="qtrefurl"/>
 <xsl:param name="xmlsubtitle"/>
 <xsl:param name="aveditdir"/>
 <xsl:param name="flashserver"/>
@@ -58,7 +57,6 @@
   setBaseRef("<xsl:value-of select="$htmlbase" />");
   </xsl:if>
   setVresourcePath("<xsl:value-of select="$vresource" />");
-  setQTRefURL("<xsl:value-of select="$qtrefurl" />");
   setXMLSubtitle("<xsl:value-of select="$xmlsubtitle" />");
   <xsl:if test="string-length($exitURL) &gt; 0">
   setExitURL("<xsl:value-of select="$exitURL" />");

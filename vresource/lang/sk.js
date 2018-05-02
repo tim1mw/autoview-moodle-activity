@@ -94,7 +94,6 @@ data["mozplugger"]="MozPlugger plugin je interferuj\u00face s RealPlayer plugin.
 data["oldwindowsmedia"]="Zistili sme, \u017ee by ste mohli by\u0165 s pou\u017eit\u00edm star\u0161ej verzie Windows Media Player. Uistite sa, \u017ee m\u00e1te verziu 7.1 alebo vy\u0161\u0161\u00ed, cho\u010fte na http://www.microsoft.com/windows/windowsmedia/ na stiahnutie.";
 data["windowsmediaieonly"]="Upozornenie: Program Windows Media Player re\u017eime pracuje spr\u00e1vne len v Internet Exploreri.";
 data["vlc_notsupported"]="Upozornenie: VideoLAN Player nie je podporovan\u00fd vo va\u0161om webovom prehliada\u010di.";
-data["qtrefmissing"]="URL pre toto video je priamo odkazovanie na jeden Quicktime stream, ale tento server nem\u00e1 Quicktime referen\u010dn\u00e9 gener\u00e1tor in\u0161talovan\u00fd, tak\u017ee je nepravdepodobn\u00e9, \u017ee by sa do pr\u00e1ce.";
 data["helpurl"]="en";
 data["noprint"]="Nie vytla\u010dite\u013enej sn\u00edmky neboli n\u00e1jden\u00e9.";
 

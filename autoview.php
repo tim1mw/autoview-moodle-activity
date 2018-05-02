@@ -78,7 +78,6 @@
  $parameters = array(
   'vresource' => $CFG->wwwroot.'/mod/autoview/vresource/',
   'htmlbase' => $avs->get_htmlbase($course->id),
-  'qtrefurl' => $CFG->wwwroot.'/mod/autoview/qtref.php?l='.$l.'&qturl=',
   'xmlsubtitle' => $CFG->wwwroot.'/mod/autoview/subtitles.php?l='.$l.'&subfile=',
   'exitURL' => $exitURL,
   'title' => $autoview->name,

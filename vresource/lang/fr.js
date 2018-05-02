@@ -99,7 +99,6 @@ data["mozplugger"]="Le plugin MozPlugger interf\u00e8re avec le plugin RealPlaye
 data["oldwindowsmedia"]="Vous disposez probablement d\u0027une ancienne version de Windows Media Player. Nous vous sugg\u00e9rons d\u0027installer une version sup\u00e9rieure ou \u00e9gale \u00e0 la 7.1, Consulter le site http://www.microsoft.com/windows/windowsmedia/ .";
 data["windowsmediaieonly"]="Attention : Le player Windows ne fonctionne que dans Internet Explorer.";
 data["vlc_notsupported"]="Attention : Le player VideoLAN n\u0027est support\u00e9 par votre navigateur Web.";
-data["qtrefmissing"]="L\u0027URL de cette vid\u00e9o fait r\u00e9f\u00e9rence \u00e0 un flux Quicktime en ligne sur un serveur ne disposant pas d\u0027un serveur appropri\u00e9. La vid\u00e9o ne fonctionnera pas.";
 data["helpurl"]="en";
 data["noprint"]="Aucune diapositive imprimable trouv\u00e9e.";
 data["print"]="Imprimer";

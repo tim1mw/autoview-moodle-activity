@@ -99,7 +99,6 @@ data["mozplugger"]="MozPlugger plugin est\u00e1 interfiriendo con el programa Re
 data["oldwindowsmedia"]="Hemos detectado que usted pueda estar utilizando una versi\u00f3n antigua de Windows Media Player. Por favor, aseg\u00farese de que usted tiene la versi\u00f3n 7,1 o mayor, vaya a http://www.microsoft.com/windows/windowsmedia/ para descargar.";
 data["windowsmediaieonly"]="Advertencia: El modo del  Windows Media Player solo trabaja correctamente en Internet Explorer. ";
 data["vlc_notsupported"]="Advertencia: El VideoLAN Player no es compatible con su navegador web";
-data["qtrefmissing"]="El URL de este video est\u00e1 directamente vinculado a una l\u00ednea Quicktime, pero este servidor no tiene el generador Quicktime instalado, por lo que no se puede realizar la operaci\u00f3n";
 data["noprint"]="No se han encontrado diapositivas imprimibles";
 data["print"]="Imprimir";
 

@@ -131,9 +131,6 @@ data["oldwindowsmedia"]="We have detected that you might be using an old version
 data["windowsmediaieonly"]="Warning : Windows Media Player mode only works correctly in Internet Explorer.";
 data["vlc_notsupported"]="Warning : The VideoLAN Player is not supported on your web browser.";
 
-data["qtrefmissing"]="The URL for this video is directly referencing a Quicktime stream, but this server does not have a Quicktime "+
- "reference generator installed, so this is unlikely to work.";
-
 data["helpurl"]="en";
 
 data["noprint"]="No printable slides have been found.";

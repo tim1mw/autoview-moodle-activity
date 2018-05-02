@@ -100,7 +100,6 @@ data["mozplugger"]="O plugin MozPlugger est\u00e1 interferindo com o plugin do R
 data["oldwindowsmedia"]="Foi detectado que voc\u00ea pode estar utilizando uma vers\u00e3o antiga do Windows Media Player. \u00e9 necess\u00e1rio ter a vers\u00e3o 7.1 ou posterior; para obt\u00ea\u002dla, v\u00e1 a http://www.microsoft.com/windows/windowsmedia/ ";
 data["windowsmediaieonly"]="Aviso: o arquivo Windows Media Player s\u00f3 funciona corretamente no Internet Explorer.";
 data["vlc_notsupported"]="Aviso: O VideoLan Player n\u00e3o \u00e9 compat\u00edvel com seu navegador.";
-data["qtrefmissing"]="A URL deste v\u00eddeo est\u00e1 referenciando diretamente um stream (fluxo) Quicktime, mas o servidor n\u00e3o tem um gerador de refer\u00eancia Quicktime instalado, portanto, \u00e9 improv\u00e1vel que funcione.";
 data["helpurl"]="pt";
 data["noprint"]="N\u00e3o foram encontrados slides imprim\u00edveis";
 data["print"]="Imprimir";
