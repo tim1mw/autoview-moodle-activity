@@ -2152,7 +2152,7 @@ function setHideVideo(x)
 // Variables used for plugin detection
 
 var hasQuicktime=false, hasRealPlayer=false, hasJavaPlugin=false, hasFlash=false, hasAcrobat=false, hasWindowsMedia=false, vbDetectOK=false,
-hasVLC=false, hasSilverlight=false, hasFlashLite=false;
+hasVLC=false, hasSilverlight=false;
 var qtVersion, realVersion, wmVersion=0;
 
 function detectPlugins()
@@ -2171,17 +2171,6 @@ function detectPlugins()
    hasAcrobat=findPlugin("adobe reader");
   if (hasAcrobat==false)
    hasAcrobat=findPlugin("nppdf.so");
-
-  /****Flash Lite doesn't have a different plugin name, but you can detect it in the file name property****/
-  for (var loop=0; loop<navigator.plugins.length; loop++)
-  {
-   if (navigator.plugins[loop].filename.toLowerCase().indexOf("flashlite")>-1)
-   {
-    hasFlashLite=true;
-    hasFlash=false;
-    break;
-   }
-  }
  }
  else
   wmVersion=parseInt(wmVersion);
@@ -2963,11 +2952,6 @@ function OOFlashSlide(url)
  this.isValid=isValid;
  function isValid()
  {
-  /*Slide triggers don't work with Flash Lite
-  if (hasFlash || hasFlashLite)
-   return true;
-  return false;
-  */
   return hasFlash;
  }
 
@@ -3252,7 +3236,7 @@ function SeparateFlashSlide(url)
  this.isValid=isValid;
  function isValid()
  {
-  if (hasFlash || hasFlashLite)
+  if (hasFlash)
    return true;
 
   return false;
@@ -3547,36 +3531,10 @@ function FlashVideo(url,speed)
        (this.url.indexOf(".mp3")>-1 || this.url.indexOf(".MP3")>-1))
    useFlowPlayer=1;
 
-  if (hasFlashLite)
-   return this.getDandelionHTML(urlToUse);
-  else
   if (useFlowPlayer==1)
    return this.getFlowPlayerHTML(urlToUse);
   else
    return this.getFlowPlayer3HTML(urlToUse);
- }
-
- this.getDandelionHTML=getDandelionHTML;
- function getDandelionHTML(urlToUse)
- {
-  var width=avWidth;
-  var height=avHeight+22;
-
-  var data='type="application/x-shockwave-flash" data="'+vresourcePath+'dandelion.swf"\n';
-  if (browser==MSIE)
-   data='classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"\n'+
-   'codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0"';
-
-  if (urlToUse.indexOf(flashServer)>-1)
-   urlToUse=urlToUse+"?"+flashHost.substring(7)+"?"+getFlashAuth();
-  
-  return '<object '+data+' width="'+width+'" height="'+height+'" id="dandelionPlayer">\n'+
-   ' <param name="movie" value="'+vresourcePath+'dandelion.swf" />\n'+ 
-   ' <param name="quality" value="high" />\n'+
-   ' <param name="scale" value="noScale" />\n'+
-   ' <param name="allowScriptAccess" value="always" />\n'+
-   ' <param name="flashvars" value="file='+urlToUse+'" />\n'+
-   '<\/object>\n';
  }
 
  this.getFlowPlayerHTML=getFlowPlayerHTML;
@@ -3694,9 +3652,6 @@ function FlashVideo(url,speed)
  this.getPlayer=getPlayer;
  function getPlayer()
  {
-  if (hasFlashLite)
-    return document.dandelionPlayer;
-  else
   if (useFlowPlayer==1)
     return document.flowPlayer;
   else
@@ -3706,8 +3661,6 @@ function FlashVideo(url,speed)
  this.setPosition=setPosition;
  function setPosition(pos)
  {
-  if (hasFlashLite)
-   return;
 
   /***Adjust so that we always go to the key frame ahead of the specified position***/
   pos=pos+1500;
@@ -3723,11 +3676,6 @@ function FlashVideo(url,speed)
  {
   if (typeof(getPlayer())!="undefined" && getPlayer()!=null)
   {
-   if (hasFlashLite)
-   {
-    return parseInt(getPlayer().GetVariable("time")*1000);
-   }
-
    return parseInt(getPlayer().getTime()*1000);
   }
   else
@@ -3737,9 +3685,6 @@ function FlashVideo(url,speed)
  this.stopPlayer=stopPlayer;
  function stopPlayer()
  {
-  if (hasFlashLite)
-   return;
-
   if (useFlowPlayer==1)
    getPlayer().Pause();
   else
@@ -3749,9 +3694,6 @@ function FlashVideo(url,speed)
  this.startPlayer=startPlayer;
  function startPlayer()
  {
-  if (hasFlashLite)
-   return;
-
   if (useFlowPlayer==1)
    getPlayer().DoPlay();
   else
@@ -3769,16 +3711,13 @@ function FlashVideo(url,speed)
  this.controllable=controllable;
  function controllable()
  {
-   if (hasFlashLite)
-    return false;
-
    return true;
  }
 
  this.isValid=isValid;
  function isValid()
  {
-  if (hasFlash || hasFlashLite)
+  if (hasFlash)
    return true;
   else
    return false;
