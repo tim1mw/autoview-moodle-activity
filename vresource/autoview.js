@@ -104,7 +104,6 @@ var langList;
 var videoSet=false, slideSet=false, subtitleSet=false;
 var monitor;
 var flashInteract=false;
-var mozpluggerBreaksReal=false, hasMozPlugger=false;
 var hideVideo=false;
 var blockReal=false;
 var enableHTML5=true;
@@ -2151,7 +2150,6 @@ function detectPlugins()
 {
  if (vbDetectOK==false) 
  {
-  hasMozPlugger=findPlugin("mozplugger");
   hasRealPlayer=findPlugin("realplayer");
   hasQuicktime=findPlugin("quicktime");
   hasJavaPlugin=findPlugin("java");
@@ -2245,25 +2243,6 @@ function detectPlugins()
 
  if (typeof(qtVersion)=="string")
   qtVersion=parseInt(qtVersion);
-
- /*****Check for mozplugger*****/
- 
- if (ostype==LINUX && hasMozPlugger && hasRealPlayer)
- {
-  for (var loop=0; loop<navigator.mimeTypes.length; loop++)
-  {
-   if (navigator.mimeTypes.item(loop).type=="audio/x-pn-realaudio-plugin")
-   {
-    if (navigator.mimeTypes.item(loop).enabledPlugin.name.indexOf("RealPlayer")>-1)
-     break;
-    if (navigator.mimeTypes.item(loop).enabledPlugin.name.indexOf("MozPlugger")>-1)
-    {
-     mozpluggerBreaksReal=true;
-     break;
-    }
-   }
-  }
- }
 }
 
 function findPlugin(toFind)
