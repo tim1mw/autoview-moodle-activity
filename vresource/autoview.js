@@ -105,8 +105,6 @@ var videoSet=false, slideSet=false, subtitleSet=false;
 var monitor;
 var flashInteract=false;
 var hideVideo=false;
-var blockReal=false;
-var enableHTML5=true;
 var popupSlideWindow;
 var fixPos=false;
 
@@ -480,20 +478,6 @@ function setPreferedLang(pfl)
  preferedLang=pfl;
 }
 
-function setBlockReal(br)
-{
- blockReal=br;
-}
-
-function setFlowPlayerVersion(fpv)
-{
-}
-
-function setEnableHTML5(h)
-{
- enableHTML5=h;
-}
-
 function setSaveCookieID(scid)
 {
  saveCookieID=scid;
@@ -631,24 +615,6 @@ function initPresentation(printHTML)
 {
  if (typeof(printHTML)=="undefined")
   printHTML=true;
-
- if (blockReal)
- {
-  if (hasRealPlayer || findPlugin("realplayer"))
-  {
-   document.writeln("<p>Browsers with Real Player installed are not allowed to view this presentation because of the presence of the "+
-    "'Download this Video' function in Real Player. "+
-    "In order to access this presentation, please disable the Real Player plugin in your browser.</p>"+
-    "<p><b>Firefox</b> users can disable the Real Player plugin without having to remove it completely by clicking on the Tools>Add-ons "+
-    "menu option, selecting the plugins option and then by disabling the various Real Player plugins listed on the resulting page.</p>"+
-    "<p><b>Internet Explorer</b> users should click the Tools>Internet Options menu, select the Programs tab and the click the Manage Add-ons button. "+
-    "You should then be able to select and disable the Real Player G2 control from the plugins list. You may need to show all add-ons for "+
-    " the control to be shown on the add-ons list.</p>"+
-    "<p>You can remove Real Player from your computer completely by following the instructions on "+
-    "<a target='_blank' href='http://www.bbc.co.uk/radio/help/faq/uninstall_realplayer.shtml'>http://www.bbc.co.uk/radio/help/faq/uninstall_realplayer.shtml</a>.</p>");
-   return;
-  }
- }
 
  detectBrowser();
  calculateFrameSize();
@@ -3944,5 +3910,15 @@ function RealPlayerVideo(url,speed,useMonitor)
 
 /*****Flash Video control class for live broadcasts*****/
 function FlashVideoBroadcast(url)
+{
+}
+
+// Redundant config methods.
+
+function setFlowPlayerVersion(fpv)
+{
+}
+
+function setEnableHTML5(h)
 {
 }
