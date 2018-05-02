@@ -308,11 +308,7 @@ function printMobileHMTL()
 
 function printExtraHTML()
 {
- document.writeln("  <!-- Legacy event method for Autoview 2 encoded RealPlayer files -->\n"+
-  "  <iframe class=\"hiddenframe\" name=\"video\" src=\""+vresourcePath+"real.html\" id=\"video\">\n"+
-  "  </iframe>\n"+
-  "  <!-- End of legacy support -->\n"+
-  "  <iframe class=\"hiddenframe\" name=\"jsFileLoader\"></iframe>\n");
+ document.writeln("<iframe class=\"hiddenframe\" name=\"jsFileLoader\"></iframe>\n");
 }
 
 /*****Methods for popup slides window*****/
