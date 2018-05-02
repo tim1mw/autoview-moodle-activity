@@ -74,7 +74,7 @@ var baseRef="";
 var baseRefSet=false;
 var saveCookieID="";
 
-var flashServer="", flashHost="", flashCapture="", flashAuthUrl=document.URL;;
+var flashServer="", flashHost="", flashAuthUrl=document.URL;;
 var preferedLang="en";
 var user="";
 var presentationLoaded=false;
@@ -456,11 +456,10 @@ function setXMLSubtitle(xsub)
  xmlSubtitle=xsub;
 }
 
-function setFlashParams(fs, fh, fc)
+function setFlashParams(fs, fh)
 {
  flashHost=fh;
  flashServer=fs;
- flashCapture=fc;
 }
 
 function setFlashAuthUrl(au)

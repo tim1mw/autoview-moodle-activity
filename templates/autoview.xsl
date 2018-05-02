@@ -15,7 +15,6 @@
 <xsl:param name="xmlsubtitle"/>
 <xsl:param name="aveditdir"/>
 <xsl:param name="flashserver"/>
-<xsl:param name="flashcapture"/>
 <xsl:param name="flashhost"/>
 <xsl:param name="flashpath"/>
 <xsl:param name="flashrecord"/>
@@ -62,7 +61,7 @@
   setExitURL("<xsl:value-of select="$exitURL" />");
   </xsl:if>
   <xsl:if test="string-length($flashserver) &gt; 0">
-  setFlashParams("<xsl:value-of select="$flashserver" />", "<xsl:value-of select="$flashhost" />", "<xsl:value-of select="$flashcapture" />");
+  setFlashParams("<xsl:value-of select="$flashserver" />", "<xsl:value-of select="$flashhost" />" />");
   </xsl:if>
   <xsl:if test="string-length($aveditdir) &gt; 0">
   setAVEditDir("<xsl:value-of select="$aveditdir" />");

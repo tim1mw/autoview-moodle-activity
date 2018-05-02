@@ -38,19 +38,11 @@
 
  /***Check other permissions***/
  $canedit=false;
- $canrecordflash=false;
- $canbroadcastflash=false;
 
  /***Only set these values if we are editing***/
  if ($editval)
  {
   $canedit=has_capability('mod/autoview:canedit', $context);
-  /***Can only be true if this user is allowed to edit***/
-  if ($canedit)
-  {
-   $canrecordflash=has_capability('mod/autoview:canrecordflash', $context);
-   $canbroadcastflash=has_capability('mod/autoview:canbroadcastflash', $context);
-  }
  }
 
  /***If this is just an auth request, deal with it and exit***/
@@ -96,27 +88,12 @@
  }
 
  /***This server has flash based live capture*****/
- if (strlen(trim($av_config->flashserver))>0 && strlen(trim($av_config->flashcapture))>0)
+ if (strlen(trim($av_config->flashserver))>0)
  {
   /***Common parameters for anybody using the flash system***/
   $parameters['flashhost']=$CFG->wwwroot;
-  $parameters['flashcapture']=$av_config->flashcapture;
   $parameters['flashserver']=$av_config->flashserver;
   $parameters['user']=$USER->firstname." ".$USER->lastname;
-
-  /***Permissions for flash usage***/
-  if ($canrecordflash || $canbroadcastflash)
-  {
-   $parameters['flashrecord']=$canrecordflash;
-   $parameters['flashbroadcast']=$canbroadcastflash;
-   if (isset($av_config->max_record_kbps))
-    $parameters['recordMaxKbps']=$av_config->max_record_kbps;
-   $fp=dirname($autoview->configfile);
-   if ($fp==".")
-    $parameters['flashpath']="";
-   else
-    $parameters['flashpath']=$fp;
-  }
  }
 
  /***Advanced stuff***/
