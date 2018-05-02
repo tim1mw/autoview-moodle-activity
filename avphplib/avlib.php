@@ -6,22 +6,6 @@
 
 /***This is where all of the generic PHP code which can be re-used for other PHP implementations should be placed***/
 
-include_once('refmovie.inc.php' );
-
-function sendQTRefMovie($qturl)
-{
- $RefMovie=new QTRefMovie();
- $DataReference=new QTDataReference($qturl);
- $MovieDescriptor=new QTRefMovieDescriptor();
- $MovieDescriptor->addChunk($DataReference);
- $RefMovie->addChunk($MovieDescriptor);
- $Movie=new QTMovie();
- $Movie->addChunk($RefMovie);
-
- header("Content-type: video/quicktime");
- echo $Movie->toString();
-}
-
 function process_xsl($datafile, $stylesheetfile, $parameters)
 {
  if (class_exists('XSLTProcessor'))
