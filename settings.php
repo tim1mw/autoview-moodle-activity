@@ -20,17 +20,10 @@ $settings->add(new admin_setting_heading('autoview/main_heading', "",
 
 $settings->add(new admin_setting_heading('autoview/storage_heading', get_string("storagetitle", "autoview"),""));
 
-//$storage=array(AUTOVIEW_STORAGE_INTERNAL=>get_string('internal_storage', 'autoview'), AUTOVIEW_STORAGE_EXTERNAL=>get_string('external_storage', 'autoview'));
 $storage=array(AUTOVIEW_STORAGE_INTERNAL=>get_string('internal_storage', 'autoview'));
 
 $settings->add(new admin_setting_configselect('autoview/storage_type', get_string('config_storage_type', 'autoview'),
                    get_string('config_storage_type2', 'autoview'), AUTOVIEW_STORAGE_INTERNAL, $storage));
-
-$settings->add(new admin_setting_configtext('autoview/external_filekey', get_string("configexternalfilekey", "autoview"),
-                   get_string("configexternalfilekey2", "autoview"), "", PARAM_TEXT));
-
-$settings->add(new admin_setting_configtext('autoview/external_fileloc', get_string("configexternalfileloc", "autoview"),
-                   get_string("configexternalfileloc2", "autoview"), "", PARAM_TEXT));
 
 
 $settings->add(new admin_setting_heading('autoview/lecture_capture_heading', get_string("flashcapturetitle", "autoview"),

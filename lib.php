@@ -7,7 +7,6 @@
 
 define("AUTOVIEW_MAX_NAME_LENGTH", 50);
 define("AUTOVIEW_STORAGE_INTERNAL", 0);
-define("AUTOVIEW_STORAGE_EXTERNAL", 1);
 require_once("avphplib/avlib.php");
 
 global $CFG;
@@ -155,14 +154,6 @@ function autoview_get_file_storage($type)
   include_once("storage/internal.php");
   return new av_internal_file_storage();
  }
-
- /*
- if ($type==AUTOVIEW_STORAGE_EXTERNAL)
- {
-  include_once("storage/external.php");
-  return new av_external_file_storage();
- }
- */
 
  include_once("storage/generic.php");
  return new av_generic_file_storage();

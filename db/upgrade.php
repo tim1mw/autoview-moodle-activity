@@ -114,6 +114,12 @@ function xmldb_autoview_upgrade($oldversion=0)
      unset_config("autoview_js_extras");
  }
 
+ if ($oldversion < 2018050202)
+ {
+     unset_config("external_filekey", "autoview");
+     unset_config("external_fileloc", "autoview");
+ }
+
  return true;
 }
 
