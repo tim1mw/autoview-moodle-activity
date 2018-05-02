@@ -69,7 +69,6 @@ var subtitleHeight=70;
 var exitURL="";
 var autoStart=true, autoStartDefault=true;
 var editing=false;
-var qtRefURL="";
 var xmlSubtitle="";
 var baseRef="";
 var baseRefSet=false;
@@ -453,11 +452,6 @@ function setSubtitlesActive(t)
   t=false;
  subtitlesActiveDefault=t;
  subtitlesActive=t;
-}
-
-function setQTRefURL(qt)
-{
- qtRefURL=qt;
 }
 
 function setXMLSubtitle(xsub)
