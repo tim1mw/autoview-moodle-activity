@@ -2142,45 +2142,17 @@ function setHideVideo(x)
 
 // Variables used for plugin detection
 
-var hasQuicktime=false, hasRealPlayer=false, hasJavaPlugin=false, hasFlash=false, hasAcrobat=false, hasWindowsMedia=false, vbDetectOK=false,
-hasVLC=false, hasSilverlight=false;
-var qtVersion, realVersion, wmVersion=0;
+var hasFlash=false, hasAcrobat=false, vbDetectOK=false;
 
 function detectPlugins()
 {
  if (vbDetectOK==false) 
  {
-  hasRealPlayer=findPlugin("realplayer");
-  hasQuicktime=findPlugin("quicktime");
-  hasJavaPlugin=findPlugin("java");
-  hasFlash=findPlugin("shockwave flash");
-  hasSilverlight=findPlugin("silverlight");
-  hasVLC=findPlugin("vlc multimedia");
   hasAcrobat=findPlugin("adobe acrobat");
   if (hasAcrobat==false)
    hasAcrobat=findPlugin("adobe reader");
   if (hasAcrobat==false)
    hasAcrobat=findPlugin("nppdf.so");
- }
- else
-  wmVersion=parseInt(wmVersion);
-
- if ( (browser==MSIE || browser==KONQUEROR || browser==OPERA || browser==CHROME) && hasJavaPlugin==false)
-   hasJavaPlugin=navigator.javaEnabled();
-
- /*****Disable plugins for browsers where they are known not to work*****/
-
- if (ostype==LINUX || ostype==SUNOS)
- {
-  /*****Make sure we have a recent version of the unix real player. Older ones don't work properly*****/
-  if (findPlugin("Helix DNA") || findPlugin("RealPlayer(tm) G2 LiveConnect-Enabled Plug-In (32-bit)"))
-   hasRealPlayer=true;
-  else
-   hasRealPlayer=false;
-
-  /*****Real Player fails in Opera/Konqueror on unix*****/
-  if (browser==OPERA || browser==KONQUEROR)
-   hasRealPlayer=false;
  }
 
  /*****Check slide interaction controls for non-ie browsers*****/
@@ -2204,45 +2176,6 @@ function detectPlugins()
     flashInteract=false;
   }
  }
-
- /*****Find Plugin Versions*****/
- for (var loop=0; loop<navigator.plugins.length; loop++)
- {
-  /*****This works for the windows plugin*****/
-  if (navigator.plugins[loop].name.indexOf("RealPlayer Version Plugin")>-1)
-   realVersion=navigator.plugins[loop].description;
-  else
-  if (navigator.plugins[loop].name.indexOf("Helix DNA Plugin:")>-1)
-  {
-   var i=navigator.plugins[loop].description.indexOf("version ");
-   var j=navigator.plugins[loop].description.indexOf(" built with");
-   realVersion=navigator.plugins[loop].description.substring(i+8,j);
-  }
-  else
-  if (navigator.plugins[loop].name.indexOf("QuickTime")>-1)
-  {
-   var i=navigator.plugins[loop].name.lastIndexOf("Plug-in ")+8;
-   qtVersion=navigator.plugins[loop].name.substring(i);
-   var index=qtVersion.indexOf(".");
-   while(index>0)
-   {
-    qtVersion=qtVersion.substring(0,index)+qtVersion.substring(index+1);
-    index=qtVersion.indexOf(".");
-   }
-   i=qtVersion.indexOf(" ");
-   if (i>0)
-    qtVersion=qtVersion.substring(0,i);
-   qtVersion=parseInt(qtVersion);
-   if (qtVersion<10)
-    qtVersion=qtVersion*100;
-   if (qtVersion<100)
-    qtVersion=qtVersion*10;
-   qtVersion=qtVersion*10000;
-  }
- }
-
- if (typeof(qtVersion)=="string")
-  qtVersion=parseInt(qtVersion);
 }
 
 function findPlugin(toFind)
