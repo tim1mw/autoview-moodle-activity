@@ -176,7 +176,7 @@
 
    function autoview_show_navigation($course, $context, $cm, $editval)
    {
-       global $CFG;
+       global $CFG, $OUTPUT;
        $buttontext="";
        if (has_capability('mod/autoview:canedit', $context))
        {
@@ -194,7 +194,8 @@
           $buttontext=$buttontext."<input type=\"hidden\" name=\"id\" value=\"".$cm->id."\" />".
            "</div></form>&nbsp;";
 
-          $buttontext=$buttontext.update_module_button($cm->id, $course->id, get_string("modulename", "autoview"));
+          $url = new moodle_url("$CFG->wwwroot/course/mod.php", array('update' => $cm->id, 'return' => true, 'sesskey' => sesskey()));
+          $buttontext=$buttontext.$OUTPUT->single_button($url, get_string('updatethis', '', get_string("modulename", "autoview")));
        }
 
         if ($course->id == 1){
