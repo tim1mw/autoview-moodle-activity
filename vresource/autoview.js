@@ -109,7 +109,6 @@ var mozpluggerBreaksReal=false, hasMozPlugger=false;
 var hideVideo=false;
 var blockReal=false;
 var enableHTML5=true;
-var useFlowPlayer=3;
 var popupSlideWindow;
 var fixPos=false;
 
@@ -495,7 +494,6 @@ function setBlockReal(br)
 
 function setFlowPlayerVersion(fpv)
 {
- useFlowPlayer=fpv;
 }
 
 function setEnableHTML5(h)
@@ -3524,59 +3522,7 @@ function FlashVideo(url,speed)
   else
    urlToUse=baseRef+this.url;
 
-  if (baseRef.indexOf("file:/")>-1)
-   useFlowPlayer=1;
-
-  if ( this.url.indexOf("rtmp://")<0 && this.url.indexOf("$flashserver/")<0 &&
-       (this.url.indexOf(".mp3")>-1 || this.url.indexOf(".MP3")>-1))
-   useFlowPlayer=1;
-
-  if (useFlowPlayer==1)
-   return this.getFlowPlayerHTML(urlToUse);
-  else
-   return this.getFlowPlayer3HTML(urlToUse);
- }
-
- this.getFlowPlayerHTML=getFlowPlayerHTML;
- function getFlowPlayerHTML(urlToUse)
- {
-  var width=avWidth;
-  var height=avHeight+22;
-
-  var data='type="application/x-shockwave-flash" data="'+vresourcePath+'FlowPlayer.swf"\n';
-  if (browser==MSIE)
-   data='classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"\n'+     
-   'codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0"';
-
-  var cfg="loop:false, autoPlay: false, initialScale: 'fit'";
-
-  if (urlToUse.indexOf("rtmp://")>-1)
-  {
-   var i=0;
-   for (l=0; l<4 && i>-1; l++)
-    i=urlToUse.indexOf("/", i+1);
-   var file=urlToUse.substring(i+1);
-   var server=urlToUse.substring(0,i);
-   /*****Check if this is an AutoView Live capture recording and append access parameters*****/
-   if (server.indexOf(flashServer)>-1)
-    server=server+"?"+flashHost+"?"+getFlashAuth();
-
-   cfg=cfg+", live: false, streamingServer: 'fms', streamingServerURL: '"+server+"', videoFile: '"+file+"'";
-  }
-  else
-   cfg=cfg+", videoFile: '"+urlToUse+"'";
-
-  if (slideSet)
-   cfg=cfg+", showMenu:false";
-
-
-  return '<object '+data+' width="'+width+'" height="'+height+'" id="flowPlayer">\n'+
-   ' <param name="movie" value="'+vresourcePath+'FlowPlayer.swf" />\n'+ 
-   ' <param name="quality" value="high" />\n'+
-   ' <param name="scale" value="noScale" />\n'+
-   ' <param name="allowScriptAccess" value="always" />\n'+
-   ' <param name="flashvars" value="config={'+cfg+'}" />\n'+
-   '<\/object>\n';
+  return this.getFlowPlayer3HTML(urlToUse);
  }
 
  this.getFlowPlayer3HTML=getFlowPlayer3HTML;
@@ -3652,10 +3598,7 @@ function FlashVideo(url,speed)
  this.getPlayer=getPlayer;
  function getPlayer()
  {
-  if (useFlowPlayer==1)
-    return document.flowPlayer;
-  else
-   return $f("flowPlayer");
+  return $f("flowPlayer");
  }
 
  this.setPosition=setPosition;
@@ -3665,10 +3608,7 @@ function FlashVideo(url,speed)
   /***Adjust so that we always go to the key frame ahead of the specified position***/
   pos=pos+1500;
 
-  if (useFlowPlayer==1)
-   getPlayer().Seek(pos/1000);
-  else
-   getPlayer().seek(pos/1000);
+  getPlayer().seek(pos/1000);
  }
 
  this.getPosition=getPosition;
@@ -3685,21 +3625,13 @@ function FlashVideo(url,speed)
  this.stopPlayer=stopPlayer;
  function stopPlayer()
  {
-  if (useFlowPlayer==1)
-   getPlayer().Pause();
-  else
-   getPlayer().pause();
+  getPlayer().pause();
  }
 
  this.startPlayer=startPlayer;
  function startPlayer()
  {
-  if (useFlowPlayer==1)
-   getPlayer().DoPlay();
-  else
-  {
-   getPlayer().play();
-  }
+  getPlayer().play();
  }
 
  this.label=label;
