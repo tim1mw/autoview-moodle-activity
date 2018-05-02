@@ -8,22 +8,10 @@
 
 *************************************************************************/
 
-/*****Server defaults*****/
-var REALPLAYER_SERVER="http://video.autotrain.org.uk/ramgen/";
-var WINDOWSMEDIA_SERVER="http://video.autotrain.org.uk/asxgen/";
-var MPEG4_SERVER="rtsp://darwin.autotrain.org.uk";
-
 /*****Video types*****/
 
 var VIDEO_NONE=0;
-var VIDEO_REALPLAYER=1;
-var VIDEO_QUICKTIME=2;
-var VIDEO_JAVAAUDIO=3;
-var VIDEO_WINDOWSMEDIA=4;
-var VIDEO_VLC=5;
 var VIDEO_FLASH=6;
-var VIDEO_SILVERLIGHT=7;
-var VIDEO_FLASHBROADCAST=8;
 var VIDEO_HTML5=9;
 
 var SPEED_NONE=0;
@@ -1189,7 +1177,7 @@ function setMessage()
 
 function setPositionControl()
 {
- if (selectedAVSource.controllable()==false || showPositionControls==false || selectedAVSource.type==VIDEO_WINDOWSMEDIA)
+ if (selectedAVSource.controllable()==false || showPositionControls==false)
  {
   setElementHTML("positioncontrol", "");
   return;
@@ -1934,10 +1922,7 @@ function endPause()
 {
  setElementHTML("messageblock", "");
  selectedAVSource.startPlayer();
- if (selectedAVSource.type==VIDEO_WINDOWSMEDIA)
-  setSlide(currentSlide+1, true);
- else
-  setSlide(currentSlide+1, false);
+ setSlide(currentSlide+1, false);
 }
 
 function setActiveThumbnail(pos)
@@ -1969,8 +1954,6 @@ function setActiveThumbnail(pos)
 function saveAVPosition()
 {
  var pos=selectedAVSource.getPosition();
- if (selectedAVSource.type==VIDEO_WINDOWSMEDIA && browser==MSIE)
-  pos=currentVideoTime;
  setCookie("autoview3_position"+saveCookieID, pos, null);
  setPositionControl();
 }
@@ -2122,9 +2105,6 @@ function setSubtitlesOn(o)
  setCookie("autoview3_subtitles", subtitlesActive, null);
  if (subtitlesActive)
   loadSubtitles();
-
- //if (selectedAVSource.type==VIDEO_JAVAAUDIO && subtitlesActive==true)
- // showMessage(getString("javaaudiosubtitles"));
 
  calculateSizes();
  setSubtitleControls();
@@ -2541,9 +2521,6 @@ function monitorPosition()
    monPosSub=sub;
    setSubtitleIfSync(sub,false);
   }
-
-  if (selectedAVSource.type==VIDEO_VLC)
-   selectedAVSource.updateTimeDisplay();
  }
  catch (e)
  {
@@ -3423,9 +3400,6 @@ function slideLoadFinished()
    autoStart=false;
   }
   else
-  if (autoStart && selectedAVSource.type==VIDEO_FLASHBROADCAST)
-   setTimeout("selectedAVSource.startPlayer();", 1000);
-  else
    setTimeout("selectedAVSource.stopPlayer();", 1000);
  }
 }
@@ -3827,146 +3801,6 @@ function FlashVideo(url,speed)
  }
 }
 
-
-/*****Flash Video control class for live broadcasts*****/
-
-function FlashVideoBroadcast(url)
-{
- this.url=url;
- this.speed=SPEED_NONE;
- this.type=VIDEO_FLASHBROADCAST;
-
- this.getHTML=getHTML;
- function getHTML()
- {
-  var width=avWidth;
-  //var height=avHeight*1.95;
-  var height=(avWidth*0.75)*1.95;
-
-  if (height>frameHeight)
-  {
-   height=frameHeight*0.9;
-   //width=(height*0.51)/videoAspect;
-   width=(height*0.51)/0.75;
-  }
-/*
-  if (mobileDevice)
-  {
-   height=350;
-   width=246;
-  }
-*/
-
-  var swfFile=flashCapture+'/avreceive.swf';
-  if (hasFlashLite)
-   swfFile=flashCapture+'/avreceive-lite.swf';
-
-  var data='type="application/x-shockwave-flash" data="'+swfFile+'"\n';
-  if (browser==MSIE)
-   data='classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"\n'+     
-   'codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0"';
-
-  var file="";
-  var server="";
-  if (url.indexOf("$flashserver/")==0)
-  {
-   server=flashServer;
-   file=url.substring(13);
-  }
-  else
-  {
-   var i=0;
-   for (l=0; l<4 && i>-1; l++)
-    i=url.indexOf("/", i+1);
-   file=url.substring(i+1);
-   server=url.substring(0,i);
-  }
-
-  var cfg="server="+server+"&stream="+file+"&flashHost="+flashHost+"&editing="+editing+"&lang="+avLang+"&user="+user;
-  if (videoAspect==0.75)
-   cfg=cfg+"&wide=false";
-  else
-   cfg=cfg+"&wide=true";
-  if (hasFlashLite)
-   cfg=cfg+"&auth="+getFlashAuth();
-
-  var x='<div class="videobak"><object '+data+
-   ' width="'+width+'" height="'+height+'" id="liveFlashPlayer">\n'+
-   ' <param name="movie" value="'+swfFile+'" />\n'+ 
-   ' <param name="quality" value="high" />\n'+
-   ' <param name="allowScriptAccess" value="always" />\n'+
-   ' <param name="scale" value="exactfit" />\n'+
-   ' <param name="allowFullScreen" value="true" />\n'+
-   ' <param name="flashvars" value="'+cfg+'" />\n'+
-   '<\/object></div>\n';
-
-  return x;
- }
-
- this.getPlayer=getPlayer;
- function getPlayer()
- {
-  return document.liveFlashPlayer;
- }
-
- this.setPosition=setPosition;
- function setPosition(pos)
- {
-  // Not possible for live broadcast
- }
-
- this.getPosition=getPosition;
- function getPosition()
- {
-  return -1;
- }
-
- this.stopPlayer=stopPlayer;
- function stopPlayer()
- {
-  getPlayer().disClick();
- }
-
- this.startPlayer=startPlayer;
- function startPlayer()
- {
-  getPlayer().conClick();
- }
-
- this.label=label;
- function label()
- {
-  return getString("flashvideobroadcast");
- }
-
- this.controllable=controllable;
- function controllable()
- {
-  return false;
- }
-
- this.isValid=isValid;
- function isValid()
- {
-  if (hasFlash || hasFlashLite)
-   return true;
-
-  return false;
- }
-
- this.useTimeMonitor=useTimeMonitor;
- function useTimeMonitor()
- {
-  return false;
- }
-
- this.disableMessage=disableMessage;
- function disableMessage()
- {
-  return getString("pluginnotfound");
- }
-}
-
 /****This video wrapper uses the HTML 5 video tag to play videos*****/
 function HTML5Video(url, speed)
 {
@@ -4332,5 +4166,10 @@ function WindowsMediaVideo(url,speed,useMonitor)
 
 /*****RealPlayer control class*****/
 function RealPlayerVideo(url,speed,useMonitor)
+{
+}
+
+/*****Flash Video control class for live broadcasts*****/
+function FlashVideoBroadcast(url)
 {
 }
