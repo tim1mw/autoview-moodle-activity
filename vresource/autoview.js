@@ -42,7 +42,7 @@ var tabletDevice=false;
 
 /*****Some Standard Variables*****/
 
-var VERSION="3.3";
+var VERSION="4";
 
 var VIDEOLEFT=false;
 var VIDEORIGHT=true;
