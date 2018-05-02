@@ -1597,36 +1597,12 @@ function chooseVideo()
    }
  }
 
- /*****If this is a mac browser, look for quicktime by preference*****/
- if (ostype==APPLEMAC)
- {
-  for (var loop=0; loop<avSrc[avLang].length; loop++)
-   if (avSrc[avLang][loop].isValid() && avSrc[avLang][loop].type==VIDEO_QUICKTIME)
-   {
-    selectedAVSource=avSrc[avLang][loop];
-    return;
-   }
- }
-
  /*****Otherwise return the first valid source*****/
  for (var loop=0; loop<avSrc[avLang].length; loop++)
   if (avSrc[avLang][loop].isValid())
   {
    selectedAVSource=avSrc[avLang][loop];
    return;
-  }
-
- /*****VLC Source Substitution*****/
- if (hasVLC && !editing)
-  for (var loop=0; loop<avSrc[avLang].length; loop++)
-  {
-   if (avSrc[avLang][loop].type==VIDEO_QUICKTIME || avSrc[avLang][loop].type==VIDEO_WINDOWSMEDIA || avSrc[avLang][loop].type==VIDEO_FLASH)
-   {
-     var source=new VLCVideo(avSrc[avLang][loop].url, avSrc[avLang][loop].speed);
-     addAVSource(avLang, source);
-     if (typeof(selectedAVSource)=="undefined")
-      selectedAVSource=source;
-   }
   }
 
  if (typeof(selectedAVSource)=="undefined")
