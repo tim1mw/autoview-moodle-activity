@@ -118,6 +118,8 @@ function xmldb_autoview_upgrade($oldversion=0)
  {
      unset_config("external_filekey", "autoview");
      unset_config("external_fileloc", "autoview");
+     set_config("max_broadcast_kbps", "autoview");
+     set_config("max_record_kbps", "autoview");
  }
 
  return true;

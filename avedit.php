@@ -45,9 +45,6 @@
     $alwaysflashstream="false";
     if (isset($av_config->alwaysflashstream) && $av_config->alwaysflashstream)
         $alwaysflashstream="true";
-    $broadcastMaxKbps=256;
-    if (isset($av_config->max_broadcast_kbps))
-        $broadcastMaxKbps=$av_config->max_broadcast_kbps;
 
     $filebrowser=$CFG->wwwroot."/blocks/repo_filemanager/index.php?repoid=".autoview_get_coursefilesarea_id($context).
      "&hiderepolist=1&id=".$course->id."&amp;choose=form.url&amp;shortpath=1";
