@@ -938,7 +938,7 @@ function calculateDisplaySize()
  thumbHeight=slideHeight;
 
  if (hideVideo)
-  avHeight=0;  
+  avHeight=0;
 }
 
 function setSlideScale(dim, isWidth)
@@ -1011,9 +1011,6 @@ function setThumbnailHTML()
  {
   setElementHTML("thumbnails", "<iframe name=\"thumbnailsframe\" width=\""+thumbWidth+"\" height=\""+thumbHeight+"\" marginheight=\"0\" "+
   " frameborder=\"0\" marginwidth=\"0\" ></iframe>\n");
-  //if (browser==MOZILLA)
-  // setTimeout("getThumbnailsFrame().document.writeln(selectedSlides.getAllThumbnails());", 1000);
-  //else
   getThumbnailsFrame().document.writeln(thumbHTML);
  }
  else
@@ -2337,17 +2334,6 @@ function monitorPosition()
  try
  {
   var newVideoTime=selectedAVSource.getPosition();
-/*
-  if (fixPos)
-  {
-   var diff=newVideoTime-currentVideoTime;
-   if (diff!=0)
-   {
-    fixPos=false;
-    return;
-   }
-  }
-*/
   if (pauseAfterSlide)
   {
    var diff=newVideoTime-currentVideoTime;
@@ -2730,7 +2716,6 @@ function OOFlashSlide(url)
  function showSlide(slide)
  {
   var s=document.getElementById("flashSlides");
-  //if (typeof(s)=="undefined" || typeof(s.GotoFrame)=="undefined")
   if (flashInteract==false)
   {
    if (this.flashFailMessage==false && noSuitableSlides==false)
@@ -2902,7 +2887,6 @@ function AVFlashSlide(url)
  function showSlide(slide)
  {
   var s=window.document.flashSlides;
-  //if (typeof(s)=="undefined" || typeof(s.GotoFrame)=="undefined")
   if (flashInteract==false)
   {
    if (this.flashFailMessage==false && noSuitableSlides==false)
@@ -3006,11 +2990,6 @@ function SeparateFlashSlide(url)
  {
   var slideSrcName = getSlideFileName(slide);
   setElementHTML("singleFlashSlide", pluginCode(slideWidth, slideHeight, slideSrcName));
-  //var old=document.getElementById("singleFlashSlide"+currentSlide);
-  //var element=document.getElementById("singleFlashSlide"+slide);
-
-  //old.style.display="none";
-  //element.style.display="block";
  }
 
  this.getHTML=getHTML;
@@ -3161,7 +3140,7 @@ function getImageFilename(slideNumber, slideScale, slideType)
   fname += "0";
  if (slideNumber < 100)
   fname += "0";
-  
+
  fname += slideNumber + "_" + slideScale + slideType;
 
  return fname;
@@ -3270,9 +3249,6 @@ function copySlideSource(toCopy)
 {
  if (toCopy.type==SLIDE_IMAGE || toCopy.type==SLIDE_IMAGE_PRELOAD)
   return new ImageSlide(toCopy.url, toCopy.slideType);
-
- //if (toCopy.type==SLIDE_IMAGE_PRELOAD)
- // return new PreloadImageSlide(toCopy.url, toCopy.slideType);
 
  if (toCopy.type==SLIDE_OOFLASH)
   return new OOFlashSlide(toCopy.url);
@@ -3444,24 +3420,9 @@ function FlashVideo(url,speed)
         " autoPlay:false, "+
         " url:'"+file+"' "+
         "}";
-/***This code is a test to try to talk to the helix server***
-   cfg=cfg+"clip: {"+
-       "url: '"+urlToUse+"',"+
-       "provider: 'strm',"+
-       "autoPlay: false"+
-       "},"+
-       "plugins: {"+
-       "strm: {"+
-       "url: '"+vresourcePath+"flowplayer/flowplayer.rtmp.swf',"+
-       "netConnectionUrl: '"+urlToUse+"',"+
-       "objectEncoding: 0"+
-       "}}";
-*/
   }
   else
    cfg=cfg+"clip: {autoPlay:false, scaling:'fit', url:'"+urlToUse+"'}";
-
-  //alert(cfg);
 
   setTimeout("flowplayer('flowPlayer', '"+vresourcePath+"flowplayer/flowplayer.swf', {"+cfg+"});", 500);
   return "<div id='flowPlayer' style='width:"+width+"px;height:"+height+"px;'></div>\n";
@@ -3832,7 +3793,7 @@ function inspect(obj, maxLevels, level)
 
     // We start with a non null object
     if(obj == null)
-    return '<font color="red">Error: Object <b>NULL</b></font>\n';
+        return '<font color="red">Error: Object <b>NULL</b></font>\n';
     // End Input Validations
 
     // Each Iteration must be indented
