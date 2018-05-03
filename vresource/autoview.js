@@ -1023,6 +1023,7 @@ function getThumbnailsFrame()
 function setVideoHTML()
 {
  setElementHTML("videoplayer", selectedAVSource.getHTML());
+ setTimeout(selectedAVSource.initPlayer, 500);
 }
 
 function setLanguageHTML()
@@ -3272,6 +3273,11 @@ function NoVideo()
   return "<p align=\"center\">"+label()+"</p>";
  }
 
+ this.initPlayer=initPlayer;
+ function initPlayer()
+ {
+ }
+
  this.getPlayer=getPlayer;
  function getPlayer()
  {
@@ -3418,6 +3424,11 @@ function FlashVideo(url,speed)
   return "<div id='flowPlayer' style='width:"+width+"px;height:"+height+"px;'></div>\n";
  }
 
+ this.initPlayer=initPlayer;
+ function initPlayer()
+ {
+ }
+
  this.getPlayer=getPlayer;
  function getPlayer()
  {
@@ -3541,17 +3552,15 @@ function HTML5Video(url, speed)
   this.subtype="DASH";
   this.mimetype="application/dash+xml";
  }
+ else
+ if (u.indexOf(".m3u8")>-1)
+ {
+  this.subtype="HLS";
+  this.mimetype="application/x-mpegURL";
+ }
 
  this.getHTML=getHTML;
  function getHTML()
- {
-  var x="<iframe class=\"video\" style=\"width:"+avWidth+"px;height:"+(avHeight+10)+"px;margin-bottom:-4px;padding:0px;\" name=\"html5vid\" />";
-  setTimeout("html5vid.document.writeln(\""+this.getIFrameHTML()+"\");", 800);
-  return x;
- }
-
- this.getIFrameHTML=getIFrameHTML;
- function getIFrameHTML()
  {
   var urlToUse;
   if (this.url.indexOf("http://")>-1 || this.url.indexOf("https://")>-1)
@@ -3563,53 +3572,38 @@ function HTML5Video(url, speed)
   if (this.subtype=="MP3" || this.subtype=="OGA")
    tagType="audio";
 
-  var x="<!DOCTYPE html>"+
-   "<html>"+
-   "<head>"+
-   "<title>HTML 5 video/audio</title>";
-
-   if (this.subtype=="DASH")
-       x=x+"<script  type='text/javascript' src='"+vresourcePath+"dash.all.js'></script>";
-
-   x=x+"</head>"+
-   "<body style='margin:0px;padding:0px;'";
-
-   x=x+">"+
-   "<"+tagType+" style='background-color:#000000;background-image:url("+vresourcePath+"images/video-placehold.jpg);"+
-   " background-repeat:no-repeat;background-size:100%;margin-left:auto;margin-right:auto;margin-top:0px;"+
-   " width:"+avWidth+"px;height:"+avHeight+"px;'";
-
-   if (this.subtype=="DASH")
-       x=x+" class='dashjs-player' preload='none'";
-   else
-       x=x+" preload='preload'";
-
-   x=x+" controls='controls' id='html5player' width='"+avWidth+"' height='"+avHeight+"' >"+
+  var x="<"+tagType+" class='video-js vjs-default-skin vjs-big-play-centered' "+
+   "id='html5player' width='"+avWidth+"' height='"+avHeight+"' "+
+   "data-setup='{"+
+   " \"controls\": true,"+
+   " \"autoplay\": false,"+
+   " \"poster\": \""+vresourcePath+"images/video-placehold.jpg\","+
+   " \"controlBar\": {}}'>"+
    "<source src='"+urlToUse+"' type='"+this.mimetype+"' />"+
-   "<p style='color:#ffffff;text-align:center;'>"+getString("nohtml5")+"</p>"+
+   "<p style='text-align:center;'>"+getString("nohtml5")+"</p>"+
    "</"+tagType+">";
 
-   if (this.subtype=="DASH")
-    x=x+"<script type='text/javascript'>Dash.createAll();</script>";
-
-   x=x+"</body>"+
-   "</html>";
-
   return x;
+ }
+
+ this.initPlayer=initPlayer;
+ function initPlayer()
+ {
+  videojs(document.getElementsByClassName("video-js")[0], {}, function(){});
  }
 
  this.getPlayer=getPlayer;
  function getPlayer()
  {
-  return html5vid.document.getElementById("html5player");
+  return videojs("html5player");
  }
 
  this.setPosition=setPosition;
  function setPosition(pos)
  {
   var player=this.getPlayer()
-  if (typeof(player)!="undefined" && typeof(player.currentTime)!="undefined")
-   player.currentTime=pos/1000;
+  if (typeof(player)!="undefined" && player!=null)
+   player.currentTime(pos/1000);
  }
 
  this.getPosition=getPosition;
@@ -3620,10 +3614,8 @@ function HTML5Video(url, speed)
    be suppressed in order to avoid killing the position monitor thread***/
   try
   {
-   if (typeof(player)!="undefined")
-    if (typeof(player.currentTime)!="undefined")
-     if (player.currentTime!=null)
-      return parseInt(player.currentTime*1000);
+   if (typeof(player)!="undefined" && player!=null)
+     return parseInt(player.currentTime()*1000);
   }
   catch (e)
   {}
@@ -3635,7 +3627,7 @@ function HTML5Video(url, speed)
  function stopPlayer()
  {
   var player=this.getPlayer()
-  if (typeof(player)!="undefined")
+  if (typeof(player)!="undefined" && player!=null)
    player.pause();
  }
 
@@ -3643,7 +3635,7 @@ function HTML5Video(url, speed)
  function startPlayer()
  {
   var player=this.getPlayer()
-  if (typeof(player)!="undefined")
+  if (typeof(player)!="undefined" && player!=null)
    player.play();
  }
 
@@ -3673,7 +3665,7 @@ function HTML5Video(url, speed)
   if (typeof(v.canPlayType)!="function")
    return false;
 
-  if (this.subtype=="DASH")
+  if (this.subtype=="DASH" || this.subtype=="HLS")
   {
    window.MediaSource = window.MediaSource || window.WebKitMediaSource;
    return window.MediaSource;

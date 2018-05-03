@@ -31,9 +31,13 @@
   </xsl:if>
   <link type="text/css" rel="stylesheet" href="{$vresource}style.css"/>
   <link type="text/css" rel="stylesheet" href="{$vresource}divs-table.css"/>
+  <link type="text/css" rel="stylesheet" href="{$vresource}videojs/video-js.min.css"/>
   <title><xsl:value-of select="$title" /></title>
 
   <script type="text/javascript" src="{$themeimport}">//</script>
+  <script type="text/javascript" src="{$vresource}videojs/video.min.js">//</script>
+  <script type="text/javascript" src="{$vresource}videojs/videojs-dash.min.js">//</script>
+  <script type="text/javascript" src="{$vresource}videojs/videojs-contrib-hls.min.js">//</script>
   <script type="text/javascript" src="{$vresource}autoview.js">//</script>
   <xsl:if test="string-length($extension) &gt; 0">
    <script type="text/javascript" src="{$extension}">//</script>
