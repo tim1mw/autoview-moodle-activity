@@ -4,8 +4,7 @@
 
 <xsl:output method="xml"
     media-type="text/html" 
-    doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
-    doctype-system="DTD/xhtml1-strict.dtd"
+    doctype-system="about:legacy-compat"
     omit-xml-declaration="yes"
     indent="yes" />
 
