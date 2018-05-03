@@ -2109,7 +2109,7 @@ function detectPlugins()
 
  /*****Check slide interaction controls for non-ie browsers*****/
  flashInteract=hasFlash;
- if (findValidLangs(allSlideSrc).length>0 && browser!=MSIE)
+ if (hasFlash && findValidLangs(allSlideSrc).length>0 && browser!=MSIE)
  {
   /*****Check that interaction with the flash plugin works properly and if not disable*****/
   var str="<object data=\""+vresourcePath+"test.swf\" quality=\"high\" bgcolor=\"#ffffff\" width=\"5\" height=\"5\""+
@@ -2121,12 +2121,6 @@ function detectPlugins()
 
   if (typeof(window.document.flashtest)=="undefined")
    flashInteract=false;
-  else
-  {
-   /*****Note : GotoFrame check dosn't seem to work in opera or FF3, so ignore*****/
-   if (browser!=OPERA && (browser!=MOZILLA && browserVersion<3) && typeof(window.document.flashtest.GotoFrame)=="undefined")
-    flashInteract=false;
-  }
  }
 }
 
