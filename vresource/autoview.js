@@ -30,7 +30,6 @@ var SLIDE_AVFLASH=5;
 var SLIDE_SEPFLASH=6;
 
 /*****Browser detection vars*****/
-var ieSpoof=false;
 var browser, browserVersion=-1, ostype;
 
 var OTHER=0;
@@ -2236,16 +2235,6 @@ function detectBrowser()
  }
  else
   browser=OTHER;
-
- /*****Cope with browsers that Spoof IE (Assume Opera 8)*****/
- if (ostype==WINDOWS && browser==MSIE && vbDetectOK==false)
- {
-  ieSpoof=true;
-  browser=OPERA;
-  browserVersion=8;
- }
-
-alert(browser+" "+browserVersion);
 }
 
 function readBrowserVersion(userAgent, keyA, keyB)
