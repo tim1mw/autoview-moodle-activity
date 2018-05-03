@@ -35,7 +35,7 @@ var browser, browserVersion=-1, ostype;
 
 var OTHER=0;
 var LINUX=1, WINDOWS=2, SUNOS=3, APPLEMAC=4, SYMBIAN=5, ANDROID=6, IOS=7;
-var MOZILLA=1, MSIE=2, OPERA=3, KONQUEROR=4, SAFARI=5, CHROME=6;
+var MOZILLA=1, MSIE=2, OPERA=3, KONQUEROR=4, SAFARI=5, CHROME=6, EDGE=7;
 
 var mobileDevice=false;
 var tabletDevice=false;
@@ -2194,6 +2194,12 @@ function detectBrowser()
   readBrowserVersion(userAgent, "khtml/", " ");
  }
  else
+ if (userAgent.indexOf("edge")>-1)
+ {
+  browser=EDGE;
+  readBrowserVersion(userAgent, "edge/", ".");
+ }
+ else
  if (userAgent.indexOf("chrome")>-1)
  {
   browser=CHROME;
@@ -2244,6 +2250,8 @@ function detectBrowser()
   browser=OPERA;
   browserVersion=8;
  }
+
+alert(browser+" "+browserVersion);
 }
 
 function readBrowserVersion(userAgent, keyA, keyB)
