@@ -2,7 +2,7 @@
 
    Copyright: EuroMotor-AutoTrain LLP 2007
 
-   License: GPLv2 + Commercial
+   License: GPLv3 + Commercial
 
    Authors: Tim Williams (tmw@autotrain.org)
 
@@ -55,7 +55,7 @@ function submitVidSource()
 {
  if (checkType())
  {
-  opener.addUpdateVideoSrc(lang, num, document.form.lang.value, document.form.type.value, document.form.url.value,     
+  opener.addUpdateVideoSrc(lang, num, document.form.lang.value, document.form.type.value, document.form.url.value,
    document.form.speed.value, !document.form.triggers.checked);
   window.close();
  }

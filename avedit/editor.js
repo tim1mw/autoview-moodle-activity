@@ -2,7 +2,7 @@
 
    Copyright: EuroMotor-AutoTrain LLP 2007
 
-   License: GPLv2 + Commercial
+   License: GPLv3 + Commercial
 
    Authors: Tim Williams (tmw@autotrain.org)
 

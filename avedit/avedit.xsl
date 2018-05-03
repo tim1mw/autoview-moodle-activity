@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-<!-- This code is copyright to EuroMotor AutoTrain LLP and is licenced under the GNU GPLv2 Licence -->
+<!-- This code is copyright to EuroMotor AutoTrain LLP and is licenced under the GNU GPLv3 Licence -->
 <xsl:output method="xml"
     media-type="text/html" 
     doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
