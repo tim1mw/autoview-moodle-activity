@@ -1740,8 +1740,6 @@ function getTranscriptSlideHeader(slide)
 {
  var slideName=selectedSlides.getSlideFileName(slide, 1);
  var heightStyle="";
- if (browser==MSIE && browserVersion==6)
-  heightStyle="style=\"height:126px;\"";
 
  if (slideName.length>0)
   return "<div class=\"subblock\" "+heightStyle+">\n"+
