@@ -2,7 +2,7 @@
 
    Copyright: EuroMotor-AutoTrain LLP 2009
 
-   License: GPLv2 + Commercial
+   License: GPLv3 + Commercial
 
    Authors: Tim Williams (tmw@autotrain.org)
 
@@ -11,55 +11,7 @@
 var hasSlides=false;
 var preVideo=false;
 
-showVideoQuestion();
-
-/**Type of Video**/
-
-function showVideoQuestion()
-{
- var capdis="";
- if (!opener.liveCaptureInstalled || opener.parent.videoframe.flashRecord==false)
-  capdis=" disabled=\"disabled\"";
-
- var broaddis="";
- if (!opener.liveCaptureInstalled || opener.parent.videoframe.flashBroadcast==false)
-  broaddis=" disabled=\"disabled\"";
-
- var data="<h1 style=\"text-align:center;\">"+opener.getString("eq_maintitle")+"</h1><br />\n"+
-  "<table align=\"center\"><tr><td>\n"+
-  "<h2>"+opener.getString("eq_video")+"</h2>\n"+
-  "<form action=\"javascript:videoQuestion();\" name=\"form\">\n"+
-  " <p><input type=\"radio\" name=\"video\" value=\"previd\" checked=\"checked\" id=\"previd\" />"+opener.getString("eq_previd")+"<br />\n"+
-  " <input type=\"radio\" name=\"video\" value=\"recvid\" "+capdis+" id=\"recvid\" />"+opener.getString("eq_recvid")+"<br/>\n"+
-  " <input type=\"radio\" name=\"video\" value=\"broadvid\" "+broaddis+" id=\"broadvid\" />"+opener.getString("eq_broadvid")+"</p>\n"+
-  " <p align=\"center\"><input type=\"submit\" value=\""+opener.getString("eq_continue")+"\" /></p>\n"+
-  "</form>\n"+
-  "</td></tr></table>";
-
- setElementHTML("questions", data);
-}
-
-
-function videoQuestion()
-{
- if (document.getElementById("previd").checked)
- {
-  showVideoSelect();
-  preVideo=true;
- }
- else
- if (document.getElementById("recvid").checked)
- {
-  opener.useLiveCapture();
-  showSlideQuestion();
- }
- else
- if (document.getElementById("broadvid").checked)
- {
-  opener.useLiveBroadcast();
-  showSlideQuestion();
- }
-}
+showVideoSelect();
 
 /**Select pre-recorded video**/
 
@@ -90,13 +42,6 @@ function videoSelect()
 {
  var url=document.form.url.value.toLowerCase();
  var type=getTypeFromExtension();
- if (type==opener.parent.videoframe.VIDEO_FLASH && url.indexOf("rtmp://")<0 && opener.liveCaptureInstalled) // && flashDiri>-1)
- {
-  if (opener.alwaysFlashStream==true || confirm(opener.getString("e_streamquestion")))
-  {
-   document.form.url.value="$flashserver/"+document.form.url.value;
-  }
- }
 
  opener.addUpdateVideoSrc(opener.parent.videoframe.preferedLang, -1, opener.parent.videoframe.preferedLang, type, document.form.url.value,     
    opener.parent.videoframe.SPEED_NONE, true);
@@ -107,25 +52,11 @@ function videoSelect()
 function getTypeFromExtension()
 {
  var url=document.form.url.value.toLowerCase();
- if (url.indexOf(".mov")>-1 || url.indexOf(".mp4")>-1)
-  return opener.parent.videoframe.VIDEO_QUICKTIME;
- else
- if (url.indexOf(".rm")>-1 || url.indexOf(".ram")>-1 ||
-     url.indexOf(".ra")>-1 || url.indexOf(".rv")>-1 || (url.indexOf(".mp3")>-1 && url.indexOf("rtsp://")>-1) )
-  return opener.parent.videoframe.VIDEO_REALPLAYER;
- else
- if (url.indexOf(".wmv")>-1 || url.indexOf(".asf")>-1 ||
-     url.indexOf(".avi")>-1 || url.indexOf(".wma")>-1)
-  return opener.parent.videoframe.VIDEO_WINDOWSMEDIA;
- else
- if (url.indexOf(".oga")>-1)
-  return opener.parent.videoframe.VIDEO_JAVAAUDIO;
- else
+
  if (url.indexOf(".flv")>-1  || url.indexOf("rtmp://")>-1 || (url.indexOf(".mp3")>-1 && url.indexOf("rtsp://")<0) )
   return opener.parent.videoframe.VIDEO_FLASH;
  else
- if (opener.parent.videoframe.enableHTML5)
-  if (url.indexOf(".ogg")>-1 || url.indexOf(".ogv")>-1 || url.indexOf(".ogm")>-1)
+  if (url.indexOf(".ogg")>-1 || url.indexOf(".ogv")>-1 || url.indexOf(".ogm")>-1 || url.indexOf(".mp4")>-1  || url.indexOf(".mp3")>-1)
    return opener.parent.videoframe.VIDEO_HTML5;
 
  return opener.parent.videoframe.VIDEO_NONE;
