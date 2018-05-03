@@ -27,15 +27,7 @@ data["loadpositiontitle"]="Load current video position";
 data["video"]="Video Options";
 data["showvideoopts"]="Show all video options";
 data["hidevideoopts"]="Hide all video options";
-data["realplayer"]="Real Player";
-data["quicktime"]="Quicktime";
-data["windowsmedia"]="Windows Media";
-data["javaaudio"]="Java Audio";
-data["vlcvideo"]="VideoLAN VLC";
 data["flashvideo"]="Flash Video";
-data["flashvideobroadcast"]="Flash Video Broadcast";
-data["silverlightvideo"]="Silverlight Video";
-data["silverlight2"] = "Silverlight 2 is required to run this video";
 data["html5video"] = "Plugin Free";
 data["nohtml5"]="Your web browser does not support the codecs necessary to play this video using HTML 5.";
 data["novideoplayer"]="No Video";
@@ -118,27 +110,10 @@ data["flashfailed"]="We have detected that your browser does not support the req
   "properly with the upgraded browser. Visit http://www.adobe.com to get the latest version of the Flash Player. "+
   "If you wish, you can now be switched to an alternative slide format for this presentation (see box on the left) if one is available. ";
 
-data["javaaudiopositon"]="Please Note : When in Java Audio mode, the position of the player cannot be changed to "+
-  "match up with the choosen slide.";
-data["javaaudiosubtitles"]="Warning : Subtitles will not work with the Java Audio player.";
-
-data["realsyncproblem"]="Warning : Your RealPlayer plugin doesn't support the necessary functions to synchronise the video stream "+
-  "with the selected slide.";
-data["qtlinux"]="Quicktime with Crossover plugin probably won't work with this presentation.";
-data["mozplugger"]="MozPlugger plugin is interfering with the RealPlayer plugin.";
-
-data["oldwindowsmedia"]="We have detected that you might be using an old version of Windows Media Player.\nPlease ensure that you have version 7.1 or greater,\n go to http://www.microsoft.com/windows/windowsmedia/ to download.";
-data["windowsmediaieonly"]="Warning : Windows Media Player mode only works correctly in Internet Explorer.";
-data["vlc_notsupported"]="Warning : The VideoLAN Player is not supported on your web browser.";
-
 data["helpurl"]="en";
 
 data["noprint"]="No printable slides have been found.";
 data["print"]="Print";
-
-data["qt764bug"]="You are using Quicktime 7.6.4, this version of Quicktime has a bug which sometimes causes the video to be blank."+
- " If you experience this problem, please either install a different version of Quicktime, or switch to a different video format using"+
- " the video options menu (if available).";
 
 /*****A few basic params*****/
 

@@ -141,28 +141,6 @@ td.playerPanel
  margin:0px;
 }
 
-table.rplayer
-{
- border: thin ridge #ffffff;
- padding:0px;
- margin:0px;
- background-color: #ffffff;
-}
-
-#vlctime
-{
- font-weight:normal;
- font-size:small;
- color:#000000;
-}
-
-#vlclength
-{
- font-weight:normal;
- font-size:small;
- color:#000000;
-}
-
 .plugintag
 {
  /*background-color:#000000;*/
