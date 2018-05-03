@@ -19,8 +19,6 @@ function showVideoSelect()
 {
  setElementHTML("questions", "<div></div>");
 
- /**Note onclick handler added for IE 9 on which the form submit mysteriously fails**/
-
  var data="<h1 style=\"text-align:center;\">"+opener.getString("eq_maintitle")+"</h1><br />\n"+
   "<table align=\"center\"><tr><td>\n"+
   "<h2>"+opener.getString("eq_video_select")+"</h2>\n"+
@@ -30,12 +28,10 @@ function showVideoSelect()
   "   <td><div id=\"urlbox\"><input type=\"textfield\" size=\"50\" name=\"url\" value=\"\" id=\"urlboxfield\" />"+
   "&nbsp;<input type=\"button\" value=\"Select\" onClick=\"window.open('"+opener.fileBrowser+"', '_blank', 'width=800,height=480,status=no,toolbar=no,menubar=no,scrollbars=yes,resizable=1');\" /></div></td>\n"+
   " </tr></table>\n"+
-  " <p align=\"center\"><input type=\"submit\" value=\""+opener.getString("eq_continue")+"\" onclick=\"videoSelect()\" /></p>\n"+
+  " <p align=\"center\"><input type=\"submit\" value=\""+opener.getString("eq_continue")+"\" /></p>\n"+
   "</form></p>\n"+
   "</td></tr></table>";
  setElementHTML("questions", data);
-
- checkFormURLDom();
 }
 
 function videoSelect()
@@ -150,7 +146,6 @@ function showSlideSrcForm()
   "</td></tr></table>";
 
  setElementHTML("questions", data);
- checkFormURLDom();
 }
 
 function processSlideSrcForm()
@@ -328,20 +323,6 @@ var tid;
 function focusWindow()
 {
  tid=setTimeout("window.focus();", 500);
-}
-
-function checkFormURLDom()
-{
- /***IE 9 fails to correctly set up it's internal DOM structure in the way necessary for the Moodle file selector.
-     This method manually inserts the necessary DOM reference should it be missing***/
- if (typeof(document.form.url)=="undefined")
- {
-  var el=document.getElementById('urlboxfield');
-  if (el!=null)
-  {
-   document.form.url=el;
-  }
- }
 }
 
 function openFileBrowser()
