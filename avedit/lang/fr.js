@@ -1,10 +1,5 @@
 data=new Array();
 
-/*****Used by the autoview extensions*****/
-
-data["livecapture"]="Live Capture (Java)";
-data["livecaptureflash"]="Live Capture (Flash)";
-
 /*****Used by the editor*****/
 
 data["e_editmodesupport"]="Note : le mode &eacute;dition est uniquement support&eacute; sur "+
@@ -72,11 +67,6 @@ data["e_add_Video_source_title"]="Ajouter et traiter une nouvelle source vid&eac
 data["e_source"]="";
 data["e_convert_title"]="Convertir automatiquement les pr&eacute;sentations Powerpoint ou OpenDocument en diapositives utilisables";
 data["e_convert_button"]="Convertir les diapositives";
-data["e_livecapture_title"]="Utiliser le plugin AutoView Live Capture Plugin pour enregistrer une vid&eacute;o pour cette pr&eacute;sentation";
-data["e_livecapture_button"]="Enregistrer la video";
-data["e_flashreplace"]="Vous disposez d&eacute;&agrave;  d'une vid&eacute;o au format Flash dans votre pr&eacute;sentation.\nVoulez-vous remplacer cette vid&eacute;o par un nouvel enregistrement ?";
-data["e_alreadylive"]="Live Capture est d&eacute;&agrave;  attribu&eacute; &agrave; une source vid&eacute;o. Vous ne pouvez en d&eacute;finir une deuxi&egrave;me.";
-data["e_livecapturechoice"]="Voulez-vous utiliser l'Applet Java pour r&eacute;aliser une capture haute qualit&eacute; ?";
 data["e_set"]="D&eacute;finir";
 data["e_bandwidth"]="Bande passante";
 data["e_video_url"]="URL de la vid&eacute;o";
@@ -146,10 +136,6 @@ data["e_convertmessage"]="Aucun service de conversion de document n'a &eacute;t&
 data["e_flash"]="Adobe Flash";
 data["e_pdf"]="Adobe PDF";
 data["e_images"]="JPEG Images";
-
-data["e_nolivecapture"]="L'applet Live Capture n'est pas install&eacute;e sur votre serveur. Consultez le site AutoView d'AutoTrain pour plus d'informations.";
-data["e_nolivecapture2"]="Website d'AutoView";
-data["e_noflashserver"]="Aucun Serveur Flash n'a &eacute;t&eacute; configur&eacute; pour ce module. Cette configuration est n&eacute;cessaire pour pouvoir utiliser le module LiveCapture avec Flash.";
 
 /*****Merge the additional lang strings*****/
 

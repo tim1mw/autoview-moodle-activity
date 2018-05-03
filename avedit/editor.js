@@ -342,25 +342,6 @@ function componentEditor(type, sources)
    " title=\""+getString("e_convert_title")+"\" class=\""+cl+"\"\n"+
    " style=\"display:block;text-align:center;\">"+getString("e_convert_button")+"</a></td></tr>\n";
  }
- else
- if (type=="Video")
- {
-  var cl="linkbuttongrey";
-  if (liveCaptureInstalled && parent.videoframe.flashRecord==true)
-   cl="linkbutton";
-  data=data+"<tr>\n"+
-   "<td width=\"50%\" ><a href=\"javascript:useLiveCapture();\"\n"+
-   " title=\""+getString("e_livecapture_title")+"\" class=\""+cl+"\"\n"+
-   " style=\"display:block;text-align:center;margin-top:0px;\">"+getString("e_livecapture_button")+"</a></td>\n";
-
-  cl="linkbuttongrey";
-  if (liveCaptureInstalled && parent.videoframe.flashBroadcast==true)
-   cl="linkbutton";
-   data=data+"<td width=\"50%\"><a href=\"javascript:useLiveBroadcast();\"\n"+
-   " title=\""+getString("e_livebroadcast_title")+"\" class=\""+cl+"\"\n"+
-   " style=\"display:block;text-align:center;margin-top:0px;\">"+getString("e_livebroadcast_button")+"</a></td>\n"+
-   "</tr>\n";
- }
  data=data+"</table>\n";
 
  return data;
@@ -843,21 +824,8 @@ function getVideoSelection(type,extra)
  var data="    <select name=\"type\""+extra+">\n";
 
  data=data+formOption(type, parent.videoframe.VIDEO_FLASH, getString("flashvideo"));
- data=data+formOption(type, parent.videoframe.VIDEO_FLASHBROADCAST, getString("flashvideobroadcast"));
- data=data+formOption(type, parent.videoframe.VIDEO_JAVAAUDIO, getString("javaaudio"));
- data=data+formOption(type, parent.videoframe.VIDEO_FLASHLIVE, getString("livecaptureflash"));
- //data=data+formOption(type, parent.videoframe.VIDEO_JAVALIVE, getString("livecapture"));
  data=data+formOption(type, parent.videoframe.VIDEO_NONE, getString("novideoplayer"));
- data=data+formOption(type, parent.videoframe.VIDEO_QUICKTIME, getString("quicktime"));
- data=data+formOption(type, parent.videoframe.VIDEO_REALPLAYER, getString("realplayer"));
- data=data+formOption(type, parent.videoframe.VIDEO_SILVERLIGHT, getString("silverlightvideo"));
- data=data+formOption(type, parent.videoframe.VIDEO_WINDOWSMEDIA, getString("windowsmedia"));
- data=data+formOption(type, parent.videoframe.VIDEO_VLC, getString("vlcvideo"));
- if (parent.videoframe.enableHTML5)
- {
-  data=data+formOption(type, parent.videoframe.VIDEO_HTML5, getString("html5video"));
-  data=data+formOption(type, parent.videoframe.VIDEO_MEDIASOURCECAPTURE, getString("livecapturemediasource"));
- }
+ data=data+formOption(type, parent.videoframe.VIDEO_HTML5, getString("html5video"));
  data=data+"    </select>\n";
  return data;
 }
@@ -901,8 +869,8 @@ function addUpdateVideoSrc(lang, num, newlang, type, url, speed, monitor)
  parent.videoframe.addUpdateAVSrc(lang, num, newlang, type, url, speed, monitor);
  componentsDisplay();
  saveXMLConfig();
- //*****Real player & FlashVideo don't pick up a changed URL without a page reload*****/
- if ( (type==parent.videoframe.VIDEO_REALPLAYER || type==parent.videoframe.VIDEO_FLASH) && num>-1)
+ //*****FlashVideo doesn't pick up a changed URL without a page reload*****/
+ if ( type==parent.videoframe.VIDEO_FLASH && num>-1)
  {
   parent.videoframe.presentationLoaded=false;
   setTimeout("parent.videoframe.location.reload()", 1500);
@@ -1329,17 +1297,7 @@ function addSubtitleAtEnd(time, text)
   tms[0]=0;
   parent.videoframe.subTimes[parent.videoframe.subtitleLang]=tms;
   saveXMLConfig();
-  //parent.videoframe.addSubtitleAtEnd(0, "Chat Session Transcript");
  }
- //alert(parent.videoframe.subtitles.length);
- //if (parent.videoframe.subtitles.length==0)
- //{
-  //parent.videoframe.subtitles[1]="Chat Session Transcript";
-  //parent.videoframe.subTimes[parent.videoframe.subtitleLang][0]=0;
-  //parent.videoframe.addSubtitleAtEnd(0, "Chat Session Transcript");
- //}
-
- //alert(time+" "+text);
 
  parent.videoframe.addSubtitleAtEnd(time, text);
  saveCurrentSubtitles();
@@ -1606,146 +1564,6 @@ function convertSlides()
  }
  else
   parent.videoframe.showMessage(getString("e_convertmessage"));
-}
-
-/*****Quick access to Live Capture*****/
-
-function useLiveCapture()
-{
- if (parent.videoframe.flashRecord==false)
- {
-  parent.videoframe.showMessage(getString("e_livecapturenotallowed"));
-  return;
- }
-
- if (parent.videoframe.hasLiveCapture(true))
-  return;
-
- var ln="en";
- if (typeof(parent.videoframe.selectedLang)!="undefined")
-  ln=parent.videoframe.selectedLang;
-
- if (parent.videoframe.flashCapture.length>0 && parent.videoframe.liveCaptureURL.length>0)
- {
-  //We have both types of capture available
-  if (confirm(getString("e_livecapturechoice")))
-   parent.videoframe.addUpdateAVSrc(null, -1, ln, parent.videoframe.VIDEO_JAVALIVE, null, null, null);
-  else
-   parent.videoframe.addUpdateAVSrc(null, -1, ln, parent.videoframe.VIDEO_FLASHLIVE, null, null, null);
- }
- else
- if (parent.videoframe.flashCapture.length>0)
-  parent.videoframe.addUpdateAVSrc(null, -1, ln, parent.videoframe.VIDEO_FLASHLIVE, null, null, null);
- else
- if (parent.videoframe.liveCaptureURL.length>0)
-  parent.videoframe.addUpdateAVSrc(null, -1, ln, parent.videoframe.VIDEO_JAVALIVE, null, null, null);
-
- componentsDisplay();
- saveXMLConfig();
-}
-
-/*****Access live broadcast mode*****/
-
-function useLiveBroadcast()
-{
-  if (parent.videoframe.flashBroadcast==false)
-   parent.videoframe.showMessage(getString("e_livebroadnotallowed"));
-  else
-  if (parent.videoframe.flashServer.length==0)
-   setElementHTML("main", '<p>'+getString("e_noflashserver")+'</p>');
-  else
-  if (parent.videoframe.flashCapture.length==0)
-   setElementHTML("main", '<p>'+getString("e_noflashcapture")+'</p>');
-  else
-  {
-   var name=setLiveBroadcastClient();
-   //setTimeout(setLiveBroadcastHTML(name), 1000);
-   setLiveBroadcastHTML(name);
-  }
-}
-
-function setLiveBroadcastClient()
-{
- var name=parent.videoframe.liveBroadcastUrl();
- if (name==null)
- {
-  //There is no reciever configured, so add one with a default name
-  var ln="en";
-  name=getLiveBroadcastName();
-  if (typeof(parent.videoframe.selectedLang)!="undefined")
-   ln=parent.videoframe.selectedLang;
-  parent.videoframe.addUpdateAVSrc(null, -1, ln, parent.videoframe.VIDEO_FLASHBROADCAST,"$flashserver/"+name, null, null);
- }
- else
-  if (name.indexOf("$flashserver")==0)
-   name=name.substring(13);
-  else
-   name=name.substring(parent.videoframe.flashServer.length+1);
-
- saveXMLConfig();
-
- return name;
-}
-
-function setLiveBroadcastHTML(name)
-{
- var playerHeight=395;
- var playerWidth=240;
-
- var data='type="application/x-shockwave-flash" data="'+parent.videoframe.flashCapture+'/avbroadcast.swf"\n';
- if (parent.videoframe.browser==parent.videoframe.MSIE)
-  data='classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"\n'+     
-  'codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0"';
-
- var cfg="maxKbps="+broadcastMaxKbps+"&server="+parent.videoframe.flashServer+
-  "&stream="+name+"&host="+parent.videoframe.flashHost;
-
- if (parent.videoframe.slideSet)
- {
-  cfg=cfg+"&slidecount="+parent.videoframe.titles[parent.videoframe.slideLang].length+"&slides=";
-  for (var loop=0; loop<parent.videoframe.titles[parent.videoframe.slideLang].length; loop++)
-  {
-   cfg=cfg+cleanTitleForFlash(parent.videoframe.titles[parent.videoframe.slideLang][loop])+"{^}";
-  }
- }
- else
-   cfg=cfg+"&slidecount=----------";
-
- var s='<object '+data+
-  ' width="'+playerWidth+'" height="'+playerHeight+'" id="autoviewBroadcast">\n'+
-  ' <param name="movie" value="'+parent.videoframe.flashCapture+'/avbroadcast.swf" />\n'+ 
-  ' <param name="flashvars" value="'+cfg+'" />\n'+
-  ' <param name="allowScriptAccess" value="always" />\n'+
-  '<\/object>\n';
-
- setElementHTML("main", s);
-}
-
-function cleanTitleForFlash(prep)
-{
- if (typeof(prep)=="undefined")
-  return "";
-
- for (var pos=0; pos<prep.length; pos++)
- {
-  var c=prep.charCodeAt(pos);
-  if (c>127 || c==34 || c==60 || c==62 || c==38 || c==39 || c==45 || c==10 || c==13)
-  {
-   var first=prep.substring(0,pos)+" ";
-   prep=first+prep.substring(pos+1);
-   pos=first.length-1;
-  }
- }
- return prep;
-}
-
-function getLiveBroadcastName()
-{
- var name=xmlFile.substring(0, xmlFile.length-4);
- if (name.indexOf("config")==name.length-6)
-  return name.substring(0, name.length-6)+"broadcast-video";
-
- return name+"-"+xmlID;
 }
 
 /*****New presentation wizard*****/

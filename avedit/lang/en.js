@@ -1,11 +1,5 @@
 data=new Array();
 
-/*****Used by the autoview extensions*****/
-
-data["livecapture"]="Live Capture (Java)";
-data["livecaptureflash"]="Live Capture (Flash)";
-data["livecapturemediasource"]="Live Capture (HTML 5)";
-
 /*****Used by the editor*****/
 
 data["e_editmodesupport"]="Please Note : The editing mode is only fully tested in "+
@@ -81,13 +75,8 @@ data["e_add"]="Add";
 data["e_source"]="Source";
 data["e_convert_title"]="Automatically convert Powerpoint or OpenDocument presentations into suitable slide sources";
 data["e_convert_button"]="Convert Slides";
-data["e_livecapture_title"]="Use the AutoView Live Capture Plugin to record a video to use with this presentation";
-data["e_livebroadcast_title"]="Use the AutoView Live Broadcast mode to make a live presentation to a remote audience";
-data["e_livecapture_button"]="Record Video";
-data["e_livebroadcast_button"] = "Broadcast Live";
 data["e_flashreplace"]="You already have a Flash video in your presentation.\nWould you like to replace this video with the new recording ?";
 data["e_alreadylive"]="A live capture source has already been added. You cannot have two.";
-data["e_livecapturechoice"]="Would you like to use the Java Applet to make a high quality capture ?";
 data["e_set"]="Set";
 data["e_bandwidth"]="Bandwidth";
 data["e_video_url"]="Video URL";
@@ -183,7 +172,6 @@ data["eq_maintitle"]="AutoView Quickstart Wizard";
 data["eq_video"]="What type of video do you want to use?";
 data["eq_previd"]="A pre-recorded video";
 data["eq_recvid"]="Record a Video using AutoView Live Capture";
-data["eq_broadvid"]="Broadcast Live Lecture using AutoView Live Broadcast";
 data["eq_slides"]="Does your presentation have slides?";
 data["eq_yes"]="Yes";
 data["eq_no"]="No";
