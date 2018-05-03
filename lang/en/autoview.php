@@ -47,18 +47,6 @@ $string['pecl_http_warn'] = 'Warning : You do not have either the curl or pecl_h
 $string['createnew'] = 'Use default AutoView configuration file (reccomended)';
 $string['usedir'] = 'Create separate folder for AutoView files and configuration';
 
-$string['configlivecapture']= 'Live capture java applet URL';
-$string['configflashserver']= 'Lecture Capture Live rtmp server URL';
-$string['configflashserver2']= 'The rtmp url used to access the AutoView Lecture Capture Live addon. Leave this blank if you do not have Lecture Capture Live installed on your system.';
-$string['configflashcapture']= 'Lecture Capture Live http server URL';
-$string['configflashcapture2']= 'The http url used to access the AutoView Lecture Capture Live addon. Leave this blank if you do not have Lecture Capture Live installed on your system. You can find out more about Lecture Capture Live on the';
-$string['configflashkey']='Flash server secret key';
-$string['configflashdir']='Subdirectory for captured flash files in course';
-$string['configflashsecurity'] = 'Lecture Capture Live server integration security method';
-$string['configflashsecurity2'] = 'The security method used by the Lecture Capture Live system. Random key is currently the only supported method for Moodle.';
-$string['secretkey'] = 'Secret Key';
-$string['randomkey'] = 'Random Key';
-$string['encryptedkey'] = 'Encrypted Random Key';
 $string['config_storage_type'] = 'AutoView File Storage Location';
 $string['config_storage_type2'] = "This setting determines the default storage method for files used by the AutoView module. Changing this setting will not move any existing files, it only affects new presentations. Ideally this setting should not be changed after the initial module setup is completed.<br /><br />If you choose <b>Internal - Course Files</b>, then all files (including live video recordings) will be held in the course files area plugin.";
 $string['internal_storage'] = 'Internal - Course Files';
@@ -78,8 +66,6 @@ $string['autoview:viewpresentation']='Can view AutoView presentations';
 
 $string['storagetitle'] = 'File Storage Area';
 $string['converttitle'] = 'Document conversion web service';
-$string['flashcapturetitle'] = 'AutoView Lecture Capture Live system';
-$string['javacapturetitle'] = 'Java applet based live capture system';
 
 $string['convertnotallowed']='You are not authorised to access the document conversion service';
 

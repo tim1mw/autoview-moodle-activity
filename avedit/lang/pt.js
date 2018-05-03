@@ -231,11 +231,6 @@ data["e_convertmessage"]="O servi\u00e7o de convers\u00e3o do documento nao esta
 data["e_flash"]="Adobe Flash";
 data["e_pdf"]="Adobe PDF";
 data["e_images"]="JPEG Imagem";
-data["e_nolivecapture"]="The live capture applet n\u00e3o esta instalado no seu sistema. Por favor visite o AutoTrain AutoView website para maiores informa\u00e7\u00f5es.";
-data["e_nolivecapture2"]="AutoView Website";
-data["e_noflashserver"]="The Flash Server n\u00e3o esta configurado para este modulo. Isso \u00e9 necessario para usar o  LiveCapture with Flash.";
-data["e_noflashcapture"]="The Flash capture URL n\u00e3o esta configurado para este modulo. Por favor visite http://autoview.autotrain.org para maiores informa\u00e7\u00f5es.";
-data["e_streamquestion"]="Voc\u00ea deseja usar streaming para melhorar o desempenho da reprodu\u00e7\u00e3o de v\u00eddeo ?";
 
 lang["pt"]=data;
 langRTL["pt"]=false;

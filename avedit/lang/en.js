@@ -177,13 +177,6 @@ data["e_flash"]="Adobe Flash";
 data["e_pdf"]="Adobe PDF";
 data["e_images"]="JPEG Images";
 
-data["e_nolivecapture"]="Live capture is not installed on your system. Please visit the AutoTrain AutoView website for more information.";
-data["e_nolivecapture2"]="AutoView Website";
-data["e_noflashserver"]="The Flash Server has not been configured for this module. This is necessary to use LiveCapture with Flash.";
-data["e_noflashcapture"]="The Flash capture URL has not been configured for this module. Please visit http://autoview.autotrain.org for more information.";
-data["e_livecapturenotallowed"]="You are not authorised to record videos on this server.";
-data["e_livebroadnotallowed"]="You are not authorised to broadcast live on this server.";
-
 data["e_streamquestion"]="Click OK if you want to use streaming to improve\nthe performance of the video playback for this file.";
 
 data["eq_maintitle"]="AutoView Quickstart Wizard";

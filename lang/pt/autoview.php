@@ -20,16 +20,6 @@ $string['noxsl'] = 'Aviso : No suitable XSL parser has been found. Please update
 $string['pecl_http_warn'] = 'Aviso : A extens�p PHP pecl_http n�o esta instalada no seu servidor. You will need this to use the document conversion service. The module can be downloaded from http://pecl.php.net/package/pecl_http/ . If you do not intend to use a document conversion service this warning can be ignored.';
 $string['createnew'] = 'Usar o arquivo padr�o de configura��o (recomendado)';
 
-$string['configlivecapture']= 'Live capture java applet URL';
-$string['configflashserver']= 'Flash/Red5 communication server URL';
-$string['configflashcapture']= 'Flash based live capture URL';
-$string['configflashkey']='Chave secreta do Flash server';
-$string['configflashdir']='Subdirectory for captured flash files in course';
-$string['configflashsecurity'] = 'Metodo de integra��o seguro Flash/Red 5 server';
-$string['secretkey'] = 'Chave secreta';
-$string['randomkey'] = 'Chave rand�nica';
-$string['encryptedkey'] = 'Chave Rand�nica encriptografada';
-
 $string['confignote'] = 'Estes par�metros s�o usados para configurar';
 $string['confignote2'] = 'add-on services';
 $string['confignote3'] = 'Para AutoView. Deixe-os em branco se voc� n�o estiver usando qualquer add-on de servi�os, eles n�o s�o necess�rios para utiliza��o normal.';
@@ -41,8 +31,6 @@ $string['autoview:canrecordflash']='Pode gravar videos usando flash baseados em 
 $string['autoview:canconvertdocument']='Pode usar servi�o online de convers�o de documento';
 
 $string['converttitle'] = 'Web Service de convers�o de documento';
-$string['flashcapturetitle'] = 'Flash based live capture system';
-$string['javacapturetitle'] = 'Java applet basead live capture system';
 
 $string['convertnotallowed']='Voc� n�o esta autorizado a acessar o servi�o de convers�o de documentos';
 

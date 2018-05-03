@@ -25,28 +25,6 @@ $storage=array(AUTOVIEW_STORAGE_INTERNAL=>get_string('internal_storage', 'autovi
 $settings->add(new admin_setting_configselect('autoview/storage_type', get_string('config_storage_type', 'autoview'),
                    get_string('config_storage_type2', 'autoview'), AUTOVIEW_STORAGE_INTERNAL, $storage));
 
-
-$settings->add(new admin_setting_heading('autoview/lecture_capture_heading', get_string("flashcapturetitle", "autoview"),
-                   ""));
-
-$settings->add(new admin_setting_configtext('autoview/flashcapture', get_string("configflashcapture", "autoview"),
-                   "<p>".get_string("configflashcapture2", "autoview").
-                   " <a onclick=\"this.target='_blank'\" href=\"http://autoview.autotrain.org\">".get_string("autoview_website", "autoview")."</a>.</p>", "", PARAM_URL));
-
-$settings->add(new admin_setting_configtext('autoview/flashserver', get_string("configflashserver", "autoview"),
-                   get_string("configflashserver2", "autoview"), "", PARAM_TEXT));
-
-$options = array("randomkey"=>get_string('randomkey', 'autoview'));
-$settings->add(new admin_setting_configselect('autoview/flashsecurity', get_string('configflashsecurity', 'autoview'),
-                   get_string('configflashsecurity2', 'autoview'), "randomkey", $options));
-
-$settings->add(new admin_setting_configselect('autoview/flashsecurity', get_string('configflashsecurity', 'autoview'),
-                   get_string('configflashsecurity2', 'autoview'), "randomkey", $options));
-
-$always_stream=array(0=>get_string("no"), 1=>get_string("yes"));
-$settings->add(new admin_setting_configselect('autoview/alwaysflashstream', get_string('alwaysflashstream', 'autoview'),
-                   '', 0, $always_stream));
-
 $settings->add(new admin_setting_heading('autoview/doc_convert_heading', get_string("converttitle", "autoview"),""));
 
 $pecl="";
