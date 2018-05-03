@@ -1652,7 +1652,7 @@ function loadSubtitles()
  if (subtitleSrc[subtitleLang].indexOf(".js")>0)
  {
   jsFileLoader.document.open();
-  jsFileLoader.document.writeln("<!DOCTYPE html">");
+  jsFileLoader.document.writeln("<!DOCTYPE html>");
   jsFileLoader.document.writeln("<html><head>");
   jsFileLoader.document.writeln("<script language=\"JavaScript\"");
   jsFileLoader.document.writeln(" src=\""+baseRef+subtitleSrc[subtitleLang]+"\" type=\"text\/javascript\">");
@@ -1678,7 +1678,7 @@ function subtitleTranscript()
  var exwin=window.open("","av_transcript","width=750,height=550,status=yes,toolbar=no,menubar=no,scrollbars=yes,resizable=1");
  exwin.focus();
 
- exwin.document.writeln("<!DOCTYPE html">");
+ exwin.document.writeln("<!DOCTYPE html>");
 
  exwin.document.writeln("<html>\n"+
   "<head>\n"+
@@ -2094,7 +2094,11 @@ function detectPlugins()
 {
  if (vbDetectOK==false) 
  {
-  hasAcrobat=findPlugin("adobe acrobat");
+  if ( (navigator && navigator.mimeTypes && navigator.mimeTypes['application/pdf']) ||
+     (browser==MOZILLA && browserVersion>50))
+   hasAcrobat=true;
+  if (hasAcrobat==false)
+   hasAcrobat=findPlugin("adobe acrobat");
   if (hasAcrobat==false)
    hasAcrobat=findPlugin("adobe reader");
   if (hasAcrobat==false)
@@ -2192,7 +2196,7 @@ function detectBrowser()
  if (userAgent.indexOf("chrome")>-1)
  {
   browser=CHROME;
-  readBrowserVersion(userAgent, "chrome/", " ");
+  readBrowserVersion(userAgent, "chrome/", ".");
  }
  else
  if (userAgent.indexOf("safari")>-1)
@@ -2210,7 +2214,7 @@ function detectBrowser()
  if (userAgent.indexOf("firefox")>-1)
  {
   browser=MOZILLA;
-  readBrowserVersion(userAgent, "firefox/", " ");
+  readBrowserVersion(userAgent, "firefox/", ".");
  }
  else
  if (userAgent.indexOf("seamonkey")>-1)
@@ -2436,7 +2440,7 @@ function NoSlide()
  this.getAllSlides=getAllSlides;
  function getAllSlides(exwin)
  {
-  exwin.document.writeln( "<!DOCTYPE html">\n"+
+  exwin.document.writeln( "<!DOCTYPE html>\n"+
    "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\n"+
    " <head>\n"+
    "  <meta content=\"text/html; charset=ISO-8859-1\" http-equiv=\"Content-Type\"/>\n"+
@@ -2923,12 +2927,14 @@ function PDFSlide(url)
  this.getAllSlides=getAllSlides;
  function getAllSlides(exwin)
  {
+  var urlToUse=this.url;
+  if (this.url.indexOf("http://")==-1 && this.url.indexOf("https://")==-1)
+   urlToUse=baseRef+this.url;
+
   if (browser==MSIE)
   {
-   var urlToUse=this.url;
-   if (this.url.indexOf("http://")==-1 && this.url.indexOf("https://")==-1)
-    urlToUse=baseRef+this.url;
    exwin.document.writeln("<!DOCTYPE html>\n"+
+    "<html><head></head><body>\n"+
     "<div style=\"text-align:center\">\n"+
     "<object id=\"pdfslides\" classid=\"clsid:CA8A9780-280D-11CF-A24D-444553540000\""+
     " width=\"665\" height=\"480\" type=\"application/pdf\" data=\""+urlToUse+"\">\n"+
@@ -2938,7 +2944,16 @@ function PDFSlide(url)
     "</body></html>");
   }
   else
-   exwin.document.location=this.url;
+  {
+   exwin.document.writeln("<!DOCTYPE html>\n"+
+    "<html style=\"height:100%;\"><head></head><body style=\"height:100%;\">\n"+
+    "<div style=\"text-align:center;width:100%;height:96%;\">\n"+
+    "<object id=\"pdfslides\" "+
+    " width=\"100%\" height=\"100%\" type=\"application/pdf\" data=\""+urlToUse+"\">\n"+
+    "</object>\n"+
+    "</div>\n"+
+    "</body></html>");
+  }
  }
 
  this.getAllThumbnails=getAllThumbnails;
