@@ -70,7 +70,6 @@ data["e_convert_button"]="Convertir les diapositives";
 data["e_set"]="D&eacute;finir";
 data["e_bandwidth"]="Bande passante";
 data["e_video_url"]="URL de la vid&eacute;o";
-data["e_event_triggers"]="Ev&eacute;n&eacute;ments";
 data["e_slide_url"]="URL de la diapositive";
 data["e_image_type"]="Type d'image";
 data["e_convert_slides"]="Convertir les diapos";

@@ -159,7 +159,6 @@ data["e_convert_button"]="Converter Slides";
 data["e_set"]="Setar";
 data["e_bandwidth"]="Bandwidth";
 data["e_video_url"]="Video URL";
-data["e_event_triggers"]="Event triggers ?";
 data["e_slide_url"]="Slide URL";
 data["e_image_type"]="Tipo de Imagem";
 data["e_convert_slides"]="Converter Slides";

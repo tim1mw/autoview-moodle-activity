@@ -795,17 +795,6 @@ function editVideoSrc(lang, num)
   "    <div id=\"bandbox\">"+getBandwidthSelection(source.speed)+"</div>\n"+
   "   </td>\n"+
   " </tr><tr>\n"+
-  "  <td><div id=\"eventlabel\">"+getString("e_event_triggers")+"</div></td>\n"+
-  "  <td><div id=\"eventcheck\"><input type=\"checkbox\" name=\"triggers\"";
-
- var um=source.useMonitor;
- if (typeof(um)=="undefined")
-  um=source.useTimeMonitor();
- if (!um)
-  data=data+" checked";
-
- data=data+" /></div></td>\n"+
-  " </tr><tr>\n"+
   "  <td colspan=\"2\"><div id=\"eventnote\"><font size=\"-1\">("+getString("e_eventnote")+")</font></div></td>\n"+
   " </tr>\n"+
   "</table>\n"+

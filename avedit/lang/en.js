@@ -80,7 +80,6 @@ data["e_alreadylive"]="A live capture source has already been added. You cannot 
 data["e_set"]="Set";
 data["e_bandwidth"]="Bandwidth";
 data["e_video_url"]="Video URL";
-data["e_event_triggers"]="Event triggers ?";
 data["e_slide_url"]="Slide URL";
 data["e_image_type"]="Image Type";
 data["e_convert_slides"]="Convert Slides";
