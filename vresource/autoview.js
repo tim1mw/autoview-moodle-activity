@@ -34,7 +34,7 @@ var ieSpoof=false;
 var browser, browserVersion=-1, ostype;
 
 var OTHER=0;
-var LINUX=1, WINDOWS=2, SUNOS=3, APPLEMAC=4, SYMBIAN=5, ANDROID=6, IOS=7;
+var LINUX=1, WINDOWS=2, SUNOS=3, APPLEMAC=4, ANDROID=6, IOS=7;
 var MOZILLA=1, MSIE=2, OPERA=3, KONQUEROR=4, SAFARI=5, CHROME=6, EDGE=7;
 
 var mobileDevice=false;
@@ -2179,12 +2179,6 @@ function detectBrowser()
  else
  if (userAgent.indexOf("windows")>-1)
   ostype=WINDOWS;
- else
- if (userAgent.indexOf("symbianos")>-1)
- {
-  mobileDevice=true;
-  ostype=SYMBIAN;
- }
  else
   ostype=OTHER;
 
