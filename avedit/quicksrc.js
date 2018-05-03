@@ -49,10 +49,18 @@ function getTypeFromExtension()
 {
  var url=document.form.url.value.toLowerCase();
 
- if (url.indexOf(".flv")>-1  || url.indexOf("rtmp://")>-1 || (url.indexOf(".mp3")>-1 && url.indexOf("rtsp://")<0) )
+ if (url.indexOf(".flv")>-1 ||
+     url.indexOf("rtmp://")>-1 ||
+    (url.indexOf(".mp3")>-1 && url.indexOf("rtsp://")<0) )
   return opener.parent.videoframe.VIDEO_FLASH;
  else
-  if (url.indexOf(".ogg")>-1 || url.indexOf(".ogv")>-1 || url.indexOf(".ogm")>-1 || url.indexOf(".mp4")>-1  || url.indexOf(".mp3")>-1)
+  if (url.indexOf(".ogg")>-1 ||
+      url.indexOf(".ogv")>-1 ||
+      url.indexOf(".ogm")>-1 ||
+      url.indexOf(".mp4")>-1 ||
+      url.indexOf(".mp3")>-1 ||
+      url.indexOf(".mpd")>-1 ||
+      url.indexOf(".m3u8")>-1)
    return opener.parent.videoframe.VIDEO_HTML5;
 
  return opener.parent.videoframe.VIDEO_NONE;

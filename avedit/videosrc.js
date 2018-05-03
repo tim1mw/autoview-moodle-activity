@@ -68,9 +68,6 @@ function checkType()
  if (detectedType==document.form.type.value)
   return true;
 
- if (document.form.url.value.toLowerCase().indexOf(".mp4")>-1 && document.form.type.value==opener.parent.videoframe.VIDEO_HTML5)
-  return true;
-
  return confirm(opener.getString("e_video_type_warn"));
 }
 
@@ -87,7 +84,13 @@ function getTypeFromExtension()
 {
  var url=document.form.url.value.toLowerCase();
 
- if (url.indexOf(".ogg")>-1 || url.indexOf(".ogv")>-1 || url.indexOf(".ogm")>-1 || url.indexOf(".mp4")>-1 || url.indexOf(".mpd")>-1 || url.indexOf(".webm")>-1)
+ if (url.indexOf(".ogg")>-1 || 
+     url.indexOf(".ogv")>-1 || 
+     url.indexOf(".ogm")>-1 ||
+     url.indexOf(".mp4")>-1 ||
+     url.indexOf(".mpd")>-1 ||
+     url.indexOf(".m3u8")>-1 ||
+     url.indexOf(".webm")>-1)
   return opener.parent.videoframe.VIDEO_HTML5;
  else
  if (url.indexOf(".flv")>-1  || url.indexOf("rtmp://")>-1 || url.indexOf(".mp3">-1 && url.indexOf("rtsp://")<0) )
