@@ -59,8 +59,6 @@ $string['hidenav'] = 'Hide Moodle Navigation Bar';
 
 $string['autoview:addinstance']='Can add Autoview modules';
 $string['autoview:canedit']='Can edit presentations';
-$string['autoview:canrecordflash']='Can record videos using AutoView Lecture Capture Live';
-$string['autoview:canbroadcastflash']='Can broadcast videos using AutoView Lecture Capture Live';
 $string['autoview:canconvertdocument']='Can use online document conversion service';
 $string['autoview:viewpresentation']='Can view AutoView presentations';
 

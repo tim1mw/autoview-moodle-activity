@@ -27,7 +27,6 @@ $string['confignote4'] = 'Veja o site do AutoView para maiores detalhes';
 $string['hidenav'] = 'Esconder a barra de navega��o do moodle';
 
 $string['autoview:canedit']='Pode Editar apresenta��es';
-$string['autoview:canrecordflash']='Pode gravar videos usando flash baseados em captura ao vivo';
 $string['autoview:canconvertdocument']='Pode usar servi�o online de convers�o de documento';
 
 $string['converttitle'] = 'Web Service de convers�o de documento';
