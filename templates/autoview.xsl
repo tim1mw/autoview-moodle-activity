@@ -14,18 +14,12 @@
 <xsl:param name="extension"/>
 <xsl:param name="xmlsubtitle"/>
 <xsl:param name="aveditdir"/>
-<xsl:param name="flashserver"/>
-<xsl:param name="flashhost"/>
-<xsl:param name="flashpath"/>
-<xsl:param name="flashrecord"/>
-<xsl:param name="flashbroadcast"/>
 <xsl:param name="user"/>
 <xsl:param name="exitURL"/>
 <xsl:param name="title"/>
 <xsl:param name="preferedLang"/>
 <xsl:param name="nojsMessage"/>
 <xsl:param name="jsExtras"/>
-<xsl:param name="recordMaxKbps"/>
 <xsl:param name="bodyStyle"/>
 <xsl:param name="themeimport"/>
 <xsl:param name="saveCookieID"/>
@@ -60,20 +54,11 @@
   <xsl:if test="string-length($exitURL) &gt; 0">
   setExitURL("<xsl:value-of select="$exitURL" />");
   </xsl:if>
-  <xsl:if test="string-length($flashserver) &gt; 0">
-  setFlashParams("<xsl:value-of select="$flashserver" />", "<xsl:value-of select="$flashhost" />" />");
-  </xsl:if>
   <xsl:if test="string-length($aveditdir) &gt; 0">
   setAVEditDir("<xsl:value-of select="$aveditdir" />");
   </xsl:if>
-  <xsl:if test="string-length($flashrecord) &gt; 0">
-  setFlashConnectionParams("<xsl:value-of select="$flashpath" />", <xsl:value-of select="$flashrecord" />, <xsl:value-of select="$flashbroadcast" />);
-  </xsl:if>
   <xsl:if test="string-length($user) &gt; 0">
   setUser("<xsl:value-of select="$user" />");
-  </xsl:if>
-  <xsl:if test="string-length($recordMaxKbps) &gt; 0">
-  setRecordMaxKbps(<xsl:value-of select="$recordMaxKbps" />);
   </xsl:if>
   <xsl:if test="string-length($saveCookieID) &gt; 0">
   setSaveCookieID("<xsl:value-of select="$saveCookieID" />");
@@ -152,10 +137,6 @@
   addAVLang("<xsl:value-of select="$langname" />", <xsl:value-of select="$varname" />);
   <xsl:for-each select="avsrc">
   <xsl:variable name="avType"><xsl:value-of select="type" /></xsl:variable>
-  <xsl:if test="$avType='JavaLiveCapture'">
-  if (editing)</xsl:if>
-  <xsl:if test="$avType='FlashLiveCapture'">
-  if (editing)</xsl:if>
   addAVSource("<xsl:value-of select="$langname" />", new <xsl:value-of select="$avType" />("<xsl:value-of select="url" />", <xsl:value-of select="speed" />, <xsl:value-of select="monitor" />));</xsl:for-each>
  </xsl:for-each>
 </xsl:template>

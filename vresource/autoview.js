@@ -456,17 +456,6 @@ function setXMLSubtitle(xsub)
  xmlSubtitle=xsub;
 }
 
-function setFlashParams(fs, fh)
-{
- flashHost=fh;
- flashServer=fs;
-}
-
-function setFlashAuthUrl(au)
-{
- flashAuthUrl=au;
-}
-
 function setUser(u)
 {
  user=u;

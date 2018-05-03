@@ -10,33 +10,12 @@
 
 editing=true;
 var avEditDir="./";
-var liveCaptureURL="";
-var flashPath="";
-var flashRecord=false, flashBroadcast=false;
-var recordMaxKbps=512;
 
 /*****Config stuff*****/
 
 function setAVEditDir(x)
 {
  avEditDir=x;
-}
-
-function setLiveCaptureURL(lc)
-{
- liveCaptureURL=lc;
-}
-
-function setFlashConnectionParams(fp, fr, fb)
-{
- flashPath=fp;
- flashRecord=fr;
- flashBroadcast=fb;
-}
-
-function setRecordMaxKbps(mx)
-{
- recordMaxKbps=mx;
 }
 
 /*****For loading extra language strings used by editing functions*****/
@@ -177,9 +156,6 @@ function slideChanged(last)
 
  if (parent.editframe.currentDisplay==parent.editframe.DISPLAY_TIMESTITLES)
  {
-  //var s=findCurrent(selectedAVSource.getPosition(), times[avLang], true);
-  //if (s!=currentSlide)
-  // parent.editframe.clearTimeElementsStyles("Slide");
   parent.editframe.setActiveTimeElement("Slide", currentSlide, last);
  }
 }
@@ -334,55 +310,6 @@ function deleteSlideSrc(lang, num)
 
 /*****Video Source changing stuff*****/
 
-function addLiveFlashRecording(url, wideVideo)
-{
- var index=-1;
- for (var loop=0; loop<avSrc[avLang].length; loop++)
-  if (avSrc[avLang][loop].type==VIDEO_FLASH)
-   if (confirm(getString("e_flashreplace")))
-   {
-    index=loop;
-    break;
-   }
-
- addUpdateAVSrc(avLang, index, avLang, VIDEO_FLASH, url, SPEED_BROAD, true);
- parent.editframe.componentsDisplay();
-
- if (typeof(wideVideo)!="undefined")
- {
-  if (wideVideo)
-  {
-   if (videoAspect!=0.5624)
-   {
-    setVideoAspect(0.5625);
-    //setTimeout("window.location.reload()", 1500);
-   }
-  }
-  else
-  {
-   if (videoAspect!=0.75)
-   {
-    setVideoAspect(0.75);
-    //setTimeout("window.location.reload()", 1500);
-   }
-  }
- }
-
- parent.editframe.saveXMLConfig();
- parent.editframe.clearTimeElementsStyles("Slides");
- //setSlideSync(true);
- presentationLoaded=false;
- setTimeout("window.location.reload()", 1500);
-}
-
-function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
-    }
-  }
-}
 
 function addUpdateAVSrc(oldlang, num, newlang, type, url, speed, monitor)
 {
@@ -393,12 +320,6 @@ function addUpdateAVSrc(oldlang, num, newlang, type, url, speed, monitor)
  //If these values are not set, then this is should be treated as a new source
  if (num==-1 || oldlang==null)
  {
-  if (type==VIDEO_JAVALIVE || type==VIDEO_FLASHLIVE)
-   if (hasLiveCapture(false))
-   {
-    alert(getString("e_alreadylive"));
-    return;
-   }
   num=addAVSource(newlang, getAVSource(type, url, speed, monitor));
  }
  else
@@ -435,26 +356,8 @@ function addUpdateAVSrc(oldlang, num, newlang, type, url, speed, monitor)
 
 function getAVSource(type, url, speed, monitor)
 {
- if (type==VIDEO_REALPLAYER)
-  return new RealPlayerVideo(url, speed, monitor);
- if (type==VIDEO_QUICKTIME)
-  return new QuicktimeVideo(url, speed, monitor);
- if (type==VIDEO_JAVAAUDIO)
-  return new JavaAudio(url, speed);
- if (type==VIDEO_WINDOWSMEDIA)
-  return new WindowsMediaVideo(url, speed, monitor);
- if (type==VIDEO_VLC)
-  return new VLCVideo(url, speed);
- if (type==VIDEO_JAVALIVE)
-  return new JavaLiveCapture();
- if (type==VIDEO_FLASHLIVE)
-  return new FlashLiveCapture();
  if (type==VIDEO_FLASH)
   return new FlashVideo(url,speed);
- if (type==VIDEO_SILVERLIGHT)
-  return new SilverlightVideo(url,speed);
- if (type==VIDEO_FLASHBROADCAST)
-  return new FlashVideoBroadcast(url);
  if (type==VIDEO_HTML5)
   return new HTML5Video(url,speed);
 
@@ -568,8 +471,6 @@ function addSubtitleBefore()
  setSubSync(false);
  subtitles.splice(currentSubtitle, 0, "");
  subTimes[subtitleLang].splice(currentSubtitle-1, 0, -100);
- //subtitleSlideLink[subtitleLang].splice(currentSubtitle-1, 0, "");
- //currentSubtitle++;
  editSubtitle();
 }
 
@@ -578,7 +479,6 @@ function addSubtitleAfter()
  setSubSync(false);
  subtitles.splice(currentSubtitle+1, 0, "");
  subTimes[subtitleLang].splice(currentSubtitle, 0, -100);
- //subtitleSlideLink[subtitleLang].splice(currentSubtitle, 0, "");
  currentSubtitle++;
  editSubtitle();
 }
@@ -605,7 +505,6 @@ function deleteSubtitle()
 {
  subtitles.splice(currentSubtitle, 1);
  subTimes[subtitleLang].splice(currentSubtitle-1, 1);
- //subtitleSlideLink[subtitleLang].splice(currentSubtitle-1, 1);
  setSubtitleHTML();
 }
 
@@ -617,7 +516,6 @@ function subtitleChanged(last)
  if (parent.editframe.currentDisplay==parent.editframe.DISPLAY_TIMESTITLES)
  {
   parent.editframe.fillSubtitleTimesList();
-  //parent.editframe.setActiveTimeElement("Subtitle", currentSubtitle, last);
  }
 }
 
@@ -627,10 +525,6 @@ function addSubtitleAtEnd(time, text)
  var timeNum=subTimes[subtitleLang].length;
  subtitles[subNum]=text;
  subTimes[subtitleLang][timeNum]=time;
-
- //var subNum=subtitles.push(text);
- //var timeNum=subTimes[subtitleLang].push(time);
- //alert("sub="+subNum+" time="+timeNum);
 }
 
 /*****Subtitle/Slide linking*****/
@@ -952,38 +846,8 @@ function getSlideType(type)
 
 function getVideoType(type)
 {
- if (type==VIDEO_REALPLAYER)
-  return "RealPlayerVideo";
-
- if (type==VIDEO_QUICKTIME)
-  return "QuicktimeVideo";
-
- if (type==VIDEO_JAVAAUDIO)
-  return "JavaAudio";
-
- if (type==VIDEO_WINDOWSMEDIA)
-  return "WindowsMediaVideo";
-
- if (type==VIDEO_VLC)
-  return "VLCVideo";
-
- if (type==VIDEO_JAVALIVE)
-  return "JavaLiveCapture";
-
- if (type==VIDEO_FLASHLIVE)
-  return "FlashLiveCapture";
-
  if (type==VIDEO_FLASH)
   return "FlashVideo";
-
- if (type==VIDEO_SILVERLIGHT)
-  return "SilverlightVideo";
-
- if (type==VIDEO_SILVERLIGHT)
-  return "SilverlightVideo";
-
- if (type==VIDEO_FLASHBROADCAST)
-  return "FlashVideoBroadcast";
 
  if (type==VIDEO_HTML5)
   return "HTML5Video";
@@ -1016,217 +880,11 @@ function jsEscape(prep)
 
 /*****Java Live Capture Applet class*****/
 
-var VIDEO_JAVALIVE=30;
-var VIDEO_FLASHLIVE=31;
-
 function JavaLiveCapture()
 {
- this.speed=SPEED_NONE;
- this.type=VIDEO_JAVALIVE;
- this.url="";
-
- this.getHTML=getHTML;
- function getHTML()
- {
-  var playerHeight=avHeight+100;
-  var playerWidth=avWidth;
-
-  if (liveCaptureURL.length==0)
-  {
-   return '<p>'+getString("e_nolivecapture")+'</p>'+
-    '<p><a href="http://autoview.autotrain.org" target="_blank" class="linkbutton">'+getString("e_nolivecapture2")+'</a></p>\n';
-  }
-  else
-  if (browser==MSIE)
-  {
-   return '<object id="liveCapture" classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"\n'
-    +' width="'+playerWidth+'" height="'+playerHeight+'" type="application/x-java-applet;jpi-version=1.5.0"\n'
-    +' codebase="http://java.sun.com/products/plugin/autodl/jinstall-1_5-windows-i586.cab#Version=1,5,0,0">\n'
-    +'<param name="archive" value="'+liveCaptureURL+'" />\n'
-    +'<param name="java_code" value="LiveCaptureApplet.class" />\n'
-    +'<param name="type" value="application/x-java-applet;version=1.5.0" />\n'
-    +'<param name="mayscript" value="true" />\n'
-    +'<param name="scriptable" value="true" />\n'
-    +'<param name="fileBrowser" value="'+parent.editframe.fileBrowser+'">\n'
-    +'</object>';
-  }
-  else
-   return '<object id="liveCapture" width="'+playerWidth+'" height="'+playerHeight+'"\n'
-    +' classid="java:LiveCaptureApplet.class" type="application/x-java-applet" \n'
-    +' archive="'+liveCaptureURL+'?"\n'
-    +' mayscript scriptable>\n'
-    +'<param name="archive" value="'+liveCaptureURL+'" />\n'
-    +'<param name="mayscript" value="true" />\n'
-    +'<param name="scriptable" value="true" />\n'
-    +'<param name="fileBrowser" value="'+parent.editframe.fileBrowser+'">\n'
-    +'</object>';
- }
-
- this.getPlayer=getPlayer;
- function getPlayer()
- {
-  return document.getElementById('liveCapture');
- }
-
- this.setPosition=setPosition;
- function setPosition(pos)
- {
- }
-
- this.getPosition=getPosition;
- function getPosition()
- {
-  if (typeof(getPlayer())!="undefined")
-   return getPlayer().getVideoPosition();
-  else
-   return 999;
- }
-
- this.stopPlayer=stopPlayer;
- function stopPlayer()
- {
-
- }
-
- this.startPlayer=startPlayer;
- function startPlayer()
- {
-
- }
-
- this.label=label;
- function label()
- {
-  return getString("livecapture");
- }
-
- this.controllable=controllable;
- function controllable()
- {
-  return false;
- }
-
- this.isValid=isValid;
- function isValid()
- {
-  return hasJavaPlugin;
- }
-
- this.useTimeMonitor=useTimeMonitor;
- function useTimeMonitor()
- {
-  return false;
- }
-
- this.disableMessage=disableMessage;
- function disableMessage()
- {
-  return getString("pluginnotfound");
- }
 }
 
 
 function FlashLiveCapture()
 {
- this.speed=SPEED_NONE;
- this.type=VIDEO_FLASHLIVE;
- this.url="";
-
- this.getHTML=getHTML;
- function getHTML()
- {
-  if (flashRecord==false)
-   return '<p>'+getString("e_livecapturenotallowed")+'</p>';
-
-  if (flashServer.length==0)
-   return '<p>'+getString("e_noflashserver")+'</p>';
-
-  if (flashCapture.length==0)
-   return '<p>'+getString("e_noflashcapture")+'</p>';
-
-  var playerHeight=avHeight+120;
-  var playerWidth=playerHeight*0.75;
-  
-  if (playerWidth<220)
-  {
-   slideWidth=slideWidth-(220-playerWidth);
-   playerWidth=220;
-   playerHeight=290;
-  }
-
-  var data='type="application/x-shockwave-flash" data="'+flashCapture+'/livecapture.swf"\n';
-  if (browser==MSIE)
-   data='classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"\n'+     
-   'codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0"';
-
-  var s='<object '+data+
-   ' width="'+playerWidth+'" height="'+playerHeight+'" id="liveCaptureFlash">\n'+
-   ' <param name="movie" value="'+flashCapture+'/livecapture.swf" />\n'+ 
-   ' <param name="flashvars" value="server='+flashServer+'&title='+window.document.title+'&host='+flashHost+'&path='+flashPath+'&maxKbps='+recordMaxKbps+'" />\n'+
-   ' <param name="allowScriptAccess" value="always" />\n'+
-   '<\/object>\n';
-  return s;
- }
-
- this.getPlayer=getPlayer;
- function getPlayer()
- {
-  return document.getElementById('liveCaptureFlash');
- }
-
- this.setPosition=setPosition;
- function setPosition(pos)
- {
- }
-
- this.getPosition=getPosition;
- function getPosition()
- {
-  if (typeof(getPlayer())!="undefined")
-   return getPlayer().getVideoTime()*1000;
-  else
-   return -1;
- }
-
- this.stopPlayer=stopPlayer;
- function stopPlayer()
- {
-
- }
-
- this.startPlayer=startPlayer;
- function startPlayer()
- {
-
- }
-
- this.label=label;
- function label()
- {
-  return getString("livecaptureflash");
- }
-
- this.controllable=controllable;
- function controllable()
- {
-  return false;
- }
-
- this.isValid=isValid;
- function isValid()
- {
-  return hasFlash;
- }
-
- this.useTimeMonitor=useTimeMonitor;
- function useTimeMonitor()
- {
-  return false;
- }
-
- this.disableMessage=disableMessage;
- function disableMessage()
- {
-  return getString("pluginnotfound");
- }
 }
