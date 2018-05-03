@@ -12,7 +12,6 @@
 
  $l = optional_param('l',0,PARAM_INT);
  $editval = optional_param('edit',false,PARAM_BOOL);
- $flashauthonly = optional_param('flashauthonly', false, PARAM_BOOL);
 
  global $DB;
 
@@ -43,13 +42,6 @@
  if ($editval)
  {
   $canedit=has_capability('mod/autoview:canedit', $context);
- }
-
- /***If this is just an auth request, deal with it and exit***/
- if ($flashauthonly)
- {
-  echo autoview_prepare_auth($course, $USER, $autoview, $cm);
-  die();
  }
 
  $avs=autoview_get_file_storage($autoview->storage);

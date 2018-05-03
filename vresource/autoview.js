@@ -74,7 +74,6 @@ var baseRef="";
 var baseRefSet=false;
 var saveCookieID="";
 
-var flashServer="", flashHost="", flashAuthUrl=document.URL;;
 var preferedLang="en";
 var user="";
 var presentationLoaded=false;
@@ -3391,9 +3390,6 @@ function FlashVideo(url,speed)
     i=urlToUse.indexOf("/", i+1);
    var file=urlToUse.substring(i+1);
    var server=urlToUse.substring(0,i);
-   /*****Check if this is an AutoView Live capture recording and append access parameters*****/
-   if (server.indexOf(flashServer)>-1)
-    server=server+"?"+flashHost+"?"+getFlashAuth();
 
    cfg=cfg+" plugins: { "+
         " rtmp: { "+
@@ -3710,28 +3706,6 @@ function getVideoSpeed(s)
   return " ("+getString("speed"+s)+")";
 }
 
-/**Gets a flash auth token**/
-
-function getFlashAuth()
-{
- var xmlDoc=null;
-
- if (typeof window.ActiveXObject != 'undefined' )
-  xmlDoc = new ActiveXObject("Microsoft.XMLHTTP");
- else
-  xmlDoc = new XMLHttpRequest();
-
- var loc=flashAuthUrl;
- if (loc.indexOf("?")<0)
-  loc=loc+"?";
- else
-  loc=loc+"&";
-
- loc=loc+"flashauthonly=1";
- xmlDoc.open("GET", loc , false);
- xmlDoc.send( null );
- return xmlDoc.responseText;
-}
 
 /*****Error/Message handling*****/
 
