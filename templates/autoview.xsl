@@ -156,8 +156,6 @@
   if (editing)</xsl:if>
   <xsl:if test="$avType='FlashLiveCapture'">
   if (editing)</xsl:if>
-  <xsl:if test="$avType='MediaSourceCapture'">
-  if (editing)</xsl:if>
   addAVSource("<xsl:value-of select="$langname" />", new <xsl:value-of select="$avType" />("<xsl:value-of select="url" />", <xsl:value-of select="speed" />, <xsl:value-of select="monitor" />));</xsl:for-each>
  </xsl:for-each>
 </xsl:template>

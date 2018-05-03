@@ -457,8 +457,6 @@ function getAVSource(type, url, speed, monitor)
   return new FlashVideoBroadcast(url);
  if (type==VIDEO_HTML5)
   return new HTML5Video(url,speed);
- if (type==VIDEO_MEDIASOURCECAPTURE)
-  return new MediaSourceCapture(url);
 
  return new NoVideo();
 }
@@ -990,9 +988,6 @@ function getVideoType(type)
  if (type==VIDEO_HTML5)
   return "HTML5Video";
 
- if (type==VIDEO_MEDIASOURCECAPTURE)
-  return "MediaSourceCapture";
-
  return "NoVideo";
 }
 
@@ -1023,7 +1018,6 @@ function jsEscape(prep)
 
 var VIDEO_JAVALIVE=30;
 var VIDEO_FLASHLIVE=31;
-var VIDEO_MEDIASOURCECAPTURE=32;
 
 function JavaLiveCapture()
 {
@@ -1210,124 +1204,6 @@ function FlashLiveCapture()
  function label()
  {
   return getString("livecaptureflash");
- }
-
- this.controllable=controllable;
- function controllable()
- {
-  return false;
- }
-
- this.isValid=isValid;
- function isValid()
- {
-  return hasFlash;
- }
-
- this.useTimeMonitor=useTimeMonitor;
- function useTimeMonitor()
- {
-  return false;
- }
-
- this.disableMessage=disableMessage;
- function disableMessage()
- {
-  return getString("pluginnotfound");
- }
-}
-
-/** MediaSource Capture **/
-
-function MediaSourceCapture()
-{
- this.speed=SPEED_NONE;
- this.type=VIDEO_MEDIASOURCECAPTURE;
- this.url="";
-
- this.getHTML=getHTML;
- this.getHTML=getHTML;
-
- this.currentPosition=0;
-
-
-
- this.receiveMessage=receiveMessage;
- function receiveMessage(event)
- {
-  //alert(event.data);
-  // Need to do some validation here;
-  this.currentPosition=parseInt(event.data);
- }
-
- function getHTML()
- {
-
-  window.addEventListener("message", this.receiveMessage, false);
-
-  var x="<iframe class=\"video\" style=\"width:"+avWidth+"px;height:"+(avHeight+10)+"px;margin-bottom:-4px;padding:0px;\" name=\"mediasourcecapture\"  src=\""+flashCapture+"/capture.jsp?host="+flashHost+"&path="+flashPath+"&auth="+getFlashAuth()+"&\" />";
-
-  //var x="<iframe class=\"video\" style=\"width:"+avWidth+"px;height:"+(avHeight+10)+"px;margin-bottom:-4px;padding:0px;\" name=\"mediasourcecapture\"  />";
-  //setTimeout("mediasourcecapture.document.writeln(\""+this.getIFrameHTML()+"\");", 800);
-  return x;
- }
-
- this.getIFrameHTML=getIFrameHTML;
- function getIFrameHTML()
- {
-  var x="<!DOCTYPE html>"+
-   "<html>"+
-   "<head>"+
-   "<title>HTML 5 video/audio capture</title>"+
-   "</head>"+
-   "<body style='margin:0px;padding:0px;'>"+
-   "<video id='avrecord' autoplay></video><br />"+
-   "<div id='status'></div>"+
-   "<a href='javascript:startRecord();'>Record</a>&nbsp;"+
-   "<a href='javascript:stopRecord();'>Stop</a>"+
-   "<script type='text/javascript' src='"+flashCapture+"/capture.js'></script>"+
-   "</body>"+
-   "</html>";
-
-  return x;
- }
-
-
- this.getPlayer=getPlayer;
- function getPlayer()
- {
-  return null;
- }
-
- this.setPosition=setPosition;
- function setPosition(pos)
- {
- }
-
- this.getPosition=getPosition;
- function getPosition()
- {
-  //var data=mediasourcecapture.postMessage("getPosition", "*");
-  //alert(data);
-  return currentPosition;
- }
-
- this.stopPlayer=stopPlayer;
- function stopPlayer()
- {
-
- }
-
- this.startPlayer=startPlayer;
- function startPlayer()
- {
-
- }
-
- this.label=label;
- function label()
- {
-  return getString("livecapturemediasource");
  }
 
  this.controllable=controllable;
