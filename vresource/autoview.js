@@ -1652,8 +1652,7 @@ function loadSubtitles()
  if (subtitleSrc[subtitleLang].indexOf(".js")>0)
  {
   jsFileLoader.document.open();
-  jsFileLoader.document.writeln("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" "+   
-   "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
+  jsFileLoader.document.writeln("<!DOCTYPE html">");
   jsFileLoader.document.writeln("<html><head>");
   jsFileLoader.document.writeln("<script language=\"JavaScript\"");
   jsFileLoader.document.writeln(" src=\""+baseRef+subtitleSrc[subtitleLang]+"\" type=\"text\/javascript\">");
@@ -1679,8 +1678,7 @@ function subtitleTranscript()
  var exwin=window.open("","av_transcript","width=750,height=550,status=yes,toolbar=no,menubar=no,scrollbars=yes,resizable=1");
  exwin.focus();
 
- exwin.document.writeln("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" "+   
-  "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
+ exwin.document.writeln("<!DOCTYPE html">");
 
  exwin.document.writeln("<html>\n"+
   "<head>\n"+
@@ -2440,8 +2438,7 @@ function NoSlide()
  this.getAllSlides=getAllSlides;
  function getAllSlides(exwin)
  {
-  exwin.document.writeln( "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\""+ 
-   "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n"+
+  exwin.document.writeln( "<!DOCTYPE html">\n"+
    "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\n"+
    " <head>\n"+
    "  <meta content=\"text/html; charset=ISO-8859-1\" http-equiv=\"Content-Type\"/>\n"+
@@ -2800,8 +2797,7 @@ function OOFlashSlide(url)
  this.getAllSlides=getAllSlides;
  function getAllSlides(exwin)
  {
-  exwin.document.writeln("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\""+ 
-   "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n"+
+  exwin.document.writeln("<!DOCTYPE html>\n"+
    "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\n"+
    " <head>\n"+
    "  <meta content=\"text/html; charset=ISO-8859-1\" http-equiv=\"Content-Type\"/>\n"+
@@ -2934,8 +2930,7 @@ function PDFSlide(url)
    var urlToUse=this.url;
    if (this.url.indexOf("http://")==-1 && this.url.indexOf("https://")==-1)
     urlToUse=baseRef+this.url;
-   exwin.document.writeln("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"DTD/xhtml1-strict.dtd\">\n"+
-    "<html><head><title></title></head><body style=\"background-color:#eeeeee;\">\n"+
+   exwin.document.writeln("<!DOCTYPE html>\n"+
     "<div style=\"text-align:center\">\n"+
     "<object id=\"pdfslides\" classid=\"clsid:CA8A9780-280D-11CF-A24D-444553540000\""+
     " width=\"665\" height=\"480\" type=\"application/pdf\" data=\""+urlToUse+"\">\n"+
@@ -3129,8 +3124,7 @@ function getImageFilename(slideNumber, slideScale, slideType)
 
 function allImageSlides(slides)
 {
- var str="<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\""+ 
-  "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n"+
+ var str="<!DOCTYPE html>\n"+
   "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\n"+
   " <head>\n"+
   "  <meta content=\"text/html; charset=ISO-8859-1\" http-equiv=\"Content-Type\"/>\n"+
@@ -3164,8 +3158,7 @@ function allImageSlides(slides)
 
 function allImageThumbnails(slides)
 {
- var str="<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\""+ 
-  "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n"+
+ var str="<!DOCTYPE html>\n"+
   "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\n"+
   " <head>\n"+
   "  <meta content=\"text/html; charset=ISO-8859-1\" http-equiv=\"Content-Type\"/>\n"+
@@ -3218,8 +3211,7 @@ function slideLoadFinished()
 function loadSlideSizeFile(url)
 {
  jsFileLoader.document.open();
- jsFileLoader.document.writeln("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" "+   
-  "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
+ jsFileLoader.document.writeln("<!DOCTYPE html>");
  jsFileLoader.document.writeln("<html><head>");
  jsFileLoader.document.writeln("<script language=\"JavaScript\"");
  jsFileLoader.document.writeln(" src=\""+baseRef+url+"\" type=\"text\/javascript\">");
