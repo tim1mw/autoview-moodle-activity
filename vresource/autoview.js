@@ -2103,6 +2103,8 @@ function detectPlugins()
    hasAcrobat=findPlugin("adobe reader");
   if (hasAcrobat==false)
    hasAcrobat=findPlugin("nppdf.so");
+  if (hasFlash==false)
+   hasFlash=findPlugin("flash");
  }
 
  /*****Check slide interaction controls for non-ie browsers*****/
@@ -3352,9 +3354,6 @@ function FlashVideo(url,speed)
   if (this.url.indexOf("http://")>-1 || this.url.indexOf("https://")>-1 || this.url.indexOf("rtmp://")>-1)
    urlToUse=url;
   else
-  if (this.url.indexOf("$flashserver/")==0)
-   urlToUse=flashServer+this.url.substring(12);
-  else
    urlToUse=baseRef+this.url;
 
   return this.getFlowPlayer3HTML(urlToUse);
@@ -3382,6 +3381,13 @@ function FlashVideo(url,speed)
 
   var cfg="";
   var controls="controls:{fullscreen:'false', height:'18'}";
+
+  // Cope with legacy $flashserver in URL's
+  var flpos=urlToUse.indexOf("$flashserver");
+  if (flpos>-1)
+  {
+   urlToUse=urlToUse.substring(0,flpos)+urlToUse.substring(flpos+13);
+  }
 
   if (urlToUse.indexOf("rtmp://")>-1)
   {
