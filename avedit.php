@@ -36,15 +36,9 @@
     autoview_add_to_log($course->id, "autoview", "edit", "view.php?id=$cm->id", $autoview->name, $cm->id);
 
     /*****Read config params*****/
-    $flashdir="";
-    if (isset($av_config->flashdir))
-        $flashdir=$av_config->flashdir;
     $conversionurl="";
     if (isset($av_config->conversionurl))
         $conversionurl=$av_config->conversionurl;
-    $alwaysflashstream="false";
-    if (isset($av_config->alwaysflashstream) && $av_config->alwaysflashstream)
-        $alwaysflashstream="true";
 
     $filebrowser=$CFG->wwwroot."/blocks/repo_filemanager/index.php?repoid=".autoview_get_coursefilesarea_id($context).
      "&hiderepolist=1&id=".$course->id."&amp;choose=form.url&amp;shortpath=1";
@@ -57,10 +51,7 @@
      'xmlFile' => $autoview->configfile,
      'fileBrowser' => $filebrowser,
      'waiterMessageStr' => get_string('waitermessage', 'autoview'),
-     'startEditorStr' => get_string('starteditor', 'autoview'),
-     'flashDir' => $flashdir,
-     'alwaysflashstream'=> $alwaysflashstream,
-     'broadcastMaxKbps' => $broadcastMaxKbps);
+     'startEditorStr' => get_string('starteditor', 'autoview'));
 
     /*****If there is no conversion service, send a blank URL*****/
     if (strlen($conversionurl)>0 && has_capability('mod/autoview:canconvertdocument', $context))

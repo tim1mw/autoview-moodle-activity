@@ -16,9 +16,6 @@
 <xsl:param name="conversionURL"/>
 <xsl:param name="waiterMessageStr"/>
 <xsl:param name="startEditorStr"/>
-<xsl:param name="flashDir"/>
-<xsl:param name="alwaysflashstream"/>
-<xsl:param name="broadcastMaxKbps"/>
 
 <xsl:template match="/">
 <html>
@@ -32,9 +29,6 @@
      var xmlFile="<xsl:value-of select="$xmlFile" />";
      var fileBrowser="<xsl:value-of select="$fileBrowser" />";
      var conversionURL="<xsl:value-of select="$conversionURL" />";
-     var flashDir="<xsl:value-of select="$flashDir" />";
-     var alwaysFlashStream=<xsl:value-of select="$alwaysflashstream" />;
-     var broadcastMaxKbps=<xsl:value-of select="$broadcastMaxKbps" />;
     //</xsl:comment>
     </script>
     <style type="text/css">
