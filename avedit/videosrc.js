@@ -14,12 +14,6 @@ function updateDisplay()
 {
  var selection=document.form.type.value;
 
- if (selection==opener.parent.videoframe.VIDEO_NONE || 
-     selection==opener.parent.videoframe.VIDEO_HTML5)
-  setEventDisplay("none");
- else
-  setEventDisplay("inline");
-
  if (selection==opener.parent.videoframe.VIDEO_NONE)
  {
   setURLDisplay("none");
@@ -31,13 +25,6 @@ function updateDisplay()
   setBandwidthDisplay("inline");
  }
 } 
-
-function setEventDisplay(val)
-{
- document.getElementById("eventlabel").style.display=val;
- document.getElementById("eventcheck").style.display=val;
- document.getElementById("eventnote").style.display=val;
-}
 
 function setURLDisplay(val)
 {

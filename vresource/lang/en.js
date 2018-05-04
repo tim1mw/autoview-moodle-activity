@@ -33,6 +33,8 @@ data["nohtml5"]="Your web browser does not support the codecs necessary to play 
 data["novideoplayer"]="No Video";
 data["pluginnotfound"]="The plugin required to play this source has not been found";
 
+data["legacyvideo"]="Legacy Video";
+
 data["play"]="Play";
 data["pause"]="Pause";
 data["stop"]="Stop";

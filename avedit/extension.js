@@ -852,6 +852,9 @@ function getVideoType(type)
  if (type==VIDEO_HTML5)
   return "HTML5Video";
 
+ if (type==VIDEO_LEGACY)
+  return "LeagcyVideoContainer";
+
  return "NoVideo";
 }
 
@@ -878,13 +881,17 @@ function jsEscape(prep)
  return prep;
 }
 
-/*****Java Live Capture Applet class*****/
+/*****Deprecated Video Types******/
 
 function JavaLiveCapture()
 {
+ this.url=false;
+ this.deprecated=true;
 }
 
 
 function FlashLiveCapture()
 {
+ this.url=false;
+ this.deprecated=true;
 }

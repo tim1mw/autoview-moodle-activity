@@ -794,8 +794,6 @@ function editVideoSrc(lang, num)
   "   <td>\n"+
   "    <div id=\"bandbox\">"+getBandwidthSelection(source.speed)+"</div>\n"+
   "   </td>\n"+
-  " </tr><tr>\n"+
-  "  <td colspan=\"2\"><div id=\"eventnote\"><font size=\"-1\">("+getString("e_eventnote")+")</font></div></td>\n"+
   " </tr>\n"+
   "</table>\n"+
   "<p align=\"center\"><input type=\"submit\" value=\""+getString("e_update")+"\" /></p>\n"+
@@ -812,9 +810,13 @@ function getVideoSelection(type,extra)
 {
  var data="    <select name=\"type\""+extra+">\n";
 
+ data=data+formOption(type, parent.videoframe.VIDEO_HTML5, getString("html5video"));
  data=data+formOption(type, parent.videoframe.VIDEO_FLASH, getString("flashvideo"));
  data=data+formOption(type, parent.videoframe.VIDEO_NONE, getString("novideoplayer"));
- data=data+formOption(type, parent.videoframe.VIDEO_HTML5, getString("html5video"));
+ if (type==parent.videoframe.VIDEO_LEGACY)
+ {
+  data=data+formOption(type, parent.videoframe.VIDEO_LEGACY, getString("legacyvideo"));
+ }
  data=data+"    </select>\n";
  return data;
 }

@@ -11,6 +11,7 @@
 /*****Video types*****/
 
 var VIDEO_NONE=0;
+var VIDEO_LEGACY=1;
 var VIDEO_FLASH=6;
 var VIDEO_HTML5=9;
 
@@ -499,10 +500,19 @@ function addAVLang(lang, tm)
 
 function addAVSource(lang, source)
 {
- if (typeof(source.url)=="undefined")
+ if (source.deprecated==true)
  {
-  // If this is missing, the source is deprecated
-  return -1;
+  // If this is missing, the source is deprecated. In editing mode, show it as a depreacted source so 
+  // we still have a link to the video file for conversion.
+  if (editing)
+  {
+   var lv=new LeagcyVideoContainer(source.url, source.speed);
+   return avSrc[lang].push(lv)-1;
+  }
+  else
+  {
+   return -1;
+  }
  }
 
  if (typeof(avSrc[lang])=="undefined")
@@ -3256,6 +3266,7 @@ function NoVideo()
  this.url="";
  this.speed=SPEED_NONE;
  this.type=VIDEO_NONE;
+ this.deprecated=false;
 
  this.getHTML=getHTML;
  function getHTML()
@@ -3335,6 +3346,7 @@ function FlashVideo(url,speed)
 {
  this.jsLoaded=false;
  this.url=url;
+ this.deprecated=false;
 
  if (typeof(speed)=="undefined")
   this.speed=SPEED_NONE;
@@ -3496,6 +3508,7 @@ function FlashVideo(url,speed)
 function HTML5Video(url, speed)
 {
  this.url=url;
+ this.deprecated=false;
 
  if (typeof(speed)=="undefined")
   this.speed=SPEED_NONE;
@@ -3707,7 +3720,7 @@ function showMessage(x)
     x=x.substring(0, innerLoop)+"\n"+x.substring(innerLoop+1);
     break;
    }
-   if (x.charAt(innerLoop)=='\n' || x.charAt(innerLoop)=='\r')
+   if (x.charAt(innerLoop)=='\n' || x.charAt(innerLoop)=='\r')data["e_legacyvideo"]="Legacy Video";
     break;
   }
 
@@ -3788,40 +3801,135 @@ function inspect(obj, maxLevels, level)
 // **********************************************
 // ***********Deprecated video types*************
 
+function LeagcyVideoContainer(url, speed)
+{
+ this.url=url;
+ this.speed=speed;
+ this.type=VIDEO_LEGACY;
+
+ this.getHTML=getHTML;
+ function getHTML()
+ {
+  return "<p align=\"center\">"+label()+"</p>";
+ }
+
+ this.initPlayer=initPlayer;
+ function initPlayer()
+ {
+ }
+
+ this.getPlayer=getPlayer;
+ function getPlayer()
+ {
+  return "";
+ }
+
+ this.setPosition=setPosition;
+ function setPosition(pos)
+ {
+ }
+
+ this.getPosition=getPosition;
+ function getPosition()
+ {
+  return -1;
+ }
+
+ this.stopPlayer=stopPlayer;
+ function stopPlayer()
+ {
+ }
+
+ this.startPlayer=startPlayer;
+ function startPlayer()
+ {
+ }
+
+ this.label=label;
+ function label()
+ {
+  var ext=this.url.split('.').pop();
+  return getString("legacyvideo")+" ("+ext+")";
+ }
+
+ this.isValid=isValid;
+ function isValid()
+ {
+  return false;
+ }
+
+ this.controllable=controllable;
+ function controllable()
+ {
+  return false;
+ }
+
+ this.useTimeMonitor=useTimeMonitor;
+ function useTimeMonitor()
+ {
+  return false;
+ }
+
+ this.disableMessage=disableMessage;
+ function disableMessage()
+ {
+  return getString("pluginnotfound");
+ }
+}
 
 /*****Silverlight Video control class*****/
 function SilverlightVideo(url,speed)
 {
+ this.url=url;
+ this.speed=speed;
+ this.deprecated=true;
 }
 
 /*****VLC control class*****/
 function VLCVideo(url,speed)
 {
+ this.url=url;
+ this.speed=speed;
+ this.deprecated=true;
 }
 
 /*****Quicktime control class*****/
 function QuicktimeVideo(url,speed, useMonitor)
 {
+ this.url=url;
+ this.speed=speed;
+ this.deprecated=true;
 }
 
 /*****JavaAudio control class*****/
 function JavaAudio(url,speed)
 {
+ this.url=url;
+ this.speed=speed;
+ this.deprecated=true;
 }
 
 /*****Windows Media control class*****/
 function WindowsMediaVideo(url,speed,useMonitor)
 {
+ this.url=url;
+ this.speed=speed;
+ this.deprecated=true;
 }
 
 /*****RealPlayer control class*****/
 function RealPlayerVideo(url,speed,useMonitor)
 {
+ this.url=url;
+ this.speed=speed;
+ this.deprecated=true;
 }
 
 /*****Flash Video control class for live broadcasts*****/
 function FlashVideoBroadcast(url)
 {
+ this.url=url;
+ this.deprecated=true;
 }
 
 // Redundant config methods.
