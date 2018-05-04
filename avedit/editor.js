@@ -757,8 +757,7 @@ function editVideoSrc(lang, num)
  else
   source=new parent.videoframe.FlashVideo("", parent.videoframe.SPEED_NONE);
 
- var data="<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\""+
-  "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n"+
+ var data="<!DOCTYPE html>\n"+
   "<html>\n"+
   "<head>\n"+
   " <title>"+getString("e_edit_Video_source")+"</title>\n"+
@@ -895,8 +894,7 @@ function editSlideSrc(lang, num)
 
 function editSlideSrcWindow(lang, num, source)
 {
- var data="<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\""+
-  "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n"+
+ var data="<!DOCTYPE html>\n"+
   "<html>\n"+
   "<head>\n"+
   " <title>"+getString("e_edit_Slide_source")+"</title>\n"+
@@ -1015,8 +1013,7 @@ function editSubtitleSrc(lang)
  if (typeof(parent.videoframe.subtitleSrc[lang])!="undefined")
   url=parent.videoframe.subtitleSrc[lang];
 
- var data="<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\""+
-  "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n"+
+ var data="<!DOCTYPE html>\n"+
   "<html>\n"+
   "<head>\n"+
   " <link type=\"text/css\" rel=\"stylesheet\" href=\""+parent.videoframe.avEditDir+"popup.css\" />\n"+
@@ -1510,8 +1507,7 @@ function saveViaIframe(inputFields)
 {
  checkIFrame();
  window.usefulIframe.document.open("text/html");
- window.usefulIframe.document.writeln("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\""+
-  "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">"+
+ window.usefulIframe.document.writeln("<!DOCTYPE html>"+
   "<html><head><title>XML Config</title></head>\n"+
   "<body onload=\"startEditor()\">\n"+
   "<form style=\"display:none;\" action=\""+xmlSendURL+"\" method=\"post\" type=\"multipart/form-data\" name=\"formdata\">\n"+
@@ -1538,8 +1534,7 @@ function convertSlides()
 {
  if (conversionURL.length>0)
  {
-  var data="<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\""+
-   "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n"+
+  var data="<!DOCTYPE html>\n"+
    "<html>\n"+
    "<head>\n"+
    " <title>"+getString("e_convert_heading")+"</title>\n"+
@@ -1561,8 +1556,7 @@ function convertSlides()
 
 function quickStart()
 {
- var data="<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\""+
-  "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n"+
+ var data="<!DOCTYPE html>\n"+
   "<html>\n"+
   "<head>\n"+
   " <title>"+getString("eq_title")+"</title>\n"+
