@@ -51,10 +51,6 @@ $string['config_storage_type'] = 'AutoView File Storage Location';
 $string['config_storage_type2'] = "This setting determines the default storage method for files used by the AutoView module. Changing this setting will not move any existing files, it only affects new presentations. Ideally this setting should not be changed after the initial module setup is completed.<br /><br />If you choose <b>Internal - Course Files</b>, then all files will be held in the course files area repository plugin. This is currently the only available choice.";
 $string['internal_storage'] = 'Internal - Course Files';
 
-$string['confignote'] = 'These parameters are primarily used to configure';
-$string['confignote2'] = 'add-on services';
-$string['confignote3'] = 'for AutoView. Leave them blank if you are not using any add-on services, they are not needed for normal usage.';
-$string['confignote4'] = 'See the AutoView website for more details.';
 $string['hidenav'] = 'Hide Moodle Navigation Bar';
 
 $string['autoview:addinstance']='Can add Autoview modules';
