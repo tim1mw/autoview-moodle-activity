@@ -20,12 +20,6 @@ $string['xmlnote'] = 'Note : En choisissant un nom de fichier de configuration n
 $string['noxsl'] = 'Attention : Ce système ne dispose pas de parseur XSL valide. Mettez à jour votre version de PHP en activant le support XSL. Voir le fichier LisezMoi du module AutoView pour plus d\'information sur comment le faire';
 $string['pecl_http_warn'] = 'Attention : L\'extension pecl_http PHP n\'est pas disponible sur votre serveur. Vous en avez besoin pour utiliser les services de conversion de document. Ce module peut être téléchargé depuis http://pecl.php.net/package/pecl_http/. Si vous n\'utilisez aucun service de conversion de document, cet avertissement peut être ignoré.';
 $string['createnew'] = 'Utiliser la configuration AutoView par défaut (recomandé)';
-$string['configlivecapture']= 'URL de l\'applet de capture';
-$string['configflashserver']= 'URL du serveur de communication Flash/Red5';
-$string['confignote'] = 'Ces paramètres servent à configurer';
-$string['confignote2'] = 'les services additionnels';
-$string['confignote3'] = 'pour AutoView. Laissez les non renseignez si vous n\'utilisez pas de sevices additionnels.';
-$string['confignote4'] = 'Voir le site AutoView pour plus de détail.';
 $string['waitermessage'] = 'Veuillez patienter : Si l\'interface de l\'éditeur n\'apparait pas lorsque le cadre de droite a terminé son chargement, cliquez sur le bouton ci-dessous';
 $string['starteditor'] = 'Démarrer l\'éditeur';
 ?>

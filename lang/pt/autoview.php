@@ -20,10 +20,6 @@ $string['noxsl'] = 'Aviso : No suitable XSL parser has been found. Please update
 $string['pecl_http_warn'] = 'Aviso : A extens�p PHP pecl_http n�o esta instalada no seu servidor. You will need this to use the document conversion service. The module can be downloaded from http://pecl.php.net/package/pecl_http/ . If you do not intend to use a document conversion service this warning can be ignored.';
 $string['createnew'] = 'Usar o arquivo padr�o de configura��o (recomendado)';
 
-$string['confignote'] = 'Estes par�metros s�o usados para configurar';
-$string['confignote2'] = 'add-on services';
-$string['confignote3'] = 'Para AutoView. Deixe-os em branco se voc� n�o estiver usando qualquer add-on de servi�os, eles n�o s�o necess�rios para utiliza��o normal.';
-$string['confignote4'] = 'Veja o site do AutoView para maiores detalhes';
 $string['hidenav'] = 'Esconder a barra de navega��o do moodle';
 
 $string['autoview:canedit']='Pode Editar apresenta��es';

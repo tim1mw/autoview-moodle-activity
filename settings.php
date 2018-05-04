@@ -11,13 +11,6 @@ if (testXSL()==false)
 
 $dep=autoview_has_dependencies(true);
 
-$settings->add(new admin_setting_heading('autoview/main_heading', "",
-                   '<p>'.get_string("confignote", "autoview").
-                   ' <a href="http://autoview.autotrain.org/" title="'.get_string("confignote4", "autoview").'">'.
-                   get_string("confignote2", "autoview").'</a> '.
-                   get_string("confignote3", "autoview").'</p>'.$xsl.$dep));
-
-
 $settings->add(new admin_setting_heading('autoview/storage_heading', get_string("storagetitle", "autoview"),""));
 
 $storage=array(AUTOVIEW_STORAGE_INTERNAL=>get_string('internal_storage', 'autoview'));
