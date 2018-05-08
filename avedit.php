@@ -36,9 +36,6 @@
     autoview_add_to_log($course->id, "autoview", "edit", "view.php?id=$cm->id", $autoview->name, $cm->id);
 
     /*****Read config params*****/
-    $conversionurl="";
-    if (isset($av_config->conversionurl))
-        $conversionurl=$av_config->conversionurl;
 
     $filebrowser=$CFG->wwwroot."/blocks/repo_filemanager/index.php?repoid=".autoview_get_coursefilesarea_id($context).
      "&hiderepolist=1&id=".$course->id."&amp;choose=form.url&amp;shortpath=1";
@@ -54,10 +51,7 @@
      'startEditorStr' => get_string('starteditor', 'autoview'));
 
     /*****If there is no conversion service, send a blank URL*****/
-    if (strlen($conversionurl)>0 && has_capability('mod/autoview:canconvertdocument', $context))
-     $parameters['conversionURL']=$CFG->wwwroot."/mod/autoview/convert.php";
-    else
-     $parameters['conversionURL']="";
+    $parameters['conversionURL']="";
 
     echo process_xsl($CFG->dirroot."/mod/autoview/avedit/avedit.xml", $CFG->dirroot."/mod/autoview/avedit/avedit.xsl", $parameters);
 ?>

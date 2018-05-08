@@ -124,6 +124,8 @@ function xmldb_autoview_upgrade($oldversion=0)
      unset_config("flashserver", "autoview");
      unset_config("flashsecurity", "autoview");
      unset_config("alwaysflashstream", "autoview");
+     unset_config("conversionurl", "autoview");
+     unset_config("conversionkey", "autoview");
  }
 
  return true;

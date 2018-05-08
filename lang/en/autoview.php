@@ -29,10 +29,6 @@ $string['editoff'] = 'Switch off editing mode';
 $string['modulename'] = 'AutoView';
 $string['modulenameplural'] = 'AutoView Presentations';
 $string['xmlsavefailed'] = 'Configuration file save failed';
-$string['configconversionurl'] = 'Document conversion service URL';
-$string['configconversionurl2'] = 'The URL of a document conversion service capable of producing slides in a format suitable for AutoView. Leave this blank if you do not have a suitable document conversion service available. You can find out more about document conversion services on the';
-$string['configconversionkey'] = 'Document conversion service access key';
-$string['configconversionkey2'] = 'The access key for the document conversion service.';
 $string['conversiondone'] = 'The document has been converted.';
 $string['conversionfailed'] = 'Conversion failed';
 $string['conversionfailed_noerror'] = 'No error message was returned by the document converter.\nIt may not be running, or has been wrongly configured.';
@@ -59,7 +55,6 @@ $string['autoview:canconvertdocument']='Can use online document conversion servi
 $string['autoview:viewpresentation']='Can view AutoView presentations';
 
 $string['storagetitle'] = 'File Storage Area';
-$string['converttitle'] = 'Document conversion web service';
 
 $string['convertnotallowed']='You are not authorised to access the document conversion service';
 
@@ -76,4 +71,13 @@ $string['js_extras2'] = 'The JavaScript Calls option enables you to insert a pla
 
 $string['no_repofileman'] = 'The Repository File Manager block has not been installed. This is required to use AutoView in Moodle 2.x with internal file storage.';
 $string['no_coursefilearea'] = 'The Course File Area repository has not been installed. This is required to use AutoView in Moodle 2.x with internal file storage.';
+
+$string['content_update'] = 'AutoView Content Update';
+$string['content_update_note'] = 'AutoView for Moodle 3.5 and later has undergone significant changes to remove redundant plugin types and'.
+    ' provide better support for modern streaming formats. The content update tool will help you to remove old video types and where possible'.
+    ' convert videos to more more modern formats. Click the link below to open the update tool.';
+$string['content_update_link'] = 'Open Content Update Tool';
+
+$string['not_authorised'] = 'You are not authorised to run the content update tool.';
+
 ?>
