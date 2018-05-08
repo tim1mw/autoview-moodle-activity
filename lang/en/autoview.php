@@ -80,4 +80,7 @@ $string['content_update_link'] = 'Open Content Update Tool';
 
 $string['not_authorised'] = 'You are not authorised to run the content update tool.';
 
+$string['ffmpeg'] = 'FFMPEG Binary Location';
+$string['ffmpeg2'] = 'The content update tool can use FFMPEG to convert legacy file types into modern formats. If you wish to do this, enter the location of the FFMPEG binary on your server here.';
+
 ?>

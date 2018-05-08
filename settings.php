@@ -32,4 +32,7 @@ $settings->add(new admin_setting_heading('autoview/migration', get_string("conte
                    '<p>'.get_string("content_update_note", "autoview").'</p>'.
                    '<p><a href="'.$CFG->wwwroot.'/mod/autoview/updatetool.php">'.get_string("content_update_link", "autoview").'</a></p>'));
 
+$settings->add(new admin_setting_configtext('autoview/ffmpeg', get_string("ffmpeg", "autoview"),
+                   get_string("ffmpeg2", "autoview"), "", PARAM_RAW));
+
 ?>
