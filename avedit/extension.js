@@ -853,7 +853,7 @@ function getVideoType(type)
   return "HTML5Video";
 
  if (type==VIDEO_LEGACY)
-  return "LeagcyVideoContainer";
+  return "LegacyVideoContainer";
 
  return "NoVideo";
 }

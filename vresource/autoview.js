@@ -506,7 +506,7 @@ function addAVSource(lang, source)
   // we still have a link to the video file for conversion.
   if (editing)
   {
-   var lv=new LeagcyVideoContainer(source.url, source.speed);
+   var lv=new LegacyVideoContainer(source.url, source.speed);
    return avSrc[lang].push(lv)-1;
   }
   else
@@ -3801,7 +3801,7 @@ function inspect(obj, maxLevels, level)
 // **********************************************
 // ***********Deprecated video types*************
 
-function LeagcyVideoContainer(url, speed)
+function LegacyVideoContainer(url, speed)
 {
  this.url=url;
  this.speed=speed;
