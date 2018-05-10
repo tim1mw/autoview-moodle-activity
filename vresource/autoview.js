@@ -2350,10 +2350,7 @@ function monitorPosition()
  }
  catch (e)
  {
-  if (typeof("Components")!="undefined" && browser!=MSIE)
-   Components.utils.reportError("Error in video position monitoring thread: "+e);
-  else
-   alert("Error in video position monitoring thread\n\n"+e.description);
+  console.log("Error in video position monitoring thread\n\n"+e.description);
   clearInterval(monitor);
  }
 }
