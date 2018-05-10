@@ -3422,7 +3422,7 @@ function FlashVideo(url,speed)
   else
    cfg=cfg+"clip: {autoPlay:false, scaling:'fit', url:'"+urlToUse+"'}";
 
-  setTimeout("flowplayer('flowPlayer', '"+vresourcePath+"flowplayer/flowplayer.swf', {"+cfg+"});", 500);
+  setTimeout("flowplayer('flowPlayer', '"+vresourcePath+"flowplayer/flowplayer.swf', {"+cfg+"});", 1200);
   return "<div id='flowPlayer' style='width:"+width+"px;height:"+height+"px;'></div>\n";
  }
 
