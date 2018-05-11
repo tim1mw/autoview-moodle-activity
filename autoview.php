@@ -79,15 +79,6 @@
   $parameters['extension']=$CFG->wwwroot.'/mod/autoview/avedit/extension.js';
  }
 
- /***This server has flash based live capture*****/
- if (strlen(trim($av_config->flashserver))>0)
- {
-  /***Common parameters for anybody using the flash system***/
-  $parameters['flashhost']=$CFG->wwwroot;
-  $parameters['flashserver']=$av_config->flashserver;
-  $parameters['user']=$USER->firstname." ".$USER->lastname;
- }
-
  /***Advanced stuff***/
  if (strlen(trim($av_config->js_extras))>0)
   $parameters['jsExtras']=$av_config->js_extras;

@@ -4,6 +4,14 @@ class av_generic_file_storage
 {
 
  /**
+ * Gets the base directory for this file storage area
+ **/
+
+ function get_base_path($courseid) {
+  return "";
+ }
+
+ /**
  * Gets the path of the AVX config file
  **/
 

@@ -5,10 +5,15 @@ include_once("generic.php");
 class av_internal_file_storage extends av_generic_file_storage
 {
 
+ function get_base_path($courseid) {
+  global $CFG;
+  return $CFG->dataroot.'/'.$courseid;
+ }
+
  function get_file_path($file, $courseid)
  {
   global $CFG;
-  return $CFG->dataroot.'/'.$courseid.'/'.$file;;
+  return $CFG->dataroot.'/'.$courseid.'/'.$file;
  }
 
  function check_course_dir($courseid)
