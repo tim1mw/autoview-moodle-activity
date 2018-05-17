@@ -444,10 +444,8 @@ function get_valid_video_files($avinst, $courseid, $xml, $urltrans) {
 }
 
 function process_file_path($url, $avs, $courseid) {
-echo "flashserver: ".strpos($url, '$flashserver')."\n";
     if (strpos($url, '$flashserver') === 0) {
         $url = substr($url, 13);
-echo "::".$url."\n";
     }
 
     $filepath=$avs->get_file_path($url, $courseid);
@@ -501,8 +499,7 @@ function get_storage_path_fragment($avinst, $path, $courseid, $avs = false) {
     if (!$avs) {
         $avs=autoview_get_file_storage($avinst->storage);
     }
-
-    $basepath=$avs->get_base_path('.', $courseid);
+    $basepath=$avs->get_base_path($courseid);
     return substr($path, strlen($basepath)+1);
 }
 
