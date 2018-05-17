@@ -139,7 +139,7 @@ function process_av_selection() {
             remove_av_source($xml, 'speed', array("SPEED_MODEM"), $removeredundant, $avs, $avmod->course);
         }
 
-        update_flash($xml, $avs, $avmod->course);
+        update_flash($xml, $avs, $avmod->course, $avinst);
 
         save_avx_file($avinst, $avmod->course, $avs, $xml);
         echo "Finished.\n";
@@ -148,7 +148,7 @@ function process_av_selection() {
     echo "</pre>";
 }
 
-function update_flash(&$xml, $avs, $courseid) {
+function update_flash(&$xml, $avs, $courseid, $avinst) {
     $avsrcs = $xml->getElementsByTagName('avsrc');
 
     foreach ($avsrcs as $avsrc) {
