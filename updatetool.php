@@ -404,7 +404,7 @@ function get_valid_video_files($avinst, $courseid, $xml, $urltrans) {
             }
 
             foreach ($urltrans as $urltran) {
-                if (strpos($url, $urltran[0]) === 0) {
+                if (strlen($urltran[0]) && strpos($url, $urltran[0]) === 0) {
                     $url = $urltran[1].substr($url, strlen($urltran[0]));
                 }
             }
