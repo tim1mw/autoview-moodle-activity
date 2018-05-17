@@ -139,12 +139,35 @@ function process_av_selection() {
             remove_av_source($xml, 'speed', array("SPEED_MODEM"), $removeredundant, $avs, $avmod->course);
         }
 
+        update_flash($xml, $avs, $avmod->course);
 
         save_avx_file($avinst, $avmod->course, $avs, $xml);
         echo "Finished.\n";
     }
 
     echo "</pre>";
+}
+
+function update_flash(&$xml, $avs, $courseid) {
+    $avsrcs = $xml->getElementsByTagName('avsrc');
+
+    foreach ($avsrcs as $avsrc) {
+        $isflash = false;
+        foreach($avsrc->childNodes as $avsrctag) {
+            if ($avsrctag->nodeName == 'type' && $avsrctag->textContent == 'FlashVideo') {
+                $isflash = true;
+                break;
+            }
+        }
+        if ($isflash) {
+            foreach($avsrc->childNodes as $avsrctag) {
+                if ($avsrctag->nodeName == 'url') {
+                    $path = $avsrctag->textContent = process_file_path($avsrctag->textContent, $avs, $courseid);
+                    $avsrctag->textContent = get_storage_path_fragment($avinst, $path, $courseid, $avs);
+                }
+            }
+        }
+    }
 }
 
 function add_av_source(&$xml, $lang, $params) {
@@ -421,8 +444,10 @@ function get_valid_video_files($avinst, $courseid, $xml, $urltrans) {
 }
 
 function process_file_path($url, $avs, $courseid) {
+echo "flashserver: ".strpos($url, '$flashserver')."\n";
     if (strpos($url, '$flashserver') === 0) {
         $url = substr($url, 13);
+echo "::".$url."\n";
     }
 
     $filepath=$avs->get_file_path($url, $courseid);
