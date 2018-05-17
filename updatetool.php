@@ -384,7 +384,7 @@ function has_dash_or_hls($xml) {
 
             if ($avsrctag->nodeName == "url") {
                 $fileext = pathinfo($avsrctag->textContent, PATHINFO_EXTENSION);
-                if ($fileext === 'hls' || $fileext === 'mpd') {
+                if ($fileext === 'm3u8' || $fileext === 'mpd') {
                     $stream = true;
                 }
             }
