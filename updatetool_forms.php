@@ -65,6 +65,7 @@ class autoview_update_autoviewselect extends moodleform {
             'mp4' => get_string('createformat_mp4', 'autoview'), 
             'no' => get_string('createformat_no', 'autoview'));
         $mform->addElement('select', 'processopt', get_string('createhtml5', 'autoview'), $processopts);
+        $mform->setType('processopt', PARAM_ALPHANUM);
 
         $mform->addElement('checkbox', 'replacehtml5', get_string('replacehtml5', 'autoview'));
         $mform->setType('replacehtml5', PARAM_BOOL);
@@ -161,16 +162,19 @@ class autoview_update_autoviewselect extends moodleform {
             $mform->addElement('select', $n, get_string('encodevideo', 'autoview').' ('.$langcode.')', $videoopts);
             $mform->disabledIf($n, $pn);
             $mform->setDefault($n, $largestindex);
+            $mform->setType($n, PARAM_PATH);
 
             $nvb = 'encode_vid_vb_'.$langcode.'_'.$av->id;
             $mform->addElement('text', $nvb, get_string('videobitrate', 'autoview').' ('.$langcode.')');
             $mform->disabledIf($nvb, $pn);
             $mform->setDefault($nvb, "256");
+            $mform->setType($nvb, PARAM_INT);
 
             $nab = 'encode_vid_ab_'.$langcode.'_'.$av->id;
             $mform->addElement('text', $nab, get_string('audiobitrate', 'autoview').' ('.$langcode.')');
             $mform->disabledIf($nab, $pn);
             $mform->setDefault($nab, "64");
+            $mform->setType($nab, PARAM_INT);
         }
     }
 
