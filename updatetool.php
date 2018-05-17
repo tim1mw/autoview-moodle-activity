@@ -409,7 +409,7 @@ function get_valid_video_files($avinst, $courseid, $xml, $urltrans) {
                 }
             }
 
-            if (file_exists($url)) {
+            if (strpos($url, "://")=== false && file_exists($url)) {
                 $files[$langcode][] = get_video_properties($url);
             }
 
